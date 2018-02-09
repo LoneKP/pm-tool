@@ -1,1 +1,31 @@
-<h1>Here we will display a list of projects</h1>
+<h1>Ongoing projects</h1>
+
+
+<div class="jumbotron card">
+ <h4><%=@project['client']['name'] %></h4>
+ <h3><%=@project['name'].upcase %></h3>
+<!--
+  <div class="container">
+   <h2>Card</h2>
+  </div>
+-->
+</div>
+
+<p>User name: <%=@user['first_name'] %> <%= @user['last_name'] %></p>
+
+<p>Project: <%=@project['name'] %> </p>
+<p>Client: <%= @project['client']['name'] %> </p>
+<p>Sold for: <%= @project['budget'] %> hours </p>
+
+<p>Accumulated time: <%= @project['budget'] %> hours </p>
+
+
+
+
+<p>@project: <%= @project%> </p>
+
+
+<p>Time entries <%= @time_entries['client']%> </p>
+
+
+
