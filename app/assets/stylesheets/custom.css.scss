@@ -1,12 +1,46 @@
-@import "bootstrap-sprockets";
+
 @import "bootstrap";
 
-.card {
-	background-color: #003889;
-	padding-top: -20px !important;
+//general styles
+h1,h2,h3,h4,h5,h6,p {
+	color: #fff;
 }
 
-.card h1,h2,h3,h4 {
-	color: #ffffff;
+h4 {
+	margin:0rem;
 }
+
+p {
+	font-size: 0.7em;
+	margin-bottom:0rem; 
+}
+
+.body {
+	background-color: #242424;
+}
+
+//Styling for cards
+.card {
+	background-color: #003889;
+	padding-top: 5px;
+}
+
+.card-elements {
+	padding: 3em;
+	border-color:#fff;
+	border-width:3px;
+	border-style: solid; 
+
+	
+	.card-elements:before {
+  content: '';
+  vertical-align: middle;
+  display: inline-block;
+  width: 0;
+  height: 100%;
+}
+
+	
+}
+
 

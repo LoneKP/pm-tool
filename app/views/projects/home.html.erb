@@ -2,13 +2,41 @@
 
 
 <div class="jumbotron card">
- <h4><%=@project['client']['name'] %></h4>
- <h3><%=@project['name'].upcase %></h3>
-<!--
-  <div class="container">
-   <h2>Card</h2>
-  </div>
--->
+ <h6><%=@project['client']['name'].upcase %>  -  <%=@project['name'].upcase %>
+ </h6>
+ <hr class="mt-0 mb-5 bg-white">
+	<div class="d-flex flex-row justify-content-around align-items-center">
+		<div>
+			<p>Sold hours: <%= @project['budget'] %> hours</p>
+			<p>Work hours: [Input]</p>
+		</div>
+		<div class="card-elements rounded-circle d-flex flex-column 
+								justify-content-between 
+								align-items-center">
+			<h4>26</h4><p>Design</p>
+		</div>
+		<div class="card-elements rounded-circle d-flex flex-column 
+								justify-content-between 
+								align-items-center">
+			<h4>26</h4><p>Develop</p>
+		</div>
+		<div class="card-elements rounded-circle d-flex flex-column 
+								justify-content-between 
+								align-items-center">
+			<h4>26</h4><p>Project</p>
+		</div>
+		<div class="card-elements rounded-circle d-flex flex-column 
+								justify-content-between 
+								align-items-center">
+			<h4>26</h4><p>Meeting</p>
+		</div>
+		<div class="d-flex flex-column 
+								justify-content-between 
+								align-items-center">
+			<h1 class="my-0">82</h1>
+			<p class="my-0">hours used</p>
+		</div>
+	</div>
 </div>
 
 <p>User name: <%=@user['first_name'] %> <%= @user['last_name'] %></p>
@@ -19,13 +47,11 @@
 
 <p>Accumulated time: <%= @project['budget'] %> hours </p>
 
-
-
-
 <p>@project: <%= @project%> </p>
 
 
 <p>Time entries <%= @time_entries['client']%> </p>
+
 
 
 
