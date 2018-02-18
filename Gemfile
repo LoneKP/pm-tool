@@ -8,6 +8,8 @@ end
 #gem 'bootstrap-sass', '3.3.7'
 gem 'bootstrap', '~> 4.0.0'
 
+gem 'awesome_print'
+
 gem 'jquery-rails'
 gem 'httparty'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

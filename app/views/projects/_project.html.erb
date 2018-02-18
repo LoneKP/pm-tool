@@ -1,5 +1,7 @@
+
+
 <div class="jumbotron card">
- <h6><%=@project['client']['name'].upcase %>  -  <%=@project['name'].upcase %>
+ <h6><%=@project['name'].upcase %>  -  <%=@project['name'].upcase %>
  </h6>
  <hr class="mt-0 mb-5 bg-white">
 	<div class="d-flex flex-row justify-content-around align-items-center">
@@ -44,13 +46,19 @@
 
 <p>Accumulated time: <%= @project['budget'] %> hours </p>
 
-<p>@project: <%= @project%> </p>
+<p>1  <%=@projects[0]['project_name']%> </p>
+<p>2 <%=@projects[1]%> </p>
+<p>3 <%=@projects[2]%> </p>
+<p>4 <%=@projects[3]%> </p>
 
-
-<p>Time entries <%= 
-
-
-%> </p>
+<p>4 <%=
+	@projects.each do |key, value|
+		puts "project name is #{value}"
+		
+	end
+		%> 
+	
+	</p>
 
 
 
