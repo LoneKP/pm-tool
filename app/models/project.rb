@@ -1,5 +1,3 @@
-class Project
-	include HTTParty
-	
+class Project < ApplicationRecord
 	
 end
