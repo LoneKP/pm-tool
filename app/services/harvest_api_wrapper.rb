@@ -1,12 +1,28 @@
 class HarvestApiWrapper
 	include HTTParty
-	def time_entries
-				@response_time_entries_raw = HTTParty.get(
-			"https://api.harvestapp.com/api/v2/time_entries.json", 
-			headers: headers("https://api.harvestapp.com/api/v2/time_entries.json"
-			)
-		).parsed_response
+	
+	def project(project_id)
+		HTTParty.get(
+			"https://api.harvestapp.com/api/v2/projects/#{project_id}.json", 
+			headers: headers(
+				"https://api.harvestapp.com/api/v2/projects.json"
+				)
+			).parsed_response
+	
+				
 	end
+	
+	def time_entries(page, project_id)
+		HTTParty.get(
+			"https://api.harvestapp.com/v2/time_entries?page=#{page}&per_page=100&project_id=#{project_id}", 
+			headers: headers(
+			"https://api.harvestapp.com/api/v2/users/me.json"
+					)
+			).parsed_response
+
+	end
+	
+
 
 	def projects
 			response_projects_raw = HTTParty.get(
