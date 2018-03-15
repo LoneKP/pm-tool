@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20180226203624) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "projects", force: :cascade do |t|
     t.integer "harvest_project_id"
   end
