@@ -14,7 +14,7 @@ class Project < ApplicationRecord
 					else 
 						#for loop to loop through all the pages and fetch all and put into the variable 	response_time_entries_per_project
 						for i in 1..number_of_pages do	
-							time_entries_raw = wrapper.time_entries(i, p roject_id)
+							time_entries_raw = wrapper.time_entries(i, project_id)
 
 							next_array = time_entries_raw['time_entries']
 
