@@ -7,9 +7,7 @@ class HarvestApiWrapper
 			headers: headers(
 				"https://api.harvestapp.com/api/v2/projects.json"
 				)
-			).parsed_response
-	
-				
+			).parsed_response				
 	end
 	
 	def time_entries(page, project_id)
@@ -19,18 +17,6 @@ class HarvestApiWrapper
 			"https://api.harvestapp.com/api/v2/users/me.json"
 					)
 			).parsed_response
-
-	end
-	
-
-
-	def projects
-			response_projects_raw = HTTParty.get(
-			"https://api.harvestapp.com/api/v2/projects.json", 
-			headers: headers(
-				"https://api.harvestapp.com/api/v2/projects.json"
-			)
-		).parsed_response
 	end
 
 	

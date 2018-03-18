@@ -1,37 +1,43 @@
 class Project < ApplicationRecord
 	
 	def response_time_entries
-			wrapper = HarvestApiWrapper.new
-			project_id = harvest_project_id
-			response_time_entries_raw = wrapper.time_entries(1, project_id)			
+		wrapper = HarvestApiWrapper.new
+		project_id = harvest_project_id
+		response_time_entries_raw = wrapper.time_entries(1, project_id)			
 				
-				#Getting the number of pages of the paginated response from projects API	 
-					number_of_pages = response_time_entries_raw['total_pages']
-					response_time_entries_per_project = []
+		#Getting the number of pages of the paginated response from projects API	 
+		number_of_pages = response_time_entries_raw['total_pages']
+		
+		response_time_entries_per_project = []
 				
-					if number_of_pages == 1 
-						response_time_entries_per_project = response_time_entries_raw.dig('time_entries')
-					else 
-						#for loop to loop through all the pages and fetch all and put into the variable 	response_time_entries_per_project
-						for i in 1..number_of_pages do	
-							time_entries_raw = wrapper.time_entries(i, project_id)
+		if number_of_pages == 1 
+			response_time_entries_per_project = response_time_entries_raw.dig('time_entries')
+		else 
+		#for loop to loop through all the pages and fetch all and put into the variable 	response_time_entries_per_project
+		
+			for i in 1..number_of_pages do	
+				time_entries_raw = wrapper.time_entries(i, project_id)
 
-							next_array = time_entries_raw['time_entries']
+				next_array = time_entries_raw['time_entries']
 
-							#add projects array to complete array
-							response_time_entries_per_project += next_array
+				#add projects array to complete array
+				response_time_entries_per_project += next_array
 
-						end
+			end
 
-				end
+		end
 		response_time_entries_per_project
+	end
+	
+	def billable_time_entries		
+	end
+	
+	def group_tasks	
 	end
 	
 	def project_data
 			wrapper = HarvestApiWrapper.new
 				project_id = harvest_project_id
-
-	
 			
 				total_time = 0
 				design = 0
@@ -62,18 +68,14 @@ class Project < ApplicationRecord
 						project_management += time_per_entry
 					end
 					total_time += time_per_entry					
-				end
-	
-			
+				end			
 				
 				response_projects = wrapper.project(project_id)
 	
 					hours_sold_for = response_projects.dig('budget')	
 					project_name = response_projects.dig('name')
 					client = response_projects.dig('client', 'name')
-					percentage = (total_time / hours_sold_for) * 100 
-				
-				
+					percentage = (total_time / hours_sold_for) * 100 			
 
 				{
 					"project_id" => project_id,
