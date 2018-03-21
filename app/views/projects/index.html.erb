@@ -1,5 +1,38 @@
+
 <h1 align="center">Listing all projects</h1>
+
+<div class="card jumbotron">
+
+	<div class="row">
+		<div class="col bg-white"><p>hej</p></div>
+		<div class="col bg-info"></div>
+	</div>
+	
+	<div class="row">
+	 <hr class="col bg-danger">
+	</div>
+	
+	<div class="row">
+		<div class="col bg-white"><p>hej</p></div>
+		<div class="col bg-info"></div>
+		<div class="col bg-white"></div>
+		<div class="col bg-info"></div>
+		<div class="col bg-white"></div>
+		<div class="col bg-info"></div>
+	</div>
+	
+	<div class="row">
+		<div class="col bg-white"><p>hej</p></div>
+	</div>
+	
+</div>
+
+
+
+<div class="row">
 <%= render 'project', obj: @projects %>
+
+</div>
 
 <div class="d-flex justify-content-center">
 	<%= link_to 'Add project', new_project_url, :class => 'btn btn-light' %>

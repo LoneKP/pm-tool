@@ -25,7 +25,7 @@ class ProjectsController < ApplicationController
 	end
 
 	def destroy
-	
+		@project = Project.delete(project_params)
 	end
 	
 	private

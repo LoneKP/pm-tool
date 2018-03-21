@@ -36,7 +36,7 @@ class Project < ApplicationRecord
 	end
 	
 	def project_data
-			wrapper = HarvestApiWrapper.new
+				wrapper = HarvestApiWrapper.new
 				project_id = harvest_project_id
 			
 				total_time = 0
