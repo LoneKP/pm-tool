@@ -1,19 +1,18 @@
 class ProjectDataFetcher
 	def initialize(project)
 		@project = project
-	
 	end
 	
 	def call
-		@project.project_name = project_data['project_name']
-		@project.client_name = project_data['client']
-		@project.hours_sold_for = project_data['hours_sold_for']
-		@project.total_time_hours = project_data['total_time']
-		@project.programming_hours = project_data['programming']
-		@project.project_management_hours = project_data['project_management']
-		@project.meetings_hours = project_data['meetings']
+		@project.project_name = project_name
+		@project.client_name = client_name
+		@project.hours_sold_for = hours_sold_for
+		@project.total_time_hours = total_billable_time_entries
+		@project.programming_hours = programming_hours
+		@project.project_management_hours = project_management_hours
+		@project.meetings_hours = meetings_hours
 		@project.design_hours = design_hours
-		@project.completion_percentage = project_data['percentage']
+		@project.completion_percentage = completion_percentage
 		@project.save
 	end
 	
@@ -44,28 +43,75 @@ class ProjectDataFetcher
 
 		end
 		response_time_entries_per_project
-	end
-	
-	def wrapper
-		@_wrapper ||= HarvestApiWrapper.new
-	end
-	
-	def harvest_project_id
-		@project.harvest_project_id
-	end
-	
-		def billable_time_entries
-		@_billable_time_entries ||= response_time_entries.select { |time_entry| time_entry.dig('billable') }
-	end
-	
-		def design_billable_time_entries
-		@_design_billable_time_entries ||=	billable_time_entries.select { |time_entry| time_entry.dig('task', 'name') == 'Design' }
 		end
 	
-	def design_hours
-		@_design_hours ||= design_billable_time_entries.sum { |time_entry| time_entry.dig('hours') }
-	end
+		def wrapper
+			@_wrapper ||= HarvestApiWrapper.new
+		end
+
+		def harvest_project_id
+			@project.harvest_project_id
+		end
+
+		def billable_time_entries
+			@_billable_time_entries ||= response_time_entries.select { |time_entry| time_entry.dig('billable') }
+		end
 	
+		def total_billable_time_entries
+			@_total_billable_time_entries ||= billable_time_entries.sum { |time_entry| time_entry.dig('hours') }
+		end
+
+		def design_billable_time_entries
+			@_design_billable_time_entries ||=	billable_time_entries.select { |time_entry| time_entry.dig('task', 'name') == 'Design' }
+		end
+
+		def design_hours
+			@_design_hours ||= design_billable_time_entries.sum { |time_entry| time_entry.dig('hours') }
+		end
+
+		def programming_billable_time_entries
+			@_programming_billable_time_entries ||=	billable_time_entries.select { |time_entry| time_entry.dig('task', 'name') == 'Programming' }
+		end
+
+		def programming_hours
+			@_programming_hours ||= programming_billable_time_entries.sum { |time_entry| time_entry.dig('hours') }
+		end
+
+		def project_management_billable_time_entries
+			@_project_management_billable_time_entries ||=	billable_time_entries.select { |time_entry| time_entry.dig('task', 'name') == 'Project Management' }
+		end
+
+		def project_management_hours
+			@_project_management_hours ||= project_management_billable_time_entries.sum { |time_entry| time_entry.dig('hours') }
+		end
+
+		def meetings_billable_time_entries
+			@_meetings_billable_time_entries ||=	billable_time_entries.select { |time_entry| time_entry.dig('task', 'name') == 'Meeting' }
+		end
+
+		def meetings_hours
+			@_project_management_hours ||= meetings_billable_time_entries.sum { |time_entry| time_entry.dig('hours') }
+		end
+
+		def response_projects
+			wrapper.project(harvest_project_id)
+		end
+
+		def hours_sold_for
+			response_projects.dig('budget')
+		end
+
+		def project_name
+			response_projects.dig('name')
+		end
+
+		def client_name
+			response_projects.dig('client', 'name')
+		end
+
+		def completion_percentage
+			(total_billable_time_entries / hours_sold_for) * 100
+		end
 
 	
 	def project_data

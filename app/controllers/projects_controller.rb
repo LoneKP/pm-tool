@@ -3,9 +3,9 @@ class ProjectsController < ApplicationController
 	def index
 	
 		#get id saved in database
-		  @projects = Project.all.map do |project|
-			project.project_data
-			end
+		  @projects = Project.all
+			
+	
 				
 	end				
 

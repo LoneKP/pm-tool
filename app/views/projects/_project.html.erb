@@ -7,7 +7,7 @@
 	<div class="row">
 		<div class="col-10"> 
 			<h6>
-				<%=project['client'] %> -  <%=project['project_name'] %>
+				<%=project.client_name %> -  <%=project.project_name %>
 	 		</h6>
 		</div>
 		<div class="col-2">	 
@@ -25,31 +25,31 @@
 	
 	<div class="flex-row d-inline-flex">
 		<div class="col">	
-			<p>Sold hours: <%=project['hours_sold_for'].round(0) %> hours</p>
+			<p>Sold hours: <%=project.hours_sold_for %> hours</p>
 			<p>Work hours: [Input]</p>
 		</div>
 		<div class="col circle">
-			<h4><%=project['design'].round(0)%></h4><p>Design</p>
+			<h4><%=project.design_hours%></h4><p>Design</p>
 		</div>
 		<div class="col circle">
-			<div><h4><%=project['programming'].round(0)%></h4><p>Programming</p></div>
+			<div><h4><%=project.programming_hours%></h4><p>Programming</p></div>
 		</div>
 		<div class="col circle">
-			<h4><%=project['project_management'].round(0)%></h4><p>Project management</p>
+			<h4><%=project.project_management_hours%></h4><p>Project management</p>
 		</div>
 		<div class="col circle">
-			<h4><%=project['meetings'].round(0)%></h4><p>Meetings</p>
+			<h4><%=project.meetings_hours%></h4><p>Meetings</p>
 		</div>
 		<div class="col">
-				<h1 class="my-0"><%=project['total_time'].round(0) %></h1>
-				<p class="my-0">hours used (<%= project['percentage'].round %>%)</p>
+				<h1 class="my-0"><%=project.total_time_hours %></h1>
+				<p class="my-0">hours used (<%= project.completion_percentage %>%)</p>
 		</div>
 	</div>
 	
 	<div class="row">
 		<div class="col">
 			<div class="progress mb-0">
-				<div class="progress-bar bg-white" role="progressbar" style="width: <%=project['percentage'] %>%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+				<div class="progress-bar bg-white" role="progressbar" style="width: <%=project.completion_percentage %>%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
 				</div>
 			</div>
 		</div>
@@ -59,53 +59,7 @@
 			
 			
 			
-	<div class="jumbotron card row">
-	 <h6><%=project['client'] %> -  <%=project['project_name'] %>
-	 </h6>
-		 <button type="button delete-button" class="close mt-auto ml-auto col" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-		 </button>
-	 <hr class="mt-0 mb-5 bg-white">
-		<div class="d-flex flex-row justify-content-around align-items-center">
-			<div>
-				<p>Sold hours: <%=project['hours_sold_for'].round(0) %> hours</p> <!-- changed -->
-				<p>Work hours: [Input]</p>
-			</div>
-			<div class="card-elements rounded-circle d-flex flex-column 
-									justify-content-between 
-									align-items-center">
-				<h4><%=project['design'].round(0)%></h4><p>Design</p>
-			</div>
-			<div class="card-elements rounded-circle d-flex flex-column 
-									justify-content-between 
-									align-items-center">
-				<h4><%=project['programming'].round(0)%></h4><p>Programming</p>
-			</div>
-			<div class="card-elements rounded-circle d-flex flex-column 
-									justify-content-between 
-									align-items-center">
-				<h4><%=project['project_management'].round(0)%></h4><p>Project</p>
-			</div>
-			<div class="card-elements rounded-circle d-flex flex-column 
-									justify-content-between 
-									align-items-center">
-				<h4><%=project['meetings'].round(0)%></h4><p>Meeting</p>
-			</div>
-			<div class="d-flex flex-column 
-									justify-content-between 
-									align-items-center">
-				<h1 class="my-0"><%=project['total_time'].round(0) %></h1>
-				<p class="my-0">hours used (<%= project['percentage'].round %>%)</p>
-			</div>
-		</div>
-		<div class="spacer">
-			<div class="progress mb-0">
-			<div class="progress-bar bg-white" role="progressbar" style="width: <%=project['percentage'] %>%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-			</div>
-		</div>
-
-	</div>
-
+	
 		<% end %>
 	
 </div>
