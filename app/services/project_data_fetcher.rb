@@ -112,59 +112,12 @@ class ProjectDataFetcher
 		def completion_percentage
 			(total_billable_time_entries / hours_sold_for) * 100
 		end
-
 	
-	def project_data
-		@_project_data ||= begin
-
-				total_time = 0
-				design = 0
-				programming = 0
-				meetings = 0
-				project_management = 0
+		def has_project_gone_over_time?(completion_percentage)
 			
-				response_time_entries.each do |time_entry|		
-					#set time_per_entry and filter out non-billable time entries
-					
-					time_per_entry = time_entry.dig('billable') ? time_entry.dig('hours') : 0
-
-					#Find time spent on specific tasks
-					task = time_entry.dig('task', 'name')
-					if task == 'Design'
-						design += time_per_entry
-					end
-						if task == 'Programming'
-						programming += time_per_entry
-					end
-						if task == 'Meeting'
-						meetings += time_per_entry
-					end
-						if task == 'Project Management'
-						project_management += time_per_entry
-					end
-					total_time += time_per_entry					
-				end			
-				
-				response_projects = wrapper.project(harvest_project_id)
-	
-					hours_sold_for = response_projects.dig('budget')	
-					project_name = response_projects.dig('name')
-					client = response_projects.dig('client', 'name')
-					percentage = (total_time / hours_sold_for) * 100 			
-
-				{
-					"project_id" => harvest_project_id,
-					"project_name" => project_name,
-					"client" => client,
-					"hours_sold_for" => hours_sold_for,	
-					"total_time" => total_time,
-					"programming" => programming,
-					"project_management" => project_management,
-					"meetings" => meetings,
-					"design" => design,
-					"percentage" => percentage
-				}
 		end
+	
+
 
 	end
 

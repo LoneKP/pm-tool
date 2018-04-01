@@ -1,41 +1,38 @@
 
-<h1 align="center">Listing all projects</h1>
+<div class="d-flex justify-content-center">
 
-<div class="card jumbotron">
-
-	<div class="row">
-		<div class="col bg-white"><p>hej</p></div>
-		<div class="col bg-info"></div>
-	</div>
-	
-	<div class="row">
-	 <hr class="col bg-danger">
-	</div>
-	
-	<div class="row">
-		<div class="col bg-white"><p>hej</p></div>
-		<div class="col bg-info"></div>
-		<div class="col bg-white"></div>
-		<div class="col bg-info"></div>
-		<div class="col bg-white"></div>
-		<div class="col bg-info"></div>
-	</div>
-	
-	<div class="row">
-		<div class="col bg-white"><p>hej</p></div>
-	</div>
-	
+<div class="mt-200 inner-addon left-addon">
+<i class="material-icons icon-18 search">search</i>
+<input type="text" name="search" placeholder="Project, risk, ID, or something completely different">
 </div>
-
-
+</div>	
 
 <div class="row">
+	<div class="col-1"></div>
+	<div class="col-10 d-flex flex-row mt-266">
+		<div class="d-flex flex-column justify-content-center mr-3">
+			<i class="material-icons icon-24">trending_up</i>
+		</div>
+		<div class="d-flex flex-column">
+			<p class="text-16">Welcome back, Lone</p>
+			<p class="text-24">Everything seems to be on track!</p>
+		</div>
+	</div>
+	<div class="col-1"></div>
+</div>
+
+<div class="row">
+<div class="col-1"></div>
 <%= render 'project', obj: @projects %>
-
+<div class="col-1"></div>
 </div>
 
-<div class="d-flex justify-content-center">
-	<%= link_to 'Add project', new_project_url, :class => 'btn btn-light' %>
+
+<%= link_to new_project_url do %>
+<div class="mt-350 new-project">
+<i class="material-icons icon-add mr-133">add</i>
+<p class="text-24 blue">Add Project</p>
 </div>
+<% end %>
 
 

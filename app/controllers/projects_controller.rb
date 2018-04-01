@@ -1,12 +1,9 @@
 class ProjectsController < ApplicationController
 	
 	def index
-	
 		#get id saved in database
 		  @projects = Project.all
-			
-	
-				
+		
 	end				
 
 	def new
