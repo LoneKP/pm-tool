@@ -21,3 +21,5 @@
 /yarn-error.log
 
 .byebug_history
+
+app/services/harvest_api_wrapper.rb
