@@ -10,9 +10,10 @@ end
 gem 'bootstrap', '~> 4.0.0'
 gem 'material-sass', '~> 4.0.0'
 gem 'material_icons'
+gem 'business_time'
 
 gem 'awesome_print'
-
+gem 'sidekiq'
 gem 'jquery-rails'
 gem 'httparty'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

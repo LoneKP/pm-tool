@@ -1,8 +1,9 @@
 module ApplicationHelper
 	
-	 def current_class?(test_path)
-    return 'active' if request.path == test_path
+	 def current_class?(my_path)
+    return 'selected' if request.path == my_path
     ''
   end
+	
 	
 end

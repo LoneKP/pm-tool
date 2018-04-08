@@ -1,4 +1,5 @@
 class ProjectDataFetcher
+	
 	def initialize(project)
 		@project = project
 	end
@@ -13,10 +14,20 @@ class ProjectDataFetcher
 		@project.meetings_hours = meetings_hours
 		@project.design_hours = design_hours
 		@project.completion_percentage = completion_percentage
+		@project.project_start_date = project_start_date
+		@project.project_end_date = project_end_date
 		@project.save
 	end
 	
 	private
+	
+	def response_all_projects
+		wrapper.all_projects
+	end
+	
+	def hours_sold_for
+		response_clients.dig('clients', 'name')
+	end
 	
 	def response_time_entries
 		response_time_entries_raw = wrapper.time_entries(1, harvest_project_id)			
@@ -43,7 +54,7 @@ class ProjectDataFetcher
 
 		end
 		response_time_entries_per_project
-		end
+	end
 	
 		def wrapper
 			@_wrapper ||= HarvestApiWrapper.new
@@ -60,9 +71,25 @@ class ProjectDataFetcher
 		def total_billable_time_entries
 			@_total_billable_time_entries ||= billable_time_entries.sum { |time_entry| time_entry.dig('hours') }
 		end
+	
+		def project_start_date		
+			billable_time_entries[-1]['created_at'] 
+		end
+	
+		def project_end_date
+			response_projects.dig('ends_on') == nil ? project_end_date_calc : response_projects.dig('ends_on')
+		end
+	
+		def weekdays_required_to_finish
+			((hours_sold_for - total_billable_time_entries) / 6).ceil
+		end
+	
+		def project_end_date_calc
+			weekdays_required_to_finish > 0 ? weekdays_required_to_finish.business_days.from_now : Time.first_business_day(Time.current)
+		end
 
 		def design_billable_time_entries
-			@_design_billable_time_entries ||=	billable_time_entries.select { |time_entry| time_entry.dig('task', 'name') == 'Design' }
+			@_design_billable_time_entries ||= billable_time_entries.select { |time_entry| time_entry.dig('task', 'name') == 'Design' }
 		end
 
 		def design_hours
@@ -78,7 +105,7 @@ class ProjectDataFetcher
 		end
 
 		def project_management_billable_time_entries
-			@_project_management_billable_time_entries ||=	billable_time_entries.select { |time_entry| time_entry.dig('task', 'name') == 'Project Management' }
+			@_project_management_billable_time_entries ||= billable_time_entries.select { |time_entry| time_entry.dig('task', 'name') == 'Project Management' }
 		end
 
 		def project_management_hours
@@ -86,7 +113,7 @@ class ProjectDataFetcher
 		end
 
 		def meetings_billable_time_entries
-			@_meetings_billable_time_entries ||=	billable_time_entries.select { |time_entry| time_entry.dig('task', 'name') == 'Meeting' }
+			@_meetings_billable_time_entries ||= billable_time_entries.select { |time_entry| time_entry.dig('task', 'name') == 'Meeting' }
 		end
 
 		def meetings_hours
@@ -99,6 +126,7 @@ class ProjectDataFetcher
 
 		def hours_sold_for
 			response_projects.dig('budget')
+			#prompt user to input hours_sold_for if it is nil here
 		end
 
 		def project_name
@@ -117,8 +145,7 @@ class ProjectDataFetcher
 			
 		end
 	
-
-
-	end
-
+	
 end
+
+

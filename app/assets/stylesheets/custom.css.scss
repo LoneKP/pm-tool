@@ -43,6 +43,14 @@ p.text-24 {
 	text-align: center;
 }
 
+.helper-headline {
+	color: #9B9B9B;
+	font-family: "Work Sans";
+	font-size: 24px;
+	line-height: 28px;
+	text-align: center;
+}
+
 .blue {
 	color: #0D39FF;
 }
@@ -111,7 +119,20 @@ p {
 	border: none;
 }
 
-.wrapper{
+//.monthly-process-assessment-hide {
+//		display: none;
+//}
+//
+//.monthly-process-assessment-active {
+//	background-color: #FFF;
+//	padding: 24px;
+//	margin-top: 32px;
+//	box-shadow: 0 8px 16px 0 rgba(13,57,255,0.08);
+//	border-radius: 12px;
+//	border: none;
+//}
+
+.wrapper {
   min-height: 50px;
   width: 100%;
   flex-direction: row;
@@ -120,7 +141,7 @@ p {
 	max-width: 534px;
 }
 
-.circle{
+.circle {
   width: 92px;
   height: 92px;
   background-color: #fff;
@@ -232,6 +253,11 @@ delete-button {
 	margin-top: ($spacer * 2) !important;
 }
 
+.mt-133 {
+	margin-top: ($spacer * 1.33) !important;
+}
+
+
 .mr-133 {
 	margin-right: ($spacer * 1.33) !important;
 }
@@ -263,8 +289,6 @@ delete-button {
   left: 102px; 
   right: 102px; 
 	bottom: 30px;
-	
-
 }
 
 .progress-dot-active {
@@ -275,7 +299,6 @@ delete-button {
 	position: absolute;
   left: 98px; 
 	bottom: 28px;
-	
 }
 
 .progress-dot-inactive {
@@ -298,6 +321,8 @@ delete-button {
 	bottom: 28px;
 }
 
+
+
 input[type=text] {
   height: 40px;		
 	width: 540px;
@@ -318,8 +343,6 @@ input[type=text]:focus {
 	font-style: italic;
 	line-height: 17px;
 	outline: none;
-
-
 }
 
 input:focus::-webkit-input-placeholder {
@@ -333,7 +356,6 @@ input:focus::-webkit-input-placeholder {
 	font-size: 14px;
 	font-style: italic;
 	line-height: 17px;
-
 }
 
 .inner-addon { 
@@ -364,8 +386,6 @@ input:focus::-webkit-input-placeholder {
 	align-items: center;
 }
 
-
-
 .menu-items a {
 	opacity: 0.5;
 	color: #0D39FF;
@@ -373,19 +393,14 @@ input:focus::-webkit-input-placeholder {
 	font-size: 14px;
 	line-height: 16px;
 	text-align: right;
-	margin-right: 24px;
+	margin-right: 12px;
 }
 
 .menu-items a:hover{
 	opacity: 1;
 	text-decoration: none;
 }
-.menu-items a:active {
-	color: #0D39FF;
-	font-family: "Work Sans";
-	font-size: 14px;
-	font-weight: bold;
-}
+
 
 .menu-items a.selected {
 	font-weight: bold;
@@ -406,4 +421,85 @@ a:hover, a:visited, a:link, a:active
 {
     text-decoration: none;
 }
+
+
+.client-name {
+	color: #000000;
+	font-family: Lato;
+	font-size: 24px;
+	line-height: 29px;
+	margin-top: ($spacer * 1.33) !important;
+	margin-bottom: 24px;
+}
+
+
+.project-boxes div {
+	height: 48px;
+	width: 255px;
+	border-radius: 12px;
+	background-color: #FFFFFF;
+	box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0px 16px 0px 16px;
+	margin:  0px 15px 30px 15px;
+}
+
+.project-boxes div p {
+	color: #4a4a4a;
+	font-family: Lato;
+	font-size: 16px;
+	line-height: 19px;
+}
+
+.project-boxes div.already-on-dashboard {
+	
+	i {
+		font-size: 30px;
+		color: #9B9B9B;
+	}
+	
+	p {
+		color: #9B9B9B;
+	}
+}
+
+.project-boxes div.already-on-dashboard:hover {
+	border:none;
+	i {
+		font-size: 30px;
+		color: #9B9B9B;
+	}
+	
+	p {
+		color: #9B9B9B;
+	}
+}
+
+.project-boxes div:hover {
+	border: 1px solid #0D39FF;
+	box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+	cursor: pointer;
+	p {
+		color: #0D39FF;
+	}	
+}
+
+.project-boxes i {
+	font-size: 30px;
+	color: #fff;
+}
+
+.project-boxes {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(255px, 1fr));
+		margin: 0px -15px 0px -15px;
+    }
+
+ .project-boxes>* {
+        flex: 1 1 255px;
+        margin: 30px;
+      }
+
 

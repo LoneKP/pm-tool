@@ -6,16 +6,22 @@
 	
 		
 		<div class="inner-nav col-10">
-		<div class="burger-menu">
+			
 			<i class="material-icons icon-menu">menu</i>
-		</div>
-		
-		
+			
 		<div class="menu-items">
-			 <a href="#">Revenue</a>
-			 <a href="#">Archived projects</a>
-			 <a href="#">All projects</a>
-			 <a class="selected active" href="#">Dashboard</a>
+			 <a> 
+			 	<%= link_to 'Revenue', '/revenue', :class => current_class?('/revenue') %>
+			 </a>
+			 <a>
+			 	<%= link_to 'Archived projects', '/archived_projects', :class => current_class?('/archived_projects') %>
+			 </a>
+			 <a> 
+			 	<%= link_to 'All projects', '/all-projects', :class => current_class?('/all-projects') %>
+			 </a>
+			 <a> 
+			 	<%= link_to 'Dashboard', '/projects', :class => current_class?('/projects') %>
+			 </a>
 		 </div>
 		 
 	 	</div>

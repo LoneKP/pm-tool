@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180226203624) do
+ActiveRecord::Schema.define(version: 20180407120444) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 20180226203624) do
     t.integer "meetings_hours"
     t.integer "design_hours"
     t.integer "completion_percentage"
+    t.datetime "project_start_date"
+    t.datetime "project_end_date"
   end
 
 end

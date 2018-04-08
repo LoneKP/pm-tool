@@ -1,8 +1,10 @@
 
+		
+
 		<div class="col-10">
 			<% obj.each do |project| %>
 
-	<div class="d-flex card">
+	<div class="d-flex card monthly-process-assessment">
 			<div class="d-flex flex-row justify-content-between">
 				<div>
 					<h6 class="title">
@@ -56,7 +58,7 @@
 			<div class="d-flex flex-row justify-content-between mt-266">
 				<div>
 					<p class="date">Start date</p>
-					<p class="tekst">01.02.2018</p>
+					<p class="tekst"><%= project.project_start_date.strftime('%d.%m.%Y') %></p>
 				</div>
 				
 				<div class="d-flex flex-row justify-content-center align-items-center">
@@ -76,7 +78,7 @@
 				
 				<div>
 					<p class="end-date">End date</p>
-					<p class="tekst right-align">01.02.2018</p>
+					<p class="tekst right-align"><%= project.project_end_date.strftime('%d.%m.%Y') %></p>
 				</div>
 			</div>
 	</div>				
