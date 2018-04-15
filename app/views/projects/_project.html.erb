@@ -1,94 +1,120 @@
 
-		
-
-		<div class="col-10">
-			<% obj.each do |project| %>
+<div class="col-10" >
+	<% obj.each do |project| %>
 
 	<div class="d-flex card monthly-process-assessment">
-			<div class="d-flex flex-row justify-content-between">
-				<div>
-					<h6 class="title">
-				<%=project.client_name %> - <%=project.project_name %>
-	 				</h6>
-	 			</div>
-				<div>
-					<i class="material-icons icon_20">settings</i>
+		<div class="d-flex flex-row justify-content-between">
+			<div>
+				<h6 class="title">
+					<%=project.client_name %> - <%=project.project_name %>
+				</h6>
+			</div>
+			<div>
+				<div id="gear-menu" class="gear-menu">
+					<i id="close-gear-menu" class="material-icons close-gear-icon">close</i>
+					<div>
+						<i class="material-icons">dashboard</i>
+						<p>Details</p>
+					</div>
+					<div class="line"></div>
+					<div>
+						<i class="material-icons">error</i>
+						<p>Add risk / action</p>
+					</div>
+					<div class="line"></div>
+					<div>
+						<i class="material-icons">folder</i>
+						<p>Archive project</p>
+					</div>
+					<div class="line"></div>
+					<div>
+						<i class="material-icons">delete_forever</i>
+						<p>Remove project</p>
+					</div>
+				</div>
+				<i id="open-gear-menu" class="material-icons icon_20">settings</i>
+			</div>
+		</div>
+		<%= completion_indicator(project) %>
+
+		<div class="d-flex flex-row justify-content-between">
+			<div class="mt-66">
+				<p class="tekst"><i class="material-icons icon_12">attach_money</i><span>Sold hours:</span><%=project.hours_sold_for %> hours</p>
+				<p class="tekst mt-2"><i class="material-icons icon_12">access_time</i><span>Work hours:</span> [Input]</p>
+			</div>
+			<div class="wrapper">
+				<div class="circle">
+					<h4 class="numbers"><%=project.design_hours%></h4><p class="task-text">Design</p>
+				</div>
+				<div class="circle">
+					<h4 class="numbers"><%=project.programming_hours%></h4><p class="task-text">Programming</p>
+				</div>
+				<div class="circle">
+					<h4 class="numbers"><%=project.project_management_hours%></h4><p class="task-text">Management</p>
+				</div>
+				<div class="circle">
+					<h4 class="numbers"><%=project.meetings_hours%></h4><p class="task-text">Meetings</p>
 				</div>
 			</div>
-			
-			<div class="d-flex flex-row my-75 align-items-center">
-				
-				<% if project.completion_percentage >= 97 && project.completion_percentage <= 103  %>
-				<div class="on-track-indicator"></div>
- 				<p class="on-track">Hours reached</p>
-			<% elsif project.completion_percentage <= 100 %>
- 				<div class="on-track-indicator"></div>
- 				<p class="on-track">On track</p>
-			<% else %>
-				<div class="not-on-track-indicator"></div>
-				<p class="on-track">Over time</p>
-			<% end %>
-			
-			</div>
-	
-			<div class="d-flex flex-row justify-content-between">
-				<div class="mt-66">
-					<p class="tekst"><i class="material-icons icon_12">attach_money</i><span>Sold hours:</span><%=project.hours_sold_for %> hours</p>
-					<p class="tekst mt-2"><i class="material-icons icon_12">access_time</i><span>Work hours:</span> [Input]</p>
-				</div>
-				<div class="wrapper">
-					<div class="circle">
-						<h4 class="numbers"><%=project.design_hours%></h4><p class="task-text">Design</p>
-					</div>
-							<div class="circle">
-								<h4 class="numbers"><%=project.programming_hours%></h4><p class="task-text">Programming</p>
-							</div>
-					<div class="circle">
-						<h4 class="numbers"><%=project.project_management_hours%></h4><p class="task-text">Management</p>
-					</div>
-							<div class="circle">
-								<h4 class="numbers"><%=project.meetings_hours%></h4><p class="task-text">Meetings</p>
-							</div>
-				</div>
-				<div>
-					<p class="completion-percentage"><%=project.completion_percentage %>%</p>
+			<div>
+				<p class="completion-percentage"><%=project.completion_percentage %>%</p>
 				<p class="total-time"><%= project.total_time_hours %> of <%= project.hours_sold_for %> sold hours</p>
-				</div>
 			</div>
-			<div class="d-flex flex-row justify-content-between mt-266">
-				<div>
-					<p class="date">Start date</p>
-					<p class="tekst"><%= project.project_start_date.strftime('%d.%m.%Y') %></p>
-				</div>
-				
-				<div class="d-flex flex-row justify-content-center align-items-center">
+		</div>
+		<div class="d-flex flex-row justify-content-between mt-266">
+			<div>
+				<p class="date">Start date</p>
+				<p class="tekst"><%= project.project_start_date.strftime('%d.%m.%Y') %></p>
+			</div>
+
+			<div class="d-flex flex-row justify-content-center align-items-center">
 				<div class="progress-dot-active"></div>
-					<div class="d-flex align-items-center justify-content-between">
-						
-						<div class="progress-full d-flex align-items-center">
-							<div class="progress-bar-filling" role="progressbar" style="width: <%=project.completion_percentage %>%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-							</div>
+				<div class="d-flex align-items-center justify-content-between">
+
+					<div class="progress-full d-flex align-items-center">
+						<div class="progress-bar-filling" role="progressbar" style="width: <%=project.completion_percentage %>%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
 						</div>
-						
 					</div>
-				
-					<div class="<%= project.completion_percentage >= 100 ? 'progress-dot-active-right' : 'progress-dot-inactive' %>"></div>
+
 				</div>
-				
-				
-				<div>
-					<p class="end-date">End date</p>
-					<p class="tekst right-align"><%= project.project_end_date.strftime('%d.%m.%Y') %></p>
-				</div>
+
+				<div class="<%= project.completion_percentage >= 100 ? 'progress-dot-active-right' : 'progress-dot-inactive' %>"></div>
 			</div>
+
+
+			<div>
+				<p class="end-date">End date</p>
+				<p class="tekst right-align"><%= project.project_end_date.strftime('%d.%m.%Y') %></p>
+			</div>
+		</div>
 	</div>				
 
-		<% end %>
-	
+	<% end %>
+
 </div>
+
+
+<script>	
+		$('#gear-menu').hide();
+	$(document).ready(function () {
+		
+	
+	
+$(document).on('click', "#close-gear-menu", function() {
+	$("#gear-menu").hide();
+});	
+	
+	$(document).on('click', "#open-gear-menu", function() {
+	$("#gear-menu").show();
+});	
+		});	
+	
+	
+	
 
 	
 	
+</script>
 
 
 

@@ -19,11 +19,7 @@ class ProjectDataFetcher
 		@project.save
 	end
 	
-	private
-	
-	def response_all_projects
-		wrapper.all_projects
-	end
+#	private
 	
 	def hours_sold_for
 		response_clients.dig('clients', 'name')
@@ -125,7 +121,11 @@ class ProjectDataFetcher
 		end
 
 		def hours_sold_for
-			response_projects.dig('budget')
+			if response_projects.dig('budget') != nil
+				response_projects.dig('budget')
+			else
+				1
+			end
 			#prompt user to input hours_sold_for if it is nil here
 		end
 
@@ -140,11 +140,6 @@ class ProjectDataFetcher
 		def completion_percentage
 			(total_billable_time_entries / hours_sold_for) * 100
 		end
-	
-		def has_project_gone_over_time?(completion_percentage)
-			
-		end
-	
 	
 end
 

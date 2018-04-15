@@ -1,11 +1,12 @@
+
+
 <div class="d-flex justify-content-center">
 
-<div class="mt-200 inner-addon left-addon">
-<i class="material-icons icon-18 search">search</i>
-<input type="text" name="search" placeholder="Project, risk, ID, or something completely different">
-</div>
+	<div class="mt-200 inner-addon left-addon">
+		<i class="material-icons icon-18 search">search</i>
+		<input type="text" name="search" placeholder="Project, risk, ID, or something completely different">
+	</div>
 </div>	
-
 
 <div>
 	<p class="helper-headline mt-200">Select a project to add to your portfolio
@@ -13,24 +14,61 @@
 </div>
 
 
-	<div class="client-name">ClientName</div>
-	<div class="project-boxes">
-		<div class="already-on-dashboard">
-			<p>ProjectName</p>
-			<i class="material-icons">done</i>
-		</div>
-			<div>
-			<p>ProjectName</p>
-			<i class="material-icons">done</i>
-		</div>
-			<div>
-			<p>ProjectName</p>
-			<i class="material-icons">done</i>
-		</div>
-			<div>
-			<p>ProjectName</p>
-			<i class="material-icons">done</i>
-		</div>
-	</div>
+<% @all_projects.each do |(client_name, projects)| %>
+<div class="client-name"><%= client_name %></div>
+<% projects.in_groups_of(4, false) do |projects_in_three| %>	
+<div class="project-boxes">
+	<% projects_in_three.each do |project| %>
 
+	<%= if_project_is_not_in_database_create_link_to_modal_start(project['id']) %>
+	<div <%=if_project_is_in_database_grey_out(project['id'])%> id="<%= project['id'] %>" >
+		<p><%= project['name'] %></p>
+		<i class="material-icons">done</i>
+	</div>
+	<%= if_project_is_not_in_database_create_link_to_modal_end(project['id']) %>
+	<% end %>
+</div>
+<% end %>
+<% end %>
+
+
+<div id="ex1" class="modal">
+	<div class="project-modal-header mb-3">
+		<div>
+			<p class="text-24 blue">Add project to your dashboard</p>
+		</div>
+		<div>
+			<a href="#" class="material-icons" rel="modal:close">
+				<i class="material-icons icon-14">close</i>
+			</a>
+		</div>
+
+	</div>
+	<div class="project-modal-content">
+		<p class="text-16-19">Add one of your projects to your dashbord. The data comes from the data in Harvest. There might be some fields you have not filled out correctly</p>
+		<p id="id"></p>
+	</div>
+	<div class="project-modal-footer">
+		<a href="#" rel="modal:close"><div  class="cancel">Cancel</div></a>
+		<!--		<div class="add-project">Add project</div>-->
+
+		<%= form_for @project do |f| %>
+		<%= f.hidden_field :harvest_project_id, :id => "harvest_id"%>
+		<%= f.submit 'Add Project', :class => 'add-project' %>
+		<% end %>
+	</div>
+</div>
+
+
+<script> 
+	$('div.project-boxes a div').click(function() {
+		var clickedId= $(this).attr("id");
+		$(document).ready(function(){
+			$("#harvest_id").val(clickedId);
+		});
+	});
+
+
+
+</script>     
 
