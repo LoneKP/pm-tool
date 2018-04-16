@@ -11,7 +11,7 @@ gem 'bootstrap', '~> 4.0.0'
 gem 'material-sass', '~> 4.0.0'
 gem 'material_icons'
 gem 'business_time'
-
+gem 'railties'
 gem 'awesome_print'
 gem 'sidekiq'
 gem 'jquery-rails'
