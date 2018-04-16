@@ -73,6 +73,10 @@ GEM
     concurrent-ruby (1.0.5)
     connection_pool (2.2.1)
     crass (1.0.3)
+    dotenv (2.2.1)
+    dotenv-rails (2.2.1)
+      dotenv (= 2.2.1)
+      railties (>= 3.2, < 5.2)
     erubi (1.7.1)
     execjs (2.7.0)
     ffi (1.9.23)
@@ -213,6 +217,7 @@ DEPENDENCIES
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
+  dotenv-rails
   httparty
   jbuilder (~> 2.5)
   jquery-rails

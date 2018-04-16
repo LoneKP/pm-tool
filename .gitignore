@@ -22,4 +22,4 @@
 
 .byebug_history
 
-app/services/harvest_api_wrapper.rb
+.env
