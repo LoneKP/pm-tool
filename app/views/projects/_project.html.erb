@@ -9,9 +9,9 @@
 					<%=project.client_name %> - <%=project.project_name %>
 				</h6>
 			</div>
-			<div>
-				<div id="gear-menu" class="gear-menu">
-					<i id="close-gear-menu" class="material-icons close-gear-icon">close</i>
+			<div class="gear-menu-wrapper">
+				<div class="gear-menu">
+					<i class="close-gear-menu material-icons close-gear-icon">close</i>
 					<div>
 						<i class="material-icons">dashboard</i>
 						<p>Details</p>
@@ -32,7 +32,7 @@
 						<p>Remove project</p>
 					</div>
 				</div>
-				<i id="open-gear-menu" class="material-icons icon_20">settings</i>
+				<i class="open-gear-menu material-icons icon_20">settings</i>
 			</div>
 		</div>
 		<%= completion_indicator(project) %>
@@ -94,19 +94,7 @@
 </div>
 
 
-<script>	
-		$('.gear-menu').hide();
-	$(document).ready(function () {
 
-$(document).on('click', "#close-gear-menu", function() {
-	$("#gear-menu").hide();
-});	
-	
-	$(document).on('click', "#open-gear-menu", function() {
-	$("#gear-menu").show();
-});	
-		});	
-</script>
 
 
 
