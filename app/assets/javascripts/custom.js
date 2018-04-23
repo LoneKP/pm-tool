@@ -1,7 +1,7 @@
 
 $(document).on('turbolinks:load', function() {
-	console.log('loaded');
-	
+
+
 	//open and close menu
 	$('.gear-menu').hide();
 	$('.gear-menu-wrapper').each(function () {
@@ -9,19 +9,39 @@ $(document).on('turbolinks:load', function() {
 		var gear = wrapper.find('.open-gear-menu').first();
 		var close = wrapper.find('.close-gear-menu').first();
 		var menu = wrapper.find('.gear-menu').first();
-		
+		var details = wrapper.find('.details').first();
+		var riskAction = wrapper.find('.risk-action').first();
+		var archive = wrapper.find('.archive-project').first();
+		var deleteProject = wrapper.find('.delete-project').first();
+
+
+
 		gear.on('click', function () {
 			menu.show();
 		});
 		close.on('click', function () {
 			menu.hide();
 		});
+		details.on('click', function () {
+			menu.hide();
+		});
+		riskAction.on('click', function () {
+			menu.hide();
+		});
+		archive.on('click', function () {
+			menu.hide();
+		});
+		deleteProject.on('click', function () {
+			menu.hide();
+		});
+
 	})
+
+	
+
 
 	//Open burgermenu
 	$('#burger-menu').hide();
-	
-	
 	$('#burger-menu-wrapper').each(function () {
 		var wrapper = $(this);
 		var openMenu = wrapper.find('#burger-icon').first();
@@ -34,31 +54,13 @@ $(document).on('turbolinks:load', function() {
 			})
 		})
 	});
-	
+
 	$('#burger-icon').on('click', function () {
 		'#burger-menu'.show();
 	});
 
-	
-////Sticky navbar
-//// When the user scrolls the page, execute myFunction 
-//window.onscroll = function() {myFunction()};
-//
-//// Get the header
-//var header = document.getElementById("myHeader");
-//
-//// Get the offset position of the navbar
-//var sticky = header.offsetTop;
-//
-//// Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
-//function myFunction() {
-//  if (window.pageYOffset >= sticky) {
-//    header.classList.add("sticky");
-//  } else {
-//    header.classList.remove("sticky");
-//  }
-//}
-	
+
+
 
 
 

@@ -593,11 +593,21 @@ a:hover, a:visited, a:link, a:active
 
 }
 
+.project-modal-header p {
+		margin-left: 16px;
+}
+
 .project-modal-header {
 	display:flex;
 	flex-direction: column;
 	align-content: space-between;
 	align-items: flex-start;
+}
+
+.project-modal-header > div:nth-of-type(1) {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 }
 
 .project-modal-content p {
@@ -620,7 +630,7 @@ a:hover, a:visited, a:link, a:active
 	background-color: var(--primary-color);	
 	display: flex;
 	align-items: center;
-	padding: 12px 24px 12px 24px;
+	padding: 8px 22px 8px 22px;
 	color: #FFF;
 }
 
