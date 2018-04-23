@@ -9,6 +9,11 @@
 
 }
 
+.container {
+	margin-top: 78px;
+	margin-bottom: 20px;
+}
+
 //general styles
 h1,h2,h3,h4,h5,h6,p {
 	color: #4a4a4a;
@@ -235,9 +240,20 @@ delete-button {
 	padding: 6px;
 }
 
-.icon-menu {
+#burger-icon {
 	color: var(--primary-color);
-	z-index: 3;
+	cursor: pointer;
+
+
+}
+
+#burger-icon-in-menu {
+	color: #FFF;
+	align-content: flex-end;
+	margin-left: 469px;
+	margin-top: -265px;
+	cursor: pointer;
+	z-index: 10;
 
 }
 
@@ -414,6 +430,11 @@ input:focus::-webkit-input-placeholder {
 	border:2px;
 	display: flex;
 	flex-direction: row; 
+	position: fixed;
+	top: 0;
+	z-index: 9;
+	margin-bottom: 200px;
+
 }
 
 .inner-nav {
@@ -545,7 +566,7 @@ a:hover, a:visited, a:link, a:active
 	border-radius: 4px;
 	background-color: #FFFFFF;
 	box-shadow: 0 2px 4px 0 rgba(0,0,0,0.25);
-	z-index: 10;
+	z-index: 2;
 }
 
 .modal {
@@ -675,25 +696,70 @@ a:hover, a:visited, a:link, a:active
 	border-top: 1px solid;
 	width: 100%
 }
-//
-//.burger-menu {
-//	margin-top: -15px;
-//	height: 500vh;
-//	width: 520px;
-//	background-color: #0D39FF;
-//	box-shadow: 0 0 20px 0 rgba(0,0,0,0.22);
-//	z-index: 2;
-//	position: absolute;
-//	flex-direction: column;
-//	align-content: flex-start;
-//	align-items: flex-start;
-//	justify-content: space-around;
-//	padding-top:200px;
-//	display: block;
-//	overflow: auto;
-//}
-//
+
+#burger-menu {
+	height: 100vh;
+	margin-left: -15px;
+	background-color: #0D39FF;
+	box-shadow: 0 0 20px 0 rgba(0,0,0,0.22);
+	z-index: 10;
+	position: fixed;
+	flex-direction: column;
+	align-content: flex-start;
+	align-items: flex-start;
+	justify-content: space-around;
+	padding-top:150px;
+	padding-right: 20px;
+	display: block;
+}
+
+.burger-menu-content {
+	margin-left: 164px;
+}
 
 
+.projectio-menu {
+	color: #FFFFFF;
+	font-family: "Work Sans";
+	font-size: 16px;
+	font-weight: 300;
+	line-height: 19px;
+	margin-bottom: 12px;
+}
+
+.burger-menu-items {
+	display: flex;
+	flex-direction: column;
+	line-height: 0px;
+}
+
+.burger-menu-items div {
+	margin-top: 32px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.burger-menu-items div a {
+	color: #FFFFFF;
+	font-family: Lato;
+	font-size: 24px;
+	font-weight: 900;
+	line-height: 29px;
+
+}
+
+.burger-menu-items div i {
+	color: #FFFFFF;
+	margin-right: 10px;
+}
+
+.burger-menu-line {
+	box-sizing: border-box;
+	height: 3px;
+	width: 256px;
+	border-top: 1px solid #FFFFFF;
+	margin-bottom: 10px;
+}
 
 

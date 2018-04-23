@@ -1,32 +1,49 @@
-<div class="row">
-	<div class="top-nav">
-		<div class="col-1"></div>
-		<div class="inner-nav col-10">
-			<div class="row">
-			<div class="burger-menu"></div>
-				<i id="burger-icon" class="material-icons icon-menu">menu</i>
-				
-			</div>
-			<div class="menu-items">
-				<a> 
-					<%= link_to 'Revenue', '/revenue', :class => current_class?('/revenue') %>
-				</a>
-				<a>
-					<%= link_to 'Archived projects', '/archived_projects', :class => current_class?('/archived_projects') %>
-				</a>
-				<a> 
-					<%= link_to 'All projects', '/all-projects', :class => current_class?('/all-projects') %>
-				</a>
-				<a> 
-					<%= link_to 'Dashboard', '/projects', :class => current_class?('/projects') %>
-				</a>
+<div id="burger-menu-wrapper">
+<div id="burger-menu-starter"></div>
+	<div id="burger-menu">
+		<i id="burger-icon-in-menu" class="material-icons">close</i>
+		<div class="burger-menu-content">
+			<div class="projectio-menu">Projectio</div>
+			<div class="burger-menu-line"></div>
+			<div class="burger-menu-items">
+				<div>
+					<i class="material-icons">person</i>
+					<a href="#">Lone Kjeldgaard</a>
+				</div>
+				<div>
+					<i class="material-icons">settings_applications</i>
+					<a href="#">Setup projects</a>
+				</div>
+				<div>
+					<i class="material-icons">settings_applications</i>
+					<a href="#">Abtion</a>
+				</div>
 			</div>
 		</div>
-		<div class="col-1"></div>
+	</div>
+	<div class="row">
+		<div class="top-nav">
+			<div class="col-1"></div>
+			<div class="inner-nav col-10">
+				<div class="row">
+					<i id="burger-icon" class="material-icons icon-menu">menu</i>
+				</div>
+				<div class="menu-items">
+					<a> 
+						<%= link_to 'Revenue', '/revenue', :class => current_class?('/revenue') %>
+					</a>
+					<a>
+						<%= link_to 'Archived projects', '/archived_projects', :class => current_class?('/archived_projects') %>
+					</a>
+					<a> 
+						<%= link_to 'All projects', '/all-projects', :class => current_class?('/all-projects') %>
+					</a>
+					<a> 
+						<%= link_to 'Dashboard', '/projects', :class => current_class?('/projects') %>
+					</a>
+				</div>
+			</div>
+			<div class="col-1"></div>
+		</div>
 	</div>
 </div>
-
-
-<script>
-
-</script>
