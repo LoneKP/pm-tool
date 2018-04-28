@@ -1,28 +1,4 @@
 
-<div id="delete-project-modal" class="modal">
-	<div class="project-modal-header mb-3">
-		<div>
-			<i class="material-icons blue">delete_forever</i>
-			<p class="text-24 blue">Delete project?</p>
-		</div>
-		<div>
-			<a href="#" class="material-icons" rel="modal:close">
-				<i class="material-icons icon-14">close</i>
-			</a>
-		</div>
-
-	</div>
-	<div class="project-modal-content">
-		<p class="text-16-19">If you delete a project from your portfolio it will lose all the risks and actions you have added.</p>
-		<p id="id"></p>
-	</div>
-	<div class="project-modal-footer">
-		<a href="#" rel="modal:close"><div  class="cancel">Cancel</div></a>
-
-
-	</div>
-</div>
-
 
 <div class="col-10" >
 	<% obj.each do |project| %>
@@ -64,10 +40,9 @@
 							<p>Remove project</p>
 						</div>
 					</a>
-					<div class="line"></div>
-				<%= link_to 'Delete', project_path(project), method: :delete, data: {confirm: "Are you sure?"} %>
+
 				</div>
-					
+
 				<i class="open-gear-menu material-icons icon_20">settings</i>
 			</div>
 		</div>
@@ -123,9 +98,34 @@
 				<p class="tekst right-align"><%= project.project_end_date.strftime('%d.%m.%Y') %></p>
 			</div>
 		</div>
-	</div>				
+	</div>		
+	
+<!--Delete modal			-->
+<div id="delete-project-modal" class="modal">
+	<div class="project-modal-header mb-3">
+		<div>
+			<i class="material-icons blue">delete_forever</i>
+			<p class="text-24 blue">Delete project?</p>
+		</div>
+		<div>
+			<a href="#" class="material-icons" rel="modal:close">
+				<i class="material-icons icon-14">close</i>
+			</a>
+		</div>
+
+	</div>
+	<div class="project-modal-content">
+		<p class="text-16-19">If you delete a project from your portfolio it will lose all the risks and actions you have added.</p>
+		<p id="id"></p>
+	</div>
+	<div class="project-modal-footer">
+		<a href="#" rel="modal:close"><div  class="cancel">Cancel</div></a>	
+		<%= link_to 'Delete', project_path(project), method: :delete, :class => 'delete-project-btn' %>
+	</div>
+</div>		
 
 	<% end %>
+	
 
 </div>
 

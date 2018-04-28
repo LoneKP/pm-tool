@@ -41,7 +41,9 @@ module ProjectHelper
 		end
 	end
 	
-	
+	def get_project_id(id)
+		return Project.harvest_project_id
+	end
 
 
 end

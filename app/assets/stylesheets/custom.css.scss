@@ -6,6 +6,7 @@
 :root {
 	--primary-color: #0D39FF;
 	--secondary-color: #920DFF;
+	--danger-color: #E11750;
 
 }
 
@@ -634,8 +635,24 @@ a:hover, a:visited, a:link, a:active
 	color: #FFF;
 }
 
+
+
 .add-project:hover {
 	cursor: pointer;
+}
+
+.delete-project-btn {
+	border-radius: 20px;
+	background-color: var(--danger-color);	
+	display: flex;
+	align-items: center;
+	padding: 8px 22px 8px 22px;
+	color: #FFF;
+
+}
+
+.delete-project-btn:hover {
+	color: #FFF;
 }
 
 .cancel {
