@@ -14,25 +14,29 @@
 </div>
 
 
+
 <% @all_projects.each do |(client_name, projects)| %>
 <div class="client-name"><%= client_name %></div>
-<% projects.in_groups_of(4, false) do |projects_in_three| %>	
+<% projects.in_groups_of(4, false) do |projects_in_four| %>	
 <div class="project-boxes">
-	<% projects_in_three.each do |project| %>
+	<% projects_in_four.each do |project| %>
 
-	<%= if_project_is_not_in_database_create_link_to_modal_start(project['id']) %>
-	<div <%=if_project_is_in_database_grey_out(project['id'])%> id="<%= project['id'] %>" >
-		<p><%= project['name'] %></p>
+	<%= if_project_is_not_in_database_create_link_to_modal_start(project.harvest_project_id) %>
+	<div <%=if_project_is_in_database_grey_out(project.harvest_project_id)%> id="<%= project.harvest_project_id %>" >
+
+		<p><%= project.project_name %></p>
 		<i class="material-icons">done</i>
+		
 	</div>
-	<%= if_project_is_not_in_database_create_link_to_modal_end(project['id']) %>
+	<%= if_project_is_not_in_database_create_link_to_modal_end(project.harvest_project_id) %>
 	<% end %>
 </div>
 <% end %>
 <% end %>
 
 
-<div id="ex1" class="modal">
+
+<div id="add-project-modal" class="modal">
 	<div class="project-modal-header mb-3">
 		<div>
 		<i class="material-icons blue">add_circle</i>

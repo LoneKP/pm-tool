@@ -1,5 +1,18 @@
 class AllProjectsFetcher
 
+	def update_unadded_projects
+		UnaddedProject.delete_all
+		sort_projects.each do |(client_name, projects)| 
+			projects.each do |project|			
+				UnaddedProject.create(
+					harvest_project_id: project['id'],
+					client_name: client_name,
+					project_name: project['name']
+					)
+			end
+		end
+	end
+
 	def active_and_billable_projects
 		@_active_projects ||= all_projects.select { |project| project.dig('is_active') && project.dig('is_billable') }
 	end

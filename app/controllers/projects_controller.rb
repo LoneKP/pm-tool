@@ -16,9 +16,7 @@ class ProjectsController < ApplicationController
 
 	def all_projects
 		@project = Project.new
-		@all_projects = AllProjectsFetcher.new.sort_projects
-		@projects = Project.all
-
+		@all_projects = UnaddedProject.all.group_by { |projects| projects.client_name }
 	end
 	
 

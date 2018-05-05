@@ -1,11 +1,13 @@
 # Call it like this from the terminal: UpdateProjectsWorker.perform_later
 class UpdateProjectsWorker
-  include Sidekiq::Worker
+	include Sidekiq::Worker
 
-  def perform
+	def perform
 		Project.all.each do |project|
 			puts "Fetching data for project #{ project.project_name }"
-    	ProjectDataFetcher.new(project).call
-  	end
-  end
+			ProjectDataFetcher.new(project).call
+		end
+		AllProjectsFetcher.new.update_unadded_projects
+	end
+	
 end

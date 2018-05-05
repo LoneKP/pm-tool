@@ -29,7 +29,8 @@ module ProjectHelper
 		if Project.exists?(harvest_project_id: id)
 			return ''
 		else
-			return ['<a href="#ex1" rel="modal:open">'].join.html_safe	
+			return ['<a href="#add-project-modal" rel="modal:open">'].join.html_safe
+#			return ['<a href="#ex1-' + id.to_s + '"' 'rel="modal:open">'].join.html_safe
 		end
 	end
 
@@ -41,9 +42,6 @@ module ProjectHelper
 		end
 	end
 	
-	def get_project_id(id)
-		return Project.harvest_project_id
-	end
 
 
 end

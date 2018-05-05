@@ -1,0 +1,4 @@
+class UnaddedProject < ApplicationRecord
+
+	
+end
