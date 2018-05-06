@@ -1,7 +1,7 @@
 <div class="col-10" >
 	<% obj.each do |project| %>
 
-	<div class="d-flex card">
+	<div class="d-flex card client<%= project.color_number %>">
 		<div class="d-flex flex-row justify-content-between">
 			<div>
 				<h6 class="title">
@@ -9,30 +9,30 @@
 				</h6>
 			</div>
 			<div class="gear-menu-wrapper">
-				<div class="gear-menu">
-					<i class="close-gear-menu material-icons close-gear-icon">close</i>
+				<div class="gear-menu client<%= project.color_number %>">
+					<i class="client<%= project.color_number %> close-gear-menu material-icons close-gear-icon">close</i>
 					<a class="details">
 						<div>
-							<i class="material-icons">dashboard</i>
+							<i class="client<%= project.color_number %> material-icons">dashboard</i>
 							<p>Details</p>
 						</div>
 					</a>
-					<div class="line"></div>
+					<div class="client<%= project.color_number %> line"></div>
 					<a class="risk-action">
 						<div>
-							<i class="material-icons">error</i>
+							<i class="client<%= project.color_number %> material-icons">error</i>
 							<p>Add risk / action</p>
 						</div>
 					</a>
-					<div class="line"></div>
-					<a class="archive-project">
+					<div class="client<%= project.color_number %> line"></div>
+					<a class="client<%= project.color_number %> archive-project">
 						<div>
-							<i class="material-icons">folder</i>
+							<i class="client<%= project.color_number %> material-icons">folder</i>
 							<p>Archive project</p>
 						</div>
 					</a>
-					<div class="line"></div>
-					<a class="delete-project" href="#delete-project-modal-<%= project.id %>" rel="modal:open">
+					<div class="client<%= project.color_number %> line"></div>
+					<a class="client<%= project.color_number %> delete-project" href="#delete-project-modal-<%= project.id %>" rel="modal:open">
 						<div>
 							<i class="material-icons">delete_forever</i>
 							<p>Remove project</p>
@@ -50,16 +50,16 @@
 				<p class="tekst mt-2"><i class="material-icons icon_12 client<%= project.color_number %>">access_time</i><span>Work hours:</span> [Input]</p>
 			</div>
 			<div class="wrapper">
-				<div class="circle">
+				<div class="circle client<%= project.color_number %>">
 					<h4 class="numbers client<%= project.color_number %>"><%=project.design_hours%></h4><p class="task-text client<%= project.color_number %>">Design</p>
 				</div>
-				<div class="circle">
+				<div class="circle client<%= project.color_number %>">
 					<h4 class="numbers client<%= project.color_number %>"><%=project.programming_hours%></h4><p class="task-text client<%= project.color_number %>">Programming</p>
 				</div>
-				<div class="circle">
+				<div class="circle client<%= project.color_number %>">
 					<h4 class="numbers client<%= project.color_number %>"><%=project.project_management_hours%></h4><p class="task-text client<%= project.color_number %>">Management</p>
 				</div>
-				<div class="circle">
+				<div class="circle client<%= project.color_number %>">
 					<h4 class="numbers client<%= project.color_number %>"><%=project.meetings_hours%></h4><p class="task-text client<%= project.color_number %>">Meetings</p>
 				</div>
 			</div>
@@ -75,17 +75,17 @@
 			</div>
 
 			<div class="d-flex flex-row justify-content-center align-items-center">
-				<div class="progress-dot-active"></div>
+				<div class="progress-dot-active client<%= project.color_number %>"></div>
 				<div class="d-flex align-items-center justify-content-between">
 
 					<div class="progress-full d-flex align-items-center">
-						<div class="progress-bar-filling" role="progressbar" style="width: <%=project.completion_percentage %>%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+						<div class="progress-bar-filling client<%= project.color_number %>" role="progressbar" style="width: <%=project.completion_percentage %>%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
 						</div>
 					</div>
 
 				</div>
 
-				<div class="<%= project.completion_percentage >= 100 ? 'progress-dot-active-right' : 'progress-dot-inactive' %>"></div>
+				<div class="<%= project.completion_percentage >= 100 ? 'progress-dot-active-right' : 'progress-dot-inactive' %> client<%= project.color_number %>"></div>
 			</div>
 
 
@@ -105,7 +105,7 @@
 			</div>
 			<div>
 				<a href="#" class="material-icons" rel="modal:close">
-					<i class="material-icons icon-14 client<%= project.color_number %>">close</i>
+					<i class="material-icons icon-14">close</i>
 				</a>
 			</div>
 
