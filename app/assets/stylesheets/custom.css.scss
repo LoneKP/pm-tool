@@ -7,8 +7,41 @@
 	--primary-color: #0D39FF;
 	--secondary-color: #920DFF;
 	--danger-color: #E11750;
-
+	--client1: orange;
+	--client2: gray;
+	--client3: green;
+	--client4: red;
+	--client5: pink;
+	--client6: yellow;
+	--client7: beige;
+	--client8: purple;
 }
+
+.client1 {
+	--primary-color: var(--client1);
+}
+.client2 {
+	--primary-color: var(--client2);
+}
+.client3 {
+	--primary-color: var(--client3);
+}
+.client4 {
+	--primary-color: var(--client4);
+}
+.client5 {
+	--primary-color: var(--client5);
+}
+.client6 {
+	--primary-color: var(--client6);
+}
+.client7 {
+	--primary-color: var(--client7);
+}
+.client8 {
+	--primary-color: var(--client8);
+}
+
 
 .container {
 	margin-top: 78px;
@@ -33,7 +66,7 @@ p.text-16 {
 p.text-16-19 {
 	font-size: 16px;
 	line-height: 19px;
-	color: var(--primary-color);
+	color: #0D39FF;
 }
 
 p.text-24 {

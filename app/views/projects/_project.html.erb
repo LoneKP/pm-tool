@@ -1,9 +1,7 @@
-
-
 <div class="col-10" >
 	<% obj.each do |project| %>
 
-	<div class="d-flex card monthly-process-assessment">
+	<div class="d-flex card">
 		<div class="d-flex flex-row justify-content-between">
 			<div>
 				<h6 class="title">
@@ -41,33 +39,33 @@
 						</div>
 					</a>
 				</div>
-				<i class="open-gear-menu material-icons icon_20">settings</i>
+				<i class="open-gear-menu material-icons icon_20 client<%= project.color_number %>">settings</i>
 			</div>
 		</div>
 		<%= completion_indicator(project) %>
 
 		<div class="d-flex flex-row justify-content-between">
 			<div class="mt-66">
-				<p class="tekst"><i class="material-icons icon_12">attach_money</i><span>Sold hours:</span><%=project.hours_sold_for %> hours</p>
-				<p class="tekst mt-2"><i class="material-icons icon_12">access_time</i><span>Work hours:</span> [Input]</p>
+				<p class="tekst"><i class="material-icons icon_12 client<%= project.color_number %>">attach_money</i><span>Sold hours:</span><%=project.hours_sold_for %> hours</p>
+				<p class="tekst mt-2"><i class="material-icons icon_12 client<%= project.color_number %>">access_time</i><span>Work hours:</span> [Input]</p>
 			</div>
 			<div class="wrapper">
 				<div class="circle">
-					<h4 class="numbers"><%=project.design_hours%></h4><p class="task-text">Design</p>
+					<h4 class="numbers client<%= project.color_number %>"><%=project.design_hours%></h4><p class="task-text client<%= project.color_number %>">Design</p>
 				</div>
 				<div class="circle">
-					<h4 class="numbers"><%=project.programming_hours%></h4><p class="task-text">Programming</p>
+					<h4 class="numbers client<%= project.color_number %>"><%=project.programming_hours%></h4><p class="task-text client<%= project.color_number %>">Programming</p>
 				</div>
 				<div class="circle">
-					<h4 class="numbers"><%=project.project_management_hours%></h4><p class="task-text">Management</p>
+					<h4 class="numbers client<%= project.color_number %>"><%=project.project_management_hours%></h4><p class="task-text client<%= project.color_number %>">Management</p>
 				</div>
 				<div class="circle">
-					<h4 class="numbers"><%=project.meetings_hours%></h4><p class="task-text">Meetings</p>
+					<h4 class="numbers client<%= project.color_number %>"><%=project.meetings_hours%></h4><p class="task-text client<%= project.color_number %>">Meetings</p>
 				</div>
 			</div>
 			<div>
-				<p class="completion-percentage"><%=project.completion_percentage %>%</p>
-				<p class="total-time"><%= project.total_time_hours %> of <%= project.hours_sold_for %> sold hours</p>
+				<p class="completion-percentage client<%= project.color_number %>"><%=project.completion_percentage %>%</p>
+				<p class="total-time client<%= project.color_number %>"><%= project.total_time_hours %> of <%= project.hours_sold_for %> sold hours</p>
 			</div>
 		</div>
 		<div class="d-flex flex-row justify-content-between mt-266">
@@ -107,13 +105,13 @@
 			</div>
 			<div>
 				<a href="#" class="material-icons" rel="modal:close">
-					<i class="material-icons icon-14">close</i>
+					<i class="material-icons icon-14 client<%= project.color_number %>">close</i>
 				</a>
 			</div>
 
 		</div>
 		<div class="project-modal-content">
-			<p class="text-16-19">If you delete a project from your portfolio it will lose all the risks and actions you have added.</p>
+			<p class="text-16-19%> ">If you delete a project from your portfolio it will lose all the risks and actions you have added.</p>
 			<p id="id"></p>
 		</div>
 		<div class="project-modal-footer">
@@ -126,8 +124,6 @@
 
 
 </div>
-
-
 
 
 
