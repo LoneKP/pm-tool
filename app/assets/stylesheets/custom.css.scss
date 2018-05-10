@@ -5,7 +5,7 @@
 
 :root {
 	--primary-color: 13,57,255;
-	
+
 	--secondary-color: #920DFF;
 	--danger-color: #E11750;
 	--client1: 13,57,255;
@@ -64,6 +64,11 @@ p.text-16 {
 	line-height: 28px;
 }
 
+.text-14 {
+	color: #9B9B9B;
+	font-size: 14px;
+}
+
 p.text-16-19 {
 	font-size: 16px;
 	line-height: 19px;
@@ -75,6 +80,11 @@ p.text-24 {
 	line-height: 28px;
 }
 
+p.text-32 {
+	color: #000000;
+	font-size: 32px;
+	line-height: 38px;
+}
 .title {
 	font-size: 14px;
 	font-weight: 500;
@@ -86,6 +96,13 @@ p.text-24 {
 	font-weight: 500;
 	line-height: 14px;
 	vertical-align: middle !important;
+}
+
+.company-name {
+	color: #4A4A4A;
+	font-family: "Work Sans";
+	font-size: 18px;
+	line-height: 21px;
 }
 
 .numbers {
@@ -246,13 +263,28 @@ delete-button {
 	font-size: 14px;
 	color: rgb(var(--primary-color));
 	margin-top: -37px;
-
-
 }
 
 .icon-14:hover {
 	text-decoration: none;
 }
+
+.icon-14-check {
+	font-size: 14px !important;
+	color: rgb(var(--primary-color));
+	margin-top: 4px;
+
+}
+
+.icon-close {
+	font-size: 14px;
+	color: rgb(var(--primary-color));
+}
+
+.icon-close:hover {
+	text-decoration: none;
+}
+
 
 .icon-24 {
 	font-size: 24px !important;
@@ -263,6 +295,19 @@ delete-button {
 	align-content: center;
 	vertical-align: middle !important;
 	padding: 3px;
+}
+
+.icon-padding {
+	//	margin-right: 18px;
+	font-size: 16px !important;
+	//	color: #4A4A4A;
+	//	margin-top: 2px;
+	//	
+	border-radius: 50%;
+	display: flex;
+	align-content: center;
+	vertical-align: middle !important;
+	border: 1px solid #4A4A4A;
 }
 
 .icon-add {
@@ -352,6 +397,15 @@ delete-button {
 
 .mt-350 {
 	margin-top: ($spacer * 3.5) !important;
+}
+
+.margin-correction {
+	margin-left: ($spacer * 3.66) !important;
+	margin-top: 4px;
+}
+
+.extra-margin {
+	margin-left: 38px;
 }
 
 span {
@@ -469,13 +523,27 @@ input:focus::-webkit-input-placeholder {
 	top: 0;
 	z-index: 9;
 	margin-bottom: 200px;
+}
 
+.top-nav-modal {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .inner-nav {
 	display:flex;
 	justify-content: space-between;
 	align-items: center;
+}
+
+.setup-project-information {
+	color: #0D39FF;
+	font-family: "Work Sans";
+	font-size: 14px;
+	line-height: 16px;
+
 }
 
 .menu-items a {
@@ -604,6 +672,135 @@ a:hover, a:visited, a:link, a:active
 	z-index: 2;
 }
 
+.top-nav-add-project-flow {
+	//	height: 54px;
+	height: 200px;
+	width: 100%;
+	background-color: #FFFFFF;
+	box-shadow: 0 0 15px 0 rgba(0,0,0,0.12);
+	border:2px;
+	display: flex;
+	flex-direction: row; 
+	position: fixed;
+	top: 0;
+	z-index: 100;
+
+
+}
+
+.inner-nav-add-project-flow {
+	display:flex;
+	justify-content: space-between;
+	align-items: center;
+
+}
+
+.add-project-flow {
+	height: 100vh;	
+	width: 100vw;	
+	margin-left: -50vw;
+	background-color: #FFFFFF;	
+	position:fixed;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#add-project-flow-title {
+	justify-content: space-between;
+
+}
+
+.aligner-item-top {
+	display: flex;
+	align-self: flex-start;
+
+	height: 15vh;
+}
+
+.aligner-item-bottom {
+	display: flex;
+	align-self: flex-end;
+
+	height: 20vh;
+}
+
+.add-project-content {
+	height: 60vh;
+	margin-left: 18vw;
+	margin-right: 18vw;
+}
+
+.add-project-content-top {
+
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 64px;
+}
+
+.add-project-content-top > div {
+	display: flex;
+	flex-direction: row;
+}
+
+
+
+.add-project-box {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+
+}
+
+.add-project-box div {
+	display: flex;
+	flex-direction: column;
+}
+
+.add-project-box > div > div {
+	display: flex;
+	flex-direction: row;
+	margin-top: 7px;
+	align-items: flex-start;
+
+
+}
+
+.add-project-box > div > div > .project-data-type {
+	margin-right: 18px;
+	font-size: 20px;
+	color: #4A4A4A;
+	margin-top: 2px;
+}
+
+.add-project-box > div > div > * {
+	display: flex;
+	flex-direction: column;
+}
+
+
+
+.add-project-box > div > div > p {
+	color: #4A4A4A;
+	font-family: "Work Sans";
+	font-size: 12px;
+	line-height: 14px;
+}
+
+
+.checked-input {
+	flex-direction: row !important;
+	justify-content: space-between;
+}
+
+.underline {
+	height: 1px;
+	width: 160px;
+	border-bottom: 1px solid #9B9B9B;
+	margin-top: 10px;
+	margin-bottom: 30px;
+}
+
 .modal {
 	z-index: 2;
 	height: 215px;	
@@ -629,7 +826,7 @@ a:hover, a:visited, a:link, a:active
 }
 
 .project-modal-header p {
-		margin-left: 16px;
+	margin-left: 16px;
 }
 
 .project-modal-header {
@@ -663,12 +860,24 @@ a:hover, a:visited, a:link, a:active
 .add-project {
 	border-radius: 20px;
 	background-color: rgb(var(--primary-color));
-	display: flex;
-	align-items: center;
 	padding: 8px 22px 8px 22px;
 	color: #FFF;
+	margin-left: 24px;
 }
 
+.dont-add-project {
+	border: 1px solid #0D39FF;
+	border-radius: 20px;
+	padding: 8px 22px 8px 22px;
+	color: rgb(var(--primary-color));
+	border-color: rgb(var(--primary-color));
+}
+
+.add-project-buttons {
+	align-items: flex-end;
+	margin-top: 64px;
+
+}
 
 
 .add-project:hover {

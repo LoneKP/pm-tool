@@ -17,6 +17,7 @@ class ProjectsController < ApplicationController
 	def all_projects
 		@project = Project.new
 		@all_projects = UnaddedProject.all.group_by { |projects| projects.client_name }
+		@unadded_projects = UnaddedProject.all
 	end
 	
 

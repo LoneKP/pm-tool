@@ -14,7 +14,6 @@
 </div>
 
 
-
 <% @all_projects.each do |(client_name, projects)| %>
 <div class="client-name"><%= client_name %></div>
 <% projects.in_groups_of(4, false) do |projects_in_four| %>	
@@ -26,7 +25,7 @@
 
 		<p><%= project.project_name %></p>
 		<i class="material-icons">done</i>
-		
+
 	</div>
 	<%= if_project_is_not_in_database_create_link_to_modal_end(project.harvest_project_id) %>
 	<% end %>
@@ -36,33 +35,107 @@
 
 
 
-<div id="add-project-modal" class="modal">
-	<div class="project-modal-header mb-3">
-		<div>
-		<i class="material-icons blue">add_circle</i>
-			<p class="text-24 blue">Add project to your dashboard</p>
-		</div>
-		<div>
-			<a href="#" class="material-icons" rel="modal:close">
-				<i class="material-icons icon-14">close</i>
-			</a>
+<%= @unadded_projects.each do |project| %>
+
+<div class="add-project-flow" id="add-project-flow-<%= project.harvest_project_id %>">
+	<div class="aligner-item-top"></div>
+	<div class="add-project-content" >
+		<div class="add-project-content-top">
+			<div>
+				<p class="text-32"><%= project.project_name %></p>
+			</div>
+			<div id="add-project-flow-title">
+				<p class="company-name"><%= project.client_name %></p>
+				<p class="text-14">Data received from Harvest</p>
+			</div>
 		</div>
 
-	</div>
-	<div class="project-modal-content">
-		<p class="text-16-19">Add one of your projects to your dashbord. The data comes from the data in Harvest. There might be some fields you have not filled out correctly</p>
-		<p id="id"></p>
-	</div>
-	<div class="project-modal-footer">
-		<a href="#" rel="modal:close"><div  class="cancel">Cancel</div></a>
+		<div class="add-project-box">
 
-		<%= form_for @project do |f| %>
-		<%= f.hidden_field :harvest_project_id, :id => "harvest_id"%>
-		<%= f.submit 'Add Project', :class => 'add-project' %>
-		<% end %>
+			<div>
+				<div>
+					<p class="extra-margin">work hours</p>
+				</div>
+
+				<div>
+					<i class="material-icons project-data-type">access_time</i>
+					<div>
+						<div class="checked-input">
+							<p>140</p>
+							<i class="icon-14-check material-icons">check_circle</i>
+						</div>
+						<div class="underline"></div>
+					</div>
+
+					<p class="margin-correction">How many hours will the team need to complete this project?</p>
+				</div>
+			</div>
+			<div>
+				<div>
+					<p class="extra-margin">Sold hours</p>
+				</div>
+
+				<div>
+					<i class="icon-padding material-icons project-data-type">attach_money</i>
+					<div>
+						<div class="checked-input">
+							<p>140</p>
+							<i class="icon-14-check material-icons">check_circle</i>
+						</div>
+						<div class="underline"></div>
+					</div>
+					<p class="margin-correction">How many hours is the client being billed? Set equal to work hours</p>
+				</div>
+			</div>
+
+			<div>
+				<div>
+					<p class="extra-margin">Start date</p>
+				</div>
+
+				<div>
+					<i class="material-icons project-data-type">date_range</i>
+					<div>
+						<div class="checked-input">
+							<p>140</p>
+							<i class="icon-14-check material-icons">check_circle</i>
+						</div>
+						<div class="underline"></div>
+					</div>
+				</div>
+			</div>
+			<div>
+				<div>
+					<p class="extra-margin">End date</p>
+				</div>
+
+				<div>
+					<i class="material-icons project-data-type">date_range</i>
+					<div>
+						<div class="checked-input">
+							<p>140</p>
+							<i class="icon-14-check material-icons">check_circle</i>
+						</div>
+						<div class="underline"></div>
+					</div>
+					<p class="margin-correction">Calculate end date based on work hours</p>
+				</div>
+			</div>
+			<div class="add-project-buttons">
+				<div>
+					<a href="#" rel="modal:close"><div class="dont-add-project change-to-default-menu">Don't add</div></a>
+
+					<%= form_for @project do |f| %>
+					<%= f.hidden_field :harvest_project_id, :value => project.harvest_project_id %>
+					<%= f.submit 'Add Project', :class => 'add-project' %>
+					<% end %>
+				</div>
+			</div>
+		</div>
 	</div>
+	<div class="aligner-item-bottom"></div>
 </div>
-
+<% end %>
 
 <script> 
 	$('div.project-boxes a div').click(function() {
@@ -72,7 +145,21 @@
 		});
 	});
 
-
-
+	$(function() {
+		$('#add-project-flow').hide();
+		$('div.project-boxes a div').click(function(){
+			event.preventDefault();
+			$('div#hide-menu-items').hide();
+			$('#hide').show();
+		});
+	});   
+	
+	$(function() {
+		$('.change-to-default-menu').click(function() {
+			event.preventDefault();
+			$('div#hide-menu-items').show();
+			$('#hide').hide();
+		});
+	});   
 </script>     
 

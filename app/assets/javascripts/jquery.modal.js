@@ -206,7 +206,7 @@
 		clickClose: true,
 		closeText: '',
 		closeClass: '',
-		modalClass: "modal",
+//		modalClass: "modal",
 		blockerClass: "jquery-modal",
 		spinnerHtml: '<div class="rect1"></div><div class="rect2"></div><div class="rect3"></div><div class="rect4"></div>',
 		showSpinner: true,
