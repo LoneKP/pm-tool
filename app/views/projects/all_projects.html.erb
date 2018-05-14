@@ -33,10 +33,7 @@
 <% end %>
 <% end %>
 
-
-
 <%= @unadded_projects.each do |project| %>
-
 <div class="add-project-flow" id="add-project-flow-<%= project.harvest_project_id %>">
 	<div class="aligner-item-top"></div>
 	<div class="add-project-content" >
@@ -46,7 +43,7 @@
 			</div>
 			<div id="add-project-flow-title">
 				<p class="company-name"><%= project.client_name %></p>
-				<p class="text-14">Data received from Harvest</p>
+				<p class="text-14">Data received from <a href="https://abtion.harvestapp.com/projects/<%= project.harvest_project_id %>">Harvest</a></p>
 			</div>
 		</div>
 

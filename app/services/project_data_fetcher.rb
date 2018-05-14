@@ -62,11 +62,10 @@ class ProjectDataFetcher
 	end
 
 	def color_number
-		if Project.exists?(client_name: client_name)
-			project = Project.find_by client_name: client_name
-			return project.color_number		
+		if project = Project.find_by client_name: client_name
+			project.color_number		
 		else
-			rand(8)
+			rand(1..8)
 		end
 	end
 
