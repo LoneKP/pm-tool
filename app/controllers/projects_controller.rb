@@ -3,12 +3,7 @@ class ProjectsController < ApplicationController
 	def index
 		#get id saved in database
 		@projects = Project.all	
-
 	end		
-
-	def revenue
-		@projects = Project.all	
-	end
 
 	def new
 		@project = Project.new	
@@ -19,8 +14,6 @@ class ProjectsController < ApplicationController
 		@all_projects = UnaddedProject.all.group_by { |projects| projects.client_name }
 		@unadded_projects = UnaddedProject.all
 	end
-	
-
 	
 	def create
 		#		render plain: params[:project].inspect

@@ -22,10 +22,6 @@ class ProjectDataFetcher
 
 	#	private
 
-	def hours_sold_for
-		response_clients.dig('clients', 'name')
-	end
-
 	def response_time_entries
 		response_time_entries_raw = wrapper.time_entries(1, harvest_project_id)			
 
@@ -37,7 +33,7 @@ class ProjectDataFetcher
 		if number_of_pages == 1 
 			response_time_entries_per_project = response_time_entries_raw.dig('time_entries')
 		else 
-			#for loop to loop through all the pages and fetch all and put into the variable 	response_time_entries_per_project
+			#for loop to loop through all the pages and fetch all and put into the variable response_time_entries_per_project
 
 			for i in 1..number_of_pages do	
 				time_entries_raw = wrapper.time_entries(i, harvest_project_id)
