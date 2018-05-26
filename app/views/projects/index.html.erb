@@ -1,43 +1,43 @@
 
 <div class="d-flex justify-content-center">
 
-<div class="mt-200 inner-addon left-addon">
-<i class="material-icons icon-18 search">search</i>
-<input type="text" name="search" placeholder="Project, risk, ID, or something completely different">
-</div>
+	<div class="mt-200 inner-addon left-addon">
+		<i class="material-icons icon-18 search">search</i>
+		<input type="text" name="search" placeholder="Project, risk, ID, or something completely different">
+	</div>
 </div>	
 
-<div class="row">
-	<div class="col-1"></div>
-	<div class="col-10 d-flex flex-row mt-266">
-		<div class="d-flex flex-column justify-content-center mr-3">
-			<i class="material-icons icon-24">trending_up</i>
-		</div>
-		<div class="d-flex flex-column">
-			<p class="text-16">Welcome back, Lone</p>
-			<p class="text-24">Everything seems to be on track!</p>
-		</div>
+<div>
+	<p class="helper-headline mt-200">Select a project to add to your portfolio
+	</p>
+</div>
+
+
+<% @projects_grouped_by_client.each do |(client_name, projects)| %>
+<div class="client-name"><%= client_name %></div>
+<% projects.in_groups_of(4, false) do |projects_in_four| %>	
+<div class="project-boxes">
+	<% projects_in_four.each do |project| %>
+
+	<% if project_is_already_on_dashboard?(project.harvest_project_id)%>
+
+	<div <%=if_project_is_added_to_dashboard_grey_out(project.harvest_project_id)%> >
+		<p><%= project.project_name %></p>
+		<i class="material-icons">done</i>
 	</div>
-	<div class="col-1"></div>
-</div>
+	
+	<% else %>
+	
+	<%= link_to edit_project_path(project), :action => 'edit' do %>
+	<div <%=if_project_is_added_to_dashboard_grey_out(project.harvest_project_id)%> >
+		<p><%= project.project_name %></p>
+	</div>
+	<% end %>
 
-<div class="row">
-<div class="col-1 monthly-process-assessment-hide"></div>
-<%= render 'project', obj: @projects %>
-<div class="col-1 monthly-process-assessment-hide"></div>
-<div class="monthly-process-assessment-active col-2">
-
-</div>
-</div>
-
-
-<%= link_to all_projects_url do %>
-<div class="mt-350 new-project">
-<i class="material-icons icon-add mr-133">add</i>
-<p class="text-24 blue">Add Project</p>
+	<% end %>
+	
+	<% end %>
 </div>
 <% end %>
-
-
-
+<% end %>
 

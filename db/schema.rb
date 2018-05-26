@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180515062553) do
+ActiveRecord::Schema.define(version: 20180526085722) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20180515062553) do
     t.datetime "project_end_date"
     t.integer "color_number"
     t.boolean "added_to_dashboard"
-    t.boolean "archived_projects"
+    t.boolean "archived"
     t.integer "work_hours"
   end
 

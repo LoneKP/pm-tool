@@ -3,56 +3,24 @@ class FetchProjects
 
 	test = [ {"a"=>1,"b"=>2,"client"=> {"d" =>3, "e"=>4, "f"=>5}}, {"a"=>1,"b"=>2,"client"=> {"d" =>3, "e"=>4, "f"=>5}}, {"a"=>1,"b"=>2,"client"=> {"d" =>3, "e"=>4, "f"=>5}}]
 
-
-	#		def client_name
-	#			hello = active_and_billable_projects.map { |project| project.map.select { |k,v|  k=='name' } }
-	#		
-	#		end
-
-	#	def client_name
-	#		active_and_billable_projects.map { |project| project.values_at('name')   }
-	#	end
-
-	def client_name
-		active_and_billable_projects.map { |project| project.values_at('client').map {|client| client.values_at('name')}   }
-	end
-
-	#	def client_name
-	#		active_and_billable_projects.each do |projects|
-	#			projects.select do |key, name|
-	#				key=='name'
-	#			end
-	#		end
-	#	end
-
-
-
-	def project_name
-	end
-
-	def harvest_project_id
-	end
-
-	def work_hours
-	end
-
-	def sold_hours
-	end
-
-
 	def update_projects
-		Project.delete_all
+		Project.where(:added_to_dashboard => false).delete_all
 		active_and_billable_projects.map do |project| 
 			client_name = project.values_at('client').map {|client| client.values_at('name')}.join('')
 			project_name = project.values_at('name').join('')
 			harvest_project_id = project.values_at('id').join('')
 			hours_sold_for = project.values_at('budget').join('')
-			UnaddedProject.create(
+			project_start_date = project.values_at('created_at').join('')
+			project_end_date = project.values_at('ends_on').join('')
+			Project.create(
 				client_name: client_name,
 				project_name: project_name,
 				harvest_project_id: harvest_project_id,	
 				hours_sold_for: hours_sold_for,
-				added_to_dashboard: false;
+				project_start_date: project_start_date,
+				project_end_date: project_end_date, 
+				added_to_dashboard: false,
+				archived: false
 				)
 		end
 	end

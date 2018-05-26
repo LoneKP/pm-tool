@@ -15,7 +15,13 @@
 	<body class="body">
 		<div class="container-fluid">
 
+			<% if content_for? :navigation %>
+			<%= content_for :navigation %>
+			<% else %>
 			<%= render 'layouts/navigation' %>
+			<% end %>
+
+
 		</div>
 		<div class="container">
 			<%= yield %>

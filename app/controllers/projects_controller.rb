@@ -1,20 +1,30 @@
 class ProjectsController < ApplicationController
 
-	def index
-		#get id saved in database
-		@projects = Project.all	
-	end		
 
 	def new
 		@project = Project.new	
 	end
 
-	def all_projects
-		@project = Project.new
-		@all_projects = UnaddedProject.all.group_by { |projects| projects.client_name }
-		@unadded_projects = UnaddedProject.all
+	def show
 	end
-	
+
+	def update
+		@project = Project.find(params[:id])
+		@project.update(project_params)
+		ProjectDataFetcher.new(@project).call
+		redirect_to dashboard_url
+	end
+
+	def dashboard
+		@projects = Project.all.where(added_to_dashboard:true)
+	end
+
+	def index
+		@project = Project.new
+		@projects = Project.all
+		@projects_grouped_by_client = Project.all.group_by { |projects| projects.client_name }
+	end
+
 	def create
 		#		render plain: params[:project].inspect
 		@project = Project.new(project_params)
@@ -23,7 +33,9 @@ class ProjectsController < ApplicationController
 	end
 
 	def edit
+		@project = Project.find(params[:id])
 	end
+
 
 	def destroy
 		@project = Project.find(params[:id])
@@ -33,7 +45,7 @@ class ProjectsController < ApplicationController
 
 	private
 	def project_params
-		params.require(:project).permit(:harvest_project_id)
+		params.require(:project).permit(:harvest_project_id, :added_to_dashboard)
 	end
 
 end

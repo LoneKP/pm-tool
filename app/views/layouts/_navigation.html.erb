@@ -21,20 +21,9 @@
 			</div>
 		</div>
 	</div>
+	
 	<div class="row" >
-		<div class="top-nav" id="hide">
-			<div class="col-1"></div>
-			<div class="inner-nav col-10" >
-				<p class="setup-project-information">Setup project information</p>
-				<a  href="#" rel="modal:close">
-					<div class="material-icons icon-close change-to-default-menu">close</div>
-				</a>
-			</div>
-			<div class="col-1"></div>
-		</div>
-		
-
-
+	
 
 
 		<div class="top-nav" id="hide-menu-items">
@@ -51,10 +40,10 @@
 						<%= link_to 'Archived projects', '/archived_projects', :class => current_class?('/archived_projects') %>
 					</a>
 					<a> 
-						<%= link_to 'All projects', '/all-projects', :class => current_class?('/all-projects') %>
+						<%= link_to 'All projects', 'projects', :class => current_class?('/projects') %>
 					</a>
 					<a> 
-						<%= link_to 'Dashboard', '/projects', :class => current_class?('/projects') %>
+						<%= link_to 'Dashboard', '/dashboard', :class => current_class?('/dashboard') %>
 					</a>
 				</div>
 			</div>

@@ -629,6 +629,8 @@ a:hover, a:visited, a:link, a:active
 .project-boxes div.already-on-dashboard:hover {
 	border:none;
 	cursor: default;
+	pointer-events: none;
+
 	i {
 		font-size: 30px;
 		color: #9B9B9B;
@@ -696,14 +698,13 @@ a:hover, a:visited, a:link, a:active
 }
 
 .add-project-flow {
-	height: 100vh;	
-	width: 100vw;	
-	margin-left: -50vw;
-	background-color: #FFFFFF;	
-	position:fixed;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+//	height: 100vh;	
+//	width: 100vw;	
+//	background-color: #FFFFFF;	
+//	position:fixed;
+//	display: flex;
+//	align-items: center;
+//	justify-content: center;
 }
 
 #add-project-flow-title {
@@ -711,27 +712,27 @@ a:hover, a:visited, a:link, a:active
 
 }
 
-.aligner-item-top {
-	display: flex;
-	align-self: flex-start;
-	height: 10vh;
-}
-
-.aligner-item-bottom {
-	display: flex;
-	align-self: flex-end;
-
-	height: 20vh;
-}
+//.aligner-item-top {
+//	display: flex;
+//	align-self: flex-start;
+//	height: 10vh;
+//}
+//
+//.aligner-item-bottom {
+//	display: flex;
+//	align-self: flex-end;
+//
+//	height: 20vh;
+//}
 
 .add-project-content {
-	height: 60vh;
-	margin-left: 18vw;
-	margin-right: 18vw;
+//	height: 60vh;
+//	margin-left: 18vw;
+//	margin-right: 18vw;
+	align-content: center;
 }
 
 .add-project-content-top {
-
 	display: flex;
 	flex-direction: column;
 	margin-bottom: 64px;
@@ -748,6 +749,7 @@ a:hover, a:visited, a:link, a:active
 	display: flex;
 	flex-direction: column;
 	align-items: stretch;
+	justify-content: center;
 
 }
 

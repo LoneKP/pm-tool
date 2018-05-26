@@ -1,4 +1,0 @@
-class UnaddedProject < ApplicationRecord
-
-	
-end

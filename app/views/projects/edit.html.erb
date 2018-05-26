@@ -1,0 +1,102 @@
+<% content_for :navigation, render('layouts/custom_navigation') %>
+
+<div class="add-project-flow" id="add-project-flow-<%= @project.harvest_project_id %>">
+	<div class="aligner-item-top"></div>
+	<div class="add-project-content" >
+		<div class="add-project-content-top">
+			<div>
+				<p class="text-32"><%= @project.project_name %></p>
+			</div>
+			<div id="add-project-flow-title">
+				<p class="company-name"><%= @project.client_name %></p>
+				<p class="text-14">Data received from <a target="_blank" href="https://abtion.harvestapp.com/projects/<%= @project.harvest_project_id %>">Harvest</a></p>
+			</div>
+		</div>
+
+		<div class="add-project-box">
+
+			<div>
+				<div>
+					<p class="extra-margin">work hours</p>
+				</div>
+
+				<div>
+					<i class="material-icons project-data-type">access_time</i>
+					<div>
+						<div class="checked-input">
+
+							<p><%= @project.work_hours %></p>
+				
+							<i class="icon-14-check material-icons">check_circle</i>
+						</div>
+						<div class="underline"></div>
+					</div>
+
+					<p class="margin-correction">How many hours will the team need to complete this project?</p>
+				</div>
+			</div>
+			<div>
+				<div>
+					<p class="extra-margin">Sold hours</p>
+				</div>
+
+				<div>
+					<i class="icon-padding material-icons project-data-type">attach_money</i>
+					<div>
+						<div class="checked-input">
+							<p><%= @project.hours_sold_for %></p>
+							<i class="icon-14-check material-icons">check_circle</i>
+						</div>
+						<div class="underline"></div>
+					</div>
+					<p class="margin-correction">How many hours is the client being billed? Set equal to work hours</p>
+				</div>
+			</div>
+
+			<div>
+				<div>
+					<p class="extra-margin">Start date</p>
+				</div>
+
+				<div>
+					<i class="material-icons project-data-type">date_range</i>
+					<div>
+						<div class="checked-input">
+							<p><%= @project.project_start_date.strftime('%d.%m.%Y') %></p>
+							<i class="icon-14-check material-icons">check_circle</i>
+						</div>
+						<div class="underline"></div>
+					</div>
+				</div>
+			</div>
+			<div>
+				<div>
+					<p class="extra-margin">End date</p>
+				</div>
+
+				<div>
+					<i class="material-icons project-data-type">date_range</i>
+					<div>
+						<div class="checked-input">
+							<p><%= @project.project_end_date %></p>
+							<i class="icon-14-check material-icons">check_circle</i>
+						</div>
+						<div class="underline"></div>
+					</div>
+					<p class="margin-correction">Calculate end date based on work hours</p>
+				</div>
+			</div>
+			<div class="add-project-buttons">
+				<div>
+				<%= link_to "Don't add", projects_url, class: 'dont-add-project' %>
+
+					<%= form_for @project do |f| %>
+					<%= f.hidden_field :added_to_dashboard, :value => true %>
+					<%= f.submit 'Add Project', :class => 'add-project' %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="aligner-item-bottom"></div>
+</div>

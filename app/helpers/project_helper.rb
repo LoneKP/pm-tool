@@ -16,33 +16,21 @@ module ProjectHelper
 	end
 
 
-	def if_project_is_in_database_grey_out(id)
-		if Project.exists?(harvest_project_id: id)
+	def if_project_is_added_to_dashboard_grey_out(id)
+		if Project.exists?(harvest_project_id: id, added_to_dashboard:true)
 			return ['class="already-on-dashboard"'].join.html_safe
 		else
 			return ''
 		end
 	end
 
-
-	def if_project_is_not_in_database_create_link_to_modal_start(id)
-		if Project.exists?(harvest_project_id: id)
-			return ''
+	def project_is_already_on_dashboard?(id)
+		if Project.exists?(harvest_project_id: id, added_to_dashboard:true)
+			return true
 		else
-#			return ['<a href="#add-project-flow" rel="modal:open">'].join.html_safe
-			return ['<a href="#add-project-flow-' + id.to_s + '"' 'rel="modal:open">'].join.html_safe
+			return false
 		end
 	end
-
-	def if_project_is_not_in_database_create_link_to_modal_end(id)
-		if Project.exists?(harvest_project_id: id)
-			return ''
-		else
-			return ['</a>'].join.html_safe	
-		end
-	end
-	
-
 
 end
 

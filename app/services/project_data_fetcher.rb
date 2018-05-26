@@ -14,7 +14,7 @@ class ProjectDataFetcher
 		@project.meetings_hours = meetings_hours
 		@project.design_hours = design_hours
 		@project.completion_percentage = completion_percentage
-		@project.project_start_date = project_start_date
+		#		@project.project_start_date = project_start_date
 		@project.project_end_date = project_end_date
 		@project.color_number = color_number
 		@project.save
@@ -58,12 +58,11 @@ class ProjectDataFetcher
 	end
 
 	def color_number
-		if project = Project.find_by client_name: client_name
-			project.color_number		
-		else
-			rand(1..8)
-		end
+#		rand(1..8)
+		1
 	end
+
+
 
 	def billable_time_entries
 		@_billable_time_entries ||= response_time_entries.select { |time_entry| time_entry.dig('billable') }
