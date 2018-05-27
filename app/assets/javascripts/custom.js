@@ -1,7 +1,12 @@
 
 $(document).on('turbolinks:load', function() {
-
-
+//
+//    $('a#fill-hours').click(function()
+//    {
+//         $('input#project_hours_sold_for').val($('input#project_work_hours').val());
+//    });
+//	
+	
 	//open and close menu
 	$('.gear-menu').hide();
 	$('.gear-menu-wrapper').each(function () {

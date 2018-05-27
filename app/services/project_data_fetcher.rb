@@ -7,7 +7,7 @@ class ProjectDataFetcher
 	def call
 		@project.project_name = project_name
 		@project.client_name = client_name
-		@project.hours_sold_for = hours_sold_for
+		#		@project.hours_sold_for = hours_sold_for
 		@project.total_time_hours = total_billable_time_entries
 		@project.programming_hours = programming_hours
 		@project.project_management_hours = project_management_hours
@@ -58,7 +58,7 @@ class ProjectDataFetcher
 	end
 
 	def color_number
-#		rand(1..8)
+		#		rand(1..8)
 		1
 	end
 
@@ -77,16 +77,17 @@ class ProjectDataFetcher
 	end
 
 	def project_end_date
-		response_projects.dig('ends_on') == nil ? project_end_date_calc : response_projects.dig('ends_on')
+		@project.project_end_date
+		#		response_projects.dig('ends_on') == nil ? project_end_date_calc : response_projects.dig('ends_on')
 	end
 
 	def weekdays_required_to_finish
 		((hours_sold_for - total_billable_time_entries) / 6).ceil
 	end
 
-	def project_end_date_calc
-		weekdays_required_to_finish > 0 ? weekdays_required_to_finish.business_days.from_now : Time.first_business_day(Time.current)
-	end
+#	def project_end_date_calc
+#		weekdays_required_to_finish > 0 ? weekdays_required_to_finish.business_days.from_now : Time.first_business_day(Time.current)
+#	end
 
 	def design_billable_time_entries
 		@_design_billable_time_entries ||= billable_time_entries.select { |time_entry| time_entry.dig('task', 'name') == 'Design' }
@@ -124,13 +125,17 @@ class ProjectDataFetcher
 		wrapper.project(harvest_project_id)
 	end
 
+	#	def hours_sold_for
+	#		if response_projects.dig('budget') != nil
+	#			response_projects.dig('budget')
+	#		else
+	#			1
+	#		end
+	#		#prompt user to input hours_sold_for if it is nil here
+	#	end
+
 	def hours_sold_for
-		if response_projects.dig('budget') != nil
-			response_projects.dig('budget')
-		else
-			1
-		end
-		#prompt user to input hours_sold_for if it is nil here
+		@project.hours_sold_for
 	end
 
 	def project_name
@@ -144,6 +149,8 @@ class ProjectDataFetcher
 	def completion_percentage
 		(total_billable_time_entries / hours_sold_for) * 100
 	end
+
+
 
 end
 

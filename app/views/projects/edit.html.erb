@@ -21,15 +21,20 @@
 				</div>
 
 				<div>
+
 					<i class="material-icons project-data-type">access_time</i>
+
 					<div>
+
 						<div class="checked-input">
 
-							<p><%= @project.work_hours %></p>
-				
+							<%= form_for @project, :html => {:class => 'edit-view-styling'} do |f| %>
+							<%=	f.text_field :work_hours %>
+
+
 							<i class="icon-14-check material-icons">check_circle</i>
 						</div>
-						<div class="underline"></div>
+						<div id="underline1"></div>
 					</div>
 
 					<p class="margin-correction">How many hours will the team need to complete this project?</p>
@@ -44,12 +49,14 @@
 					<i class="icon-padding material-icons project-data-type">attach_money</i>
 					<div>
 						<div class="checked-input">
-							<p><%= @project.hours_sold_for %></p>
+
+							<%=	f.text_field :hours_sold_for %>
+
 							<i class="icon-14-check material-icons">check_circle</i>
 						</div>
-						<div class="underline"></div>
+						<div id="underline2"></div>
 					</div>
-					<p class="margin-correction">How many hours is the client being billed? Set equal to work hours</p>
+					<p class="margin-correction">How many hours is the client being billed?<a id="fill-hours" href="#"> Set equal to work hours</a></p>
 				</div>
 			</div>
 
@@ -62,10 +69,11 @@
 					<i class="material-icons project-data-type">date_range</i>
 					<div>
 						<div class="checked-input">
-							<p><%= @project.project_start_date.strftime('%d.%m.%Y') %></p>
+							<%= f.date_field :project_start_date, "data-provide" => 'datepicker'  %>
+
 							<i class="icon-14-check material-icons">check_circle</i>
 						</div>
-						<div class="underline"></div>
+						<div id="underline3"></div>
 					</div>
 				</div>
 			</div>
@@ -78,25 +86,74 @@
 					<i class="material-icons project-data-type">date_range</i>
 					<div>
 						<div class="checked-input">
-							<p><%= @project.project_end_date %></p>
+							<%= f.date_field :project_end_date, "data-provide" => 'datepicker'  %>
 							<i class="icon-14-check material-icons">check_circle</i>
 						</div>
-						<div class="underline"></div>
+						<div id="underline4"></div>
 					</div>
 					<p class="margin-correction">Calculate end date based on work hours</p>
 				</div>
 			</div>
 			<div class="add-project-buttons">
 				<div>
-				<%= link_to "Don't add", projects_url, class: 'dont-add-project' %>
+					<%= link_to "Don't add", projects_url, class: 'dont-add-project' %>
 
-					<%= form_for @project do |f| %>
+
 					<%= f.hidden_field :added_to_dashboard, :value => true %>
 					<%= f.submit 'Add Project', :class => 'add-project' %>
 					<% end %>
+
+
 				</div>
 			</div>
 		</div>
 	</div>
 	<div class="aligner-item-bottom"></div>
 </div>
+
+<script>
+	$('input').attr('autocomplete','off');
+
+
+	$("input#project_work_hours").focusin(function(){
+		$(this).css("color", "#0D39FF");
+		$("#underline1").css("border-bottom", "1px solid #0D39FF");
+	});
+
+	$("input#project_work_hours").focusout(function(){
+		$(this).css("color", "#4A4A4A");
+		$("#underline1").css("border-bottom", "1px solid #9B9B9B");
+	});
+
+	$("input#project_hours_sold_for").focusin(function(){
+		$(this).css("color", "#0D39FF");
+		$("#underline2").css("border-bottom", "1px solid #0D39FF");
+	});
+
+	$("input#project_hours_sold_for").focusout(function(){
+		$(this).css("color", "#4A4A4A");
+		$("#underline2").css("border-bottom", "1px solid #9B9B9B");
+	});
+
+	//	$("input#project_work_hours").focusin(function(){
+	//		$(this).css("color", "#0D39FF");
+	//		$("#underline3").css("border-bottom", "1px solid #0D39FF");
+	//	});
+	//
+	//	$("input#project_work_hours").focusout(function(){
+	//		$(this).css("color", "#4A4A4A");
+	//		$("#underline3").css("border-bottom", "1px solid #9B9B9B");
+	//	});
+	//
+	//	$("input#project_work_hours").focusin(function(){
+	//		$(this).css("color", "#0D39FF");
+	//		$("#underline4").css("border-bottom", "1px solid #0D39FF");
+	//	});
+	//
+	//	$("input#project_work_hours").focusout(function(){
+	//		$(this).css("color", "#4A4A4A");
+	//		$("#underline4").css("border-bottom", "1px solid #9B9B9B");
+	//	});
+
+
+</script>

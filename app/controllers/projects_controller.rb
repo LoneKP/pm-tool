@@ -11,9 +11,12 @@ class ProjectsController < ApplicationController
 	def update
 		@project = Project.find(params[:id])
 		@project.update(project_params)
-		ProjectDataFetcher.new(@project).call
+		project = Project.order("updated_at").last
+		ProjectDataFetcher.new(project).call
 		redirect_to dashboard_url
 	end
+
+
 
 	def dashboard
 		@projects = Project.all.where(added_to_dashboard:true)
@@ -34,6 +37,7 @@ class ProjectsController < ApplicationController
 
 	def edit
 		@project = Project.find(params[:id])
+		
 	end
 
 
@@ -45,7 +49,7 @@ class ProjectsController < ApplicationController
 
 	private
 	def project_params
-		params.require(:project).permit(:harvest_project_id, :added_to_dashboard)
+		params.require(:project).permit(:harvest_project_id, :added_to_dashboard, :work_hours, :hours_sold_for, :project_start_date, :project_end_date)
 	end
 
 end

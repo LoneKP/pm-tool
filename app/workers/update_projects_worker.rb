@@ -3,11 +3,11 @@ class UpdateProjectsWorker
 	include Sidekiq::Worker
 
 	def perform
-		Project.all.each do |project|
+		Project.all.where(added_to_dashboard:true).each do |project|
 			puts "Fetching data for project #{ project.project_name }"
 			ProjectDataFetcher.new(project).call
 		end
-		AllProjectsFetcher.new.update_unadded_projects
+		FetchProjects.new.update_projects
 	end
 	
 end
