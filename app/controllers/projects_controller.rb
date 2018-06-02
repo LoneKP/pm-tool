@@ -11,8 +11,7 @@ class ProjectsController < ApplicationController
 	def update
 		@project = Project.find(params[:id])
 		@project.update(project_params)
-		project = Project.order("updated_at").last
-		ProjectDataFetcher.new(project).call
+		ProjectDataFetcher.new(@project).call
 		redirect_to dashboard_url
 	end
 

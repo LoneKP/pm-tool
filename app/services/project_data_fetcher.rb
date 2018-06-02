@@ -7,7 +7,7 @@ class ProjectDataFetcher
 	def call
 		@project.project_name = project_name
 		@project.client_name = client_name
-		#		@project.hours_sold_for = hours_sold_for
+#		@project.hours_sold_for = hours_sold_for
 		@project.total_time_hours = total_billable_time_entries
 		@project.programming_hours = programming_hours
 		@project.project_management_hours = project_management_hours
@@ -85,9 +85,9 @@ class ProjectDataFetcher
 		((hours_sold_for - total_billable_time_entries) / 6).ceil
 	end
 
-#	def project_end_date_calc
-#		weekdays_required_to_finish > 0 ? weekdays_required_to_finish.business_days.from_now : Time.first_business_day(Time.current)
-#	end
+	#	def project_end_date_calc
+	#		weekdays_required_to_finish > 0 ? weekdays_required_to_finish.business_days.from_now : Time.first_business_day(Time.current)
+	#	end
 
 	def design_billable_time_entries
 		@_design_billable_time_entries ||= billable_time_entries.select { |time_entry| time_entry.dig('task', 'name') == 'Design' }

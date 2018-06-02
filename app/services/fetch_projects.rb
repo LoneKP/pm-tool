@@ -1,8 +1,8 @@
 class FetchProjects
+	#find_or_create_by
+	#find_or_initialize_by
 
-
-	test = [ {"a"=>1,"b"=>2,"client"=> {"d" =>3, "e"=>4, "f"=>5}}, {"a"=>1,"b"=>2,"client"=> {"d" =>3, "e"=>4, "f"=>5}}, {"a"=>1,"b"=>2,"client"=> {"d" =>3, "e"=>4, "f"=>5}}]
-
+	#if project exists - update, if not - create. 
 	def update_projects
 		Project.where(:added_to_dashboard => false).delete_all
 		active_and_billable_projects.map do |project| 
@@ -12,16 +12,22 @@ class FetchProjects
 			hours_sold_for = project.values_at('budget').join('')
 			project_start_date = project.values_at('created_at').join('')
 			project_end_date = project.values_at('ends_on').join('')
-			Project.create(
-				client_name: client_name,
-				project_name: project_name,
-				harvest_project_id: harvest_project_id,	
-				hours_sold_for: hours_sold_for,
-				project_start_date: project_start_date,
-				project_end_date: project_end_date, 
-				added_to_dashboard: false,
-				archived: false
-				)
+
+			if Project.exists?(harvest_project_id: harvest_project_id) == false
+				Project.create(
+					client_name: client_name,
+					project_name: project_name,
+					harvest_project_id: harvest_project_id,	
+					hours_sold_for: hours_sold_for,
+					project_start_date: project_start_date,
+					project_end_date: project_end_date, 
+					added_to_dashboard: false,
+					archived: false
+					)
+
+			else
+				puts "Project, #{project_name} already exists (harvest_project_id: #{harvest_project_id})"
+			end
 		end
 	end
 

@@ -31,6 +31,17 @@
 							<p>Archive project</p>
 						</div>
 					</a>
+				<div class="client<%= project.color_number %> line"></div>
+				
+					<a>
+					<%= link_to edit_project_path(project), :action => 'edit', data: { turbolinks: false } do %>
+						<div>
+							<i class="client<%= project.color_number %> material-icons">edit</i>
+							<p>Edit project</p>
+						</div>
+						<% end %>
+					</a>
+					
 					<div class="client<%= project.color_number %> line"></div>
 					<a class="client<%= project.color_number %> delete-project" href="#delete-project-modal-<%= project.id %>" rel="modal:open">
 						<div>
