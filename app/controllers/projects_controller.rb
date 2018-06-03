@@ -12,10 +12,8 @@ class ProjectsController < ApplicationController
 		@project = Project.find(params[:id])
 		@project.update(project_params)
 		ProjectDataFetcher.new(@project).call
-		redirect_to dashboard_url
+		redirect_to dashboard_url		
 	end
-
-
 
 	def dashboard
 		@projects = Project.all.where(added_to_dashboard:true)
@@ -36,7 +34,6 @@ class ProjectsController < ApplicationController
 
 	def edit
 		@project = Project.find(params[:id])
-		
 	end
 
 

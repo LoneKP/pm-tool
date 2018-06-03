@@ -1,7 +1,7 @@
 desc "This task is called by the Heroku scheduler add-on"
 task :update_projects => :environment do
   puts "Updating projects..."
-  UpdateProjectsWorker.perform_in(2.minutes)
-#	UpdateProjectsWorker.perform_async
+#  UpdateProjectsWorker.perform_in(2.minutes)
+	UpdateProjectsWorker.perform_async
   puts "done."
 end
