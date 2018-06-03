@@ -118,7 +118,7 @@ class ProjectDataFetcher
 	end
 
 	def meetings_hours
-		@_project_management_hours ||= meetings_billable_time_entries.sum { |time_entry| time_entry.dig('hours') }
+		@_meetings_hours ||= meetings_billable_time_entries.sum { |time_entry| time_entry.dig('hours') }
 	end
 
 	def response_projects
@@ -137,6 +137,10 @@ class ProjectDataFetcher
 	def hours_sold_for
 		@project.hours_sold_for
 	end
+	
+	def work_hours
+		@project.work_hours
+	end
 
 	def project_name
 		response_projects.dig('name')
@@ -147,7 +151,7 @@ class ProjectDataFetcher
 	end
 
 	def completion_percentage
-		(total_billable_time_entries / hours_sold_for) * 100
+		(total_billable_time_entries / work_hours) * 100
 	end
 
 
