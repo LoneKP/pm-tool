@@ -1,13 +1,39 @@
 <% content_for :navigation, render('layouts/custom_navigation', obj: 'Add risks and actions') %>
 
-<%= form_for(@risk_action, :url => project_risk_actions_path) do |f| %>
-  <%= f.label :risk %>:
-  <%= f.text_field :risk %><br />
 
-  <%= f.label :action %>:
-  <%= f.text_field :action %><br />
+<div id="risk-action">
+	<%= form_for(@risk_action, :url => project_risk_actions_path) do |f| %>
+	<%= f.label :risk %>:
+	<%= f.text_field :risk %><br />
 
-  <%= f.submit %>
+	<%= f.label :action %>:
+	<%= f.text_field :action %><br />
+</div>
+
+<a href="javascript:;" id="add-new-risk-action">Add New Risk and Action</a>
+
+<div class="hide" id="new-risk-action">
+	<%= render 'risk_action_fields', f: f %>
+</div>
+
+<%= f.submit %>
 <% end %>
+
+<script>
+	$(document).ready(function(){
+		$("#add-new-risk-action").click(function(){
+			$("#risk-action").append($("#new-risk-action").html());
+		});
+		$(".remove").click(function(){
+			$(this).parent().remove();
+		})
+//		
+//	 $(".remove").on('click','.remove',function(){
+//        $(this).parent().css( "background-color", "red" );
+//    });
+		
+	
+	});
+</script>
 
 
