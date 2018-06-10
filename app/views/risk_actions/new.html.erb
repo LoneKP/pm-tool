@@ -1,0 +1,13 @@
+<% content_for :navigation, render('layouts/custom_navigation', obj: 'Add risks and actions') %>
+
+<%= form_for(@risk_action, :url => project_risk_actions_path) do |f| %>
+  <%= f.label :risk %>:
+  <%= f.text_field :risk %><br />
+
+  <%= f.label :action %>:
+  <%= f.text_field :action %><br />
+
+  <%= f.submit %>
+<% end %>
+
+

@@ -1,0 +1,15 @@
+<h1>Risk / Actions for <%=@project.project_name%></h1>
+
+<% @risk_actions_grouped.each do |(week, risk_action)| %>
+
+<h3>Week: <%= week.strftime('%W').to_i %></h3>
+<% risk_action.each do |risk_action| %>
+<ul>
+	<li>Risk: <%= risk_action.risk %></li>
+	<li>Action: <%= risk_action.action %></li>
+</ul>
+
+<% end %>
+<% end %>
+
+

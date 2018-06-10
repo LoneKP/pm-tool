@@ -19,10 +19,12 @@
 					</a>
 					<div class="client<%= project.color_number %> line"></div>
 					<a class="risk-action">
+						<%= link_to new_project_risk_action_path(project), :action => 'new', data: { turbolinks: false } do %>
 						<div>
 							<i class="client<%= project.color_number %> material-icons">error</i>
 							<p>Add risk / action</p>
 						</div>
+						<% end %>
 					</a>
 					<div class="client<%= project.color_number %> line"></div>
 					<a class="client<%= project.color_number %> archive-project">
@@ -31,17 +33,16 @@
 							<p>Archive project</p>
 						</div>
 					</a>
-				<div class="client<%= project.color_number %> line"></div>
-				
+					<div class="client<%= project.color_number %> line"></div>
 					<a>
-					<%= link_to edit_project_path(project), :action => 'edit', data: { turbolinks: false } do %>
+						<%= link_to edit_project_path(project), :action => 'edit', data: { turbolinks: false } do %>
 						<div>
 							<i class="client<%= project.color_number %> material-icons">edit</i>
 							<p>Edit project</p>
 						</div>
 						<% end %>
 					</a>
-					
+
 					<div class="client<%= project.color_number %> line"></div>
 					<a class="client<%= project.color_number %> delete-project" href="#delete-project-modal-<%= project.id %>" rel="modal:open">
 						<div>

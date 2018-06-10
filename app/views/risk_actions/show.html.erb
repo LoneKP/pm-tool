@@ -1,0 +1,7 @@
+<h3>Risk / Actions:</h3>
+<ul>
+  <% @project.risk_actions.each do |comment| %>
+  <li><%= risk_action.risk %></li>
+  <li><%= risk_action.action %></li>
+  <% end %>
+</ul>

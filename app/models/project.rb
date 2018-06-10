@@ -1,13 +1,8 @@
 class Project < ApplicationRecord
-
-#	after_commit :update_projects, on: :update
-#
-#	def update_projects
-#		puts "hey"
-#		project = Project.order("updated_at").last
-#		ProjectDataFetcher.new(project).call
-#	end
-#	
-
+	has_many :risk_actions, inverse_of: :project, autosave: true
+	accepts_nested_attributes_for :risk_actions
 
 end
+
+
+
