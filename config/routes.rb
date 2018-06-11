@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
 	root 'projects#index' 
 	resources :projects do
-		resources :risk_actions
+		resources :risk_actions, only: [:index, :create, :new]
 	end
 
+	resources :risk_actions, only: [:edit, :update, :destroy]
 
 
 	get 'revenue', to: 'projects#revenue'
