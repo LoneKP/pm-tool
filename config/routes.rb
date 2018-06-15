@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 	resources :risk_actions, only: [:edit, :update, :destroy]
 
 
+	get 'archived_projects', to: 'projects#archived_projects'
 	get 'revenue', to: 'projects#revenue'
 	get 'dashboard', to: "projects#dashboard"
 	get 'projects', to: "projects#projects"

@@ -27,12 +27,36 @@
 						<% end %>
 					</a>
 					<div class="client<%= project.color_number %> line"></div>
+
+
+
 					<a class="client<%= project.color_number %> archive-project">
+
+
 						<div>
 							<i class="client<%= project.color_number %> material-icons">folder</i>
-							<p>Archive project</p>
+							<% if project.added_to_dashboard == true %>
+							
+							<%= form_for project do |f| %>
+							<%= f.hidden_field :archived, :value => true %>
+							<%= f.hidden_field :added_to_dashboard, :value => false %>
+							<p><%= f.submit 'Archive project' %></p>
+							<% end %>
+							
+							<% else %>
+							<%= form_for project do |f| %>
+							<%= f.hidden_field :archived, :value => false %>
+							<%= f.hidden_field :added_to_dashboard, :value => true %>
+							<p><%= f.submit 'Un-Archive project' %></p>
+							<% end %>
+							
+							<% end %>
+
 						</div>
+
 					</a>
+
+
 					<div class="client<%= project.color_number %> line"></div>
 					<a>
 						<%= link_to edit_project_path(project), :action => 'edit', data: { turbolinks: false } do %>

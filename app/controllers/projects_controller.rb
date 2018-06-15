@@ -18,6 +18,10 @@ class ProjectsController < ApplicationController
 	def dashboard
 		@projects = Project.all.where(added_to_dashboard:true)
 	end
+	
+	def archived_projects
+		@archived_projects = Project.all.where(archived:true)
+	end
 
 	def index
 		@project = Project.new
@@ -45,7 +49,7 @@ class ProjectsController < ApplicationController
 
 	private
 	def project_params
-		params.require(:project).permit(:harvest_project_id, :added_to_dashboard, :work_hours, :hours_sold_for, :project_start_date, :project_end_date)
+		params.require(:project).permit(:harvest_project_id, :added_to_dashboard, :work_hours, :hours_sold_for, :project_start_date, :project_end_date, :archived)
 	end
 
 end

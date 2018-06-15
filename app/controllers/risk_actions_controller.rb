@@ -2,6 +2,7 @@ class RiskActionsController < ApplicationController
 
 	def new
 		@risk_action = RiskAction.new
+		@project = Project.find(params[:project_id])
 	end
 
 	def create

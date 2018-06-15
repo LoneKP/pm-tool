@@ -1,45 +1,80 @@
 <% content_for :navigation, render('layouts/custom_navigation', obj: 'Add risks and actions') %>
 
 
-<div id="risk-action">
-	<%= form_tag project_risk_actions_path do %>
-	<%= fields_for 'risk_actions[]', @risk_action do |f| %>
-	<%= f.label :risk %>:
-	<%= f.text_field :risk %><br />
+<div class="aligner-item-top"></div>
 
-	<%= f.label :action %>:
-	<%= f.text_field :action %><br />
 
-	<%= f.submit id:"submit" %>
-	<% end %>
-	<% end %>
-	<%= form_tag project_risk_actions_path do %>
-	<%= fields_for 'risk_actions[]', @risk_action do |f| %>
-	<div class="hide" id="new-risk-action">
-		<%= render 'risk_action_fields', f: f %>
-	</div>
-	<% end %>
-	<% end %>
+<div>
+	<p class="text-32"><%= @project.project_name %></p>
+</div>
+<div id="add-project-flow-title">
+	<p class="company-name"><%= @project.client_name %></p>
+
 </div>
 
-<a href="javascript:;" id="add-new-risk-action">Add New Risk and Action</a>
+
+<div class="add-risk-and-action">
+	<div>
+		<i class="material-icons">find_replace</i>
+		<p>Add Risk & action</p>
+	</div>
+	<div>
+		<p>
+			Update risks and corresponding actions at this time. Why do this?
+		</p>
+	</div>
+	<div>
+		<div>
+			<div>
+				<i class="material-icons">casino</i>
+				<p>Risk</p>
+			</div>
+			<div>
+				<%= form_for(@risk_action, :url => project_risk_actions_path) do |f| %>
+
+				<%= f.text_field :risk %><br />
+			</div>
+
+		</div>
+
+		<div>
+
+			<div>
+				<i class="material-icons">swap_vertical_circle</i>
+			</div>
+
+		</div>
+
+		<div>
 
 
-<script>
-	$(document).ready(function(){
-		$("#add-new-risk-action").click(function(){
-			$("#submit").before($("#new-risk-action").html());
-		});
-		$(".remove").click(function(){
-			$(this).parent().remove();
-		})
-		//		
-		//	 $(".remove").on('click','.remove',function(){
-		//        $(this).parent().css( "background-color", "red" );
-		//    });
+			<div>
+				<i class="material-icons">fitness_center</i>
+				<p>Action</p>
+
+			</div>
+			<div>
+
+				<%= f.text_field :action %><br />
+			</div>
+
+		</div>
+	</div>
 
 
-	});
-</script>
+
+
+
+	<div>
+		<%= link_to "View all risks", project_risk_actions_url, class: 'dont-add-project' %>
+		<%= link_to "Add", projects_url, class: 'dont-add-project' %>
+		<%= f.submit 'Add and create another', :class => 'add-project' %>
+		<% end %>
+	</div>
+
+</div>
+
+<div class="aligner-item-bottom"></div>
+
 
 
