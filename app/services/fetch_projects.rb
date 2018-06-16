@@ -4,7 +4,7 @@ class FetchProjects
 
 	#if project exists - update, if not - create. 
 	def update_projects
-		Project.where(added_to_dashboard:false).delete_all
+		Project.where(added_to_dashboard:false, archived:false).delete_all
 		active_and_billable_projects.map do |project| 
 			client_name = project.values_at('client').map {|client| client.values_at('name')}.join('')
 			project_name = project.values_at('name').join('')
