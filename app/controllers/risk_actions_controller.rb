@@ -6,8 +6,17 @@ class RiskActionsController < ApplicationController
 	end
 
 	def create
-		@risk_action = RiskAction.create_objects(params[:project_id], risk_action_params)
-		redirect_to project_risk_actions_path(params[:project_id])
+		if params[:commit] == 'Add'
+			@risk_action = RiskAction.new(risk_action_params)
+			@risk_action.project_id = params[:project_id]
+			@risk_action.save
+			redirect_to project_risk_actions_path(params[:project_id])
+		elsif params[:commit] == 'Add & create another'
+			@risk_action = RiskAction.new(risk_action_params)
+			@risk_action.project_id = params[:project_id]
+			@risk_action.save
+			redirect_to new_project_risk_action_path(params[:project_id])
+		end
 	end
 
 	def index
@@ -21,9 +30,7 @@ class RiskActionsController < ApplicationController
 
 	private
 	def risk_action_params
-		params[:risk_actions].map {|param| param.permit(:risk, :action)}
-		
-	end
+		params.require(:risk_action).permit(:risk, :action)	end
 
 
 end

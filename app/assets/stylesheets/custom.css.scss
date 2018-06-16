@@ -483,8 +483,6 @@ input#project_work_hours {
 	outline:none;
 	caret-color: rgb(var(--primary-color));
 	width: 140px;
-
-
 }
 
 input#project_hours_sold_for {
@@ -495,7 +493,6 @@ input#project_hours_sold_for {
 	outline:none;
 	caret-color: rgb(var(--primary-color));
 	width: 140px;
-
 }
 
 input#project_project_start_date {
@@ -895,6 +892,22 @@ a:hover, a:visited, a:link, a:active
 	margin-bottom: 30px;
 }
 
+#underline5 {
+	height: 1px;
+	width: 300px;
+	border-bottom: 1px solid #9B9B9B;
+	margin-top: 10px;
+	margin-bottom: 30px;
+}
+
+#underline6 {
+	height: 1px;
+	width: 300px;
+	border-bottom: 1px solid #9B9B9B;
+	margin-top: 10px;
+	margin-bottom: 30px;
+}
+
 .modal {
 	z-index: 2;
 	height: 215px;	
@@ -1134,29 +1147,133 @@ a:hover, a:visited, a:link, a:active
 	margin-bottom: 10px;
 }
 
-.add-risk-and-action div {
-	display: flex;
-	flex-direction: row;
-}
 
-.add-risk-and-action > div:first-child {
+.add-risk-and-action {
+	margin-top: 64px;
 	justify-content: flex-start;
 }
 
-.add-risk-and-action > div:nth-child(2) {
-	justify-content: center;
+.risk-action-title {
+	margin-bottom: 24px;
+}
+
+.risk-action-title p {
+	font-family: "Work Sans";
+	font-size: 24px;
+	line-height: 28px;
+	color: rgb(var(--primary-color));
+}
+
+.risk-action-title i {
+	font-size: 24px;
+	line-height: 28px;
+	color: rgb(var(--primary-color));
+	margin-right: 14px;
+}
+
+.add-risk-and-action div {
+	display: flex;
+	flex-direction: row;
+	margin-top: 10px;
+}
+
+.add-risk-and-action div div {
+	margin-top: 5px;
+}
+
+.add-risk-and-action div div div i {
+	color: rgb(var(--primary-color));
+	font-size: 14px;
+}
+
+.add-risk-and-action div div div p {
+	color: rgb(var(--primary-color));
+	font-family: "Work Sans";
+	font-size: 14px;
+	line-height: 16px;
+	margin-left: 10px; 
+}
+
+.risk-text {
+	justify-content: flex-start;
+}
+
+.risk-text p {
+	color: #4A4A4A;
+	font-family: "Work Sans";
+	font-size: 16px;
+	line-height: 19px;
 }
 
 .add-risk-and-action > div:nth-child(3)  {
-
 	display: flex;
 	flex-direction: column;
 }
 
+.view-all-risks {
+	color: rgb(var(--primary-color));
 
+}
 
+.swap-icon i {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	font-size: 28px !important;
+}
 
+div.submit-risk-action {
+	margin-top: 16px !important;
+	align-items: center;
+	justify-content: flex-end;
+}
 
+.add-risk-action {
+	border-radius: 20px;
+	background-color: rgb(var(--primary-color));
+	padding: 8px 22px 8px 22px;
+	color: #FFF;
+	margin-left: 24px;
+}
 
+.add-and-create-another {
+	border: 1px solid #0D39FF;
+	border-radius: 20px;
+	padding: 8px 22px 8px 22px;
+	color: rgb(var(--primary-color));
+	border-color: rgb(var(--primary-color));
+}
 
+a.view-all-risks {
+	margin-right: auto;
+}
 
+input#risk_action_risk {
+	color: #4a4a4a;
+	font-family: "Work Sans";
+	border: none;
+	font-size: 14px;
+	outline:none;
+	caret-color: rgb(var(--primary-color));
+	width: 300px;
+
+}
+
+input#risk_action_action {
+	color: #4a4a4a;
+	font-family: "Work Sans";
+	border: none;
+	font-size: 14px;
+	outline:none;
+	caret-color: rgb(var(--primary-color));
+	width: 300px;
+
+}
+
+input.add-and-create-another {
+	cursor: pointer;
+}
+
+input.add-risk-action {
+	cursor: pointer;
+}

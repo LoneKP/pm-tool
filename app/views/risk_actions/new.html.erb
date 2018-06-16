@@ -1,4 +1,4 @@
-<% content_for :navigation, render('layouts/custom_navigation', obj: 'Add risks and actions') %>
+<% content_for :navigation, render('layouts/custom_navigation', obj: 'Add risks and actions', obj2: project_risk_actions_path(params[:project_id])) %>
 
 
 <div class="aligner-item-top"></div>
@@ -7,74 +7,82 @@
 <div>
 	<p class="text-32"><%= @project.project_name %></p>
 </div>
-<div id="add-project-flow-title">
+<div>
 	<p class="company-name"><%= @project.client_name %></p>
-
 </div>
-
-
-<div class="add-risk-and-action">
-	<div>
-		<i class="material-icons">find_replace</i>
-		<p>Add Risk & action</p>
-	</div>
-	<div>
-		<p>
-			Update risks and corresponding actions at this time. Why do this?
-		</p>
-	</div>
-	<div>
-		<div>
-			<div>
-				<i class="material-icons">casino</i>
-				<p>Risk</p>
-			</div>
-			<div>
-				<%= form_for(@risk_action, :url => project_risk_actions_path) do |f| %>
-
-				<%= f.text_field :risk %><br />
-			</div>
-
+<div class="row">
+	<div class="col-2"></div>
+	<div class="add-risk-and-action col-8">
+		<div class="risk-action-title">
+			<i class="material-icons">find_replace</i>
+			<p>Add Risk & action</p>
 		</div>
-
-		<div>
-
-			<div>
-				<i class="material-icons">swap_vertical_circle</i>
-			</div>
-
+		<div class="risk-text">
+			<p>
+				Update risks and corresponding actions at this time. Why do this?
+			</p>
 		</div>
-
-		<div>
-
-
-			<div>
-				<i class="material-icons">fitness_center</i>
-				<p>Action</p>
-
+		<div class="d-flex flex-row justify-content-between">
+			<div class="d-flex flex-column">
+				<div>
+					<i class="material-icons">casino</i>
+					<p>Risk</p>
+				</div>
+				<div>
+					<%= form_for(@risk_action, :url => project_risk_actions_path) do |f| %>
+					<%= f.text_field :risk %><br />
+				</div>
+				<div id="underline5"></div>
 			</div>
-			<div>
-
-				<%= f.text_field :action %><br />
+			<div class="swap-icon">
+				<div>
+					<i class="material-icons">swap_vertical_circle</i>
+				</div>
 			</div>
-
+			<div class="d-flex flex-column">
+				<div>
+					<i class="material-icons">fitness_center</i>
+					<p>Action</p>
+				</div>
+				<div>
+					<%= f.text_field :action %><br />
+				</div>
+				<div id="underline6"></div>
+			</div>
+		</div>
+		<div class="submit-risk-action">
+			<%= link_to "View all risks", project_risk_actions_url, class: 'view-all-risks' %>
+			<%= f.submit "Add & create another", class: 'add-and-create-another' %>
+			<%= f.submit 'Add', :class => 'add-risk-action' %>
+			<% end %>
 		</div>
 	</div>
-
-
-
-
-
-	<div>
-		<%= link_to "View all risks", project_risk_actions_url, class: 'dont-add-project' %>
-		<%= link_to "Add", projects_url, class: 'dont-add-project' %>
-		<%= f.submit 'Add and create another', :class => 'add-project' %>
-		<% end %>
-	</div>
-
+	<div class="col-2"></div>
 </div>
 
 <div class="aligner-item-bottom"></div>
 
+<script>
+	$('input').attr('autocomplete','off');
 
+	$("input#risk_action_risk").focusin(function(){
+//		$(this).css("color", "#0D39FF");
+		$("#underline5").css("border-bottom", "1px solid #0D39FF");
+	});
+
+	$("input#risk_action_risk").focusout(function(){
+//		$(this).css("color", "#4A4A4A");
+		$("#underline5").css("border-bottom", "1px solid #9B9B9B");
+	});
+
+	$("input#risk_action_action").focusin(function(){
+//		$(this).css("color", "#0D39FF");
+		$("#underline6").css("border-bottom", "1px solid #0D39FF");
+	});
+
+	$("input#risk_action_action").focusout(function(){
+//		$(this).css("color", "#4A4A4A");
+		$("#underline6").css("border-bottom", "1px solid #9B9B9B");
+	});
+</script>
 
