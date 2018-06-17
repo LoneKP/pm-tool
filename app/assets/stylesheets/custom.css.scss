@@ -5,6 +5,7 @@
 
 :root {
 	--primary-color: 13,57,255;
+	--attention: #FFCC77;
 
 	--secondary-color: #920DFF;
 	--danger-color: #E11750;
@@ -17,6 +18,8 @@
 	--client7: 158,0,49;
 	--client8: 1,255,154;
 }
+
+
 
 .client1 {
 	--primary-color: var(--client1);
@@ -308,6 +311,17 @@ delete-button {
 	align-content: center;
 	vertical-align: middle !important;
 	padding: 3px;
+}
+
+.icon-24-attention {
+	font-size: 36px !important;
+	color: (var(--attention));
+	background-color: #FFF;
+	border-radius: 50%;
+	display: flex;
+	align-content: center;
+	vertical-align: middle !important;
+//	padding: 3px;
 }
 
 .icon-padding {
