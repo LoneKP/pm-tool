@@ -6,6 +6,9 @@ class ProjectsController < ApplicationController
 	end
 
 	def show
+		@project = Project.find(params[:id])
+		@risk_actions = RiskAction.where(project_id: params[:id])
+		@risk_actions_grouped = @risk_actions.group_by{ |x| x.created_at.beginning_of_week }
 	end
 
 	def update

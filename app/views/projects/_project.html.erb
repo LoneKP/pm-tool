@@ -12,10 +12,12 @@
 				<div class="gear-menu client<%= project.color_number %>">
 					<i class="client<%= project.color_number %> close-gear-menu material-icons close-gear-icon">close</i>
 					<a class="details">
+						<%= link_to project_path(project), :action => 'show', data: { turbolinks: false } do %>
 						<div>
 							<i class="client<%= project.color_number %> material-icons">dashboard</i>
 							<p>Details</p>
 						</div>
+						<% end %>
 					</a>
 					<div class="client<%= project.color_number %> line"></div>
 					<a class="risk-action">
@@ -27,33 +29,15 @@
 						<% end %>
 					</a>
 					<div class="client<%= project.color_number %> line"></div>
-
-
-
-					<a class="client<%= project.color_number %> archive-project">
-
-
+					<a class="client<%= project.color_number %> archive-project" href="#archive-project-modal-<%= project.id %>" rel="modal:open">
 						<div>
 							<i class="client<%= project.color_number %> material-icons">folder</i>
 							<% if project.added_to_dashboard == true %>
-							
-							<%= form_for project do |f| %>
-							<%= f.hidden_field :archived, :value => true %>
-							<%= f.hidden_field :added_to_dashboard, :value => false %>
-							<p><%= f.submit 'Archive project' %></p>
-							<% end %>
-							
+							<p>Archive project</p>
 							<% else %>
-							<%= form_for project do |f| %>
-							<%= f.hidden_field :archived, :value => false %>
-							<%= f.hidden_field :added_to_dashboard, :value => true %>
-							<p><%= f.submit 'Un-Archive project' %></p>
+							<p>Unarchive project</p>
 							<% end %>
-							
-							<% end %>
-
 						</div>
-
 					</a>
 
 
@@ -156,7 +140,49 @@
 		</div>
 	</div>		
 
+	<!--Archive modal			-->
+	<div id="archive-project-modal-<%= project.id %>" class="modal">
+		<div class="project-modal-header mb-3">
+			<div>
+				<i class="material-icons blue">folder</i>
+				<p class="text-24 blue">Archive project?</p>
+			</div>
+			<div>
+				<a href="#" class="material-icons" rel="modal:close">
+					<i class="material-icons icon-14">close</i>
+				</a>
+			</div>
+
+		</div>
+		<div class="project-modal-content">
+			<p class="text-16-19%> ">Did you finish this project? Is it invoiced and closed? Then it's time to archive it!</p>
+			<p id="id"></p>
+		</div>
+		<div class="project-modal-footer">
+			<a href="#" rel="modal:close"><div  class="cancel">Cancel</div></a>	
+
+			<% if project.added_to_dashboard == true %>
+
+			<%= form_for project do |f| %>
+			<%= f.hidden_field :archived, :value => true %>
+			<%= f.hidden_field :added_to_dashboard, :value => false %>
+			<p><%= f.submit 'Archive project', :class => 'archive-project-btn', :action => 'archived_projects' %></p>
+			<% end %>
+
+			<% else %>
+			<%= form_for project do |f| %>
+			<%= f.hidden_field :archived, :value => false %>
+			<%= f.hidden_field :added_to_dashboard, :value => true %>
+			<p><%= f.submit 'Unarchive project', :class => 'archive-project-btn' %></p>
+			<% end %>
+
+			<% end %>
+		</div>
+	</div>	
+
 	<% end %>
+
+
 
 
 </div>

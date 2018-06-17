@@ -1,7 +1,5 @@
 <% content_for :navigation, render('layouts/custom_navigation', obj: 'Setup project information', obj2: :back) %>
 
-<div class="add-project-flow" id="add-project-flow-<%= @project.harvest_project_id %>">
-	<div class="aligner-item-top"></div>
 	<div class="add-project-content" >
 		<div class="add-project-content-top">
 			<div>
@@ -12,31 +10,21 @@
 				<p class="text-14">Data received from <a target="_blank" href="https://abtion.harvestapp.com/projects/<%= @project.harvest_project_id %>">Harvest</a></p>
 			</div>
 		</div>
-
 		<div class="add-project-box">
-
 			<div>
 				<div>
 					<p class="extra-margin">work hours</p>
 				</div>
-
 				<div>
-
 					<i class="material-icons project-data-type">access_time</i>
-
 					<div>
-
 						<div class="checked-input">
-
 							<%= form_for @project, :html => {:class => 'edit-view-styling'} do |f| %>
 							<%=	f.text_field :work_hours %>
-
-
 							<i class="icon-14-check material-icons">check_circle</i>
 						</div>
 						<div id="underline1"></div>
 					</div>
-
 					<p class="margin-correction">How many hours will the team need to complete this project?</p>
 				</div>
 			</div>
@@ -44,14 +32,11 @@
 				<div>
 					<p class="extra-margin">Sold hours</p>
 				</div>
-
 				<div>
 					<i class="icon-padding material-icons project-data-type">attach_money</i>
 					<div>
 						<div class="checked-input">
-
 							<%=	f.text_field :hours_sold_for %>
-
 							<i class="icon-14-check material-icons">check_circle</i>
 						</div>
 						<div id="underline2"></div>
@@ -59,18 +44,15 @@
 					<p class="margin-correction">How many hours is the client being billed?<a id="fill-hours" href="#"> Set equal to work hours</a></p>
 				</div>
 			</div>
-
 			<div>
 				<div>
 					<p class="extra-margin">Start date</p>
 				</div>
-
 				<div>
 					<i class="material-icons project-data-type">date_range</i>
 					<div>
 						<div class="checked-input">
 							<%= f.date_field :project_start_date, "data-provide" => 'datepicker'  %>
-
 							<i class="icon-14-check material-icons">check_circle</i>
 						</div>
 						<div id="underline3"></div>
@@ -81,7 +63,6 @@
 				<div>
 					<p class="extra-margin">End date</p>
 				</div>
-
 				<div>
 					<i class="material-icons project-data-type">date_range</i>
 					<div>
@@ -97,19 +78,13 @@
 			<div class="add-project-buttons">
 				<div>
 					<%= link_to "Don't add", projects_url, class: 'dont-add-project' %>
-
-
 					<%= f.hidden_field :added_to_dashboard, :value => true %>
 					<%= f.submit 'Add Project', :class => 'add-project' %>
 					<% end %>
-
-
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="aligner-item-bottom"></div>
-</div>
 
 <script>
 	$('input').attr('autocomplete','off');
