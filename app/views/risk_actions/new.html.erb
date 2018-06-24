@@ -1,5 +1,6 @@
 <% content_for :navigation, render('layouts/custom_navigation', obj: 'Add risks and actions', obj2: project_risk_actions_path(params[:project_id])) %>
 
+<%=render 'shared/errors', obj: @risk_action %>
 
 <div class="aligner-item-top"></div>
 

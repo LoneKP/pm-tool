@@ -15,13 +15,17 @@ class ProjectsController < ApplicationController
 		@project = Project.find(params[:id])
 		@project.update(project_params)
 		ProjectDataFetcher.new(@project).call
-		redirect_to dashboard_url		
+		if @project.update(project_params)
+			redirect_to dashboard_url, notice: "Congratulations! You have successfully added/edited a project."
+		else
+			render 'edit'
+		end
 	end
 
 	def dashboard
 		@projects = Project.all.where(added_to_dashboard:true)
 	end
-	
+
 	def archived_projects
 		@archived_projects = Project.all.where(archived:true)
 	end
@@ -32,12 +36,12 @@ class ProjectsController < ApplicationController
 		@projects_grouped_by_client = Project.all.group_by { |projects| projects.client_name }
 	end
 
-	def create
-		#		render plain: params[:project].inspect
-		@project = Project.new(project_params)
-		@project.save
-		redirect_to projects_url
-	end
+	#	def create
+	#		#		render plain: params[:project].inspect
+	#		@project = Project.new(project_params)
+	#		@project.save
+	#		redirect_to projects_url
+	#	end
 
 	def edit
 		@project = Project.find(params[:id])

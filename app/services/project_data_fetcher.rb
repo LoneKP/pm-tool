@@ -151,7 +151,7 @@ class ProjectDataFetcher
 	end
 
 	def completion_percentage
-		(total_billable_time_entries / work_hours) * 100
+		work_hours != nil ? (total_billable_time_entries / work_hours) * 100 : nil
 	end
 
 

@@ -10,7 +10,11 @@ class RiskActionsController < ApplicationController
 			@risk_action = RiskAction.new(risk_action_params)
 			@risk_action.project_id = params[:project_id]
 			@risk_action.save
-			redirect_to project_risk_actions_path(params[:project_id])
+			if @risk_action.save(risk_action_params)
+				redirect_to dashboard_url, notice: "Well done! You have added risk/actions. Now remember to act on them!"
+			else
+				render 'new'
+			end
 		elsif params[:commit] == 'Add & create another'
 			@risk_action = RiskAction.new(risk_action_params)
 			@risk_action.project_id = params[:project_id]
