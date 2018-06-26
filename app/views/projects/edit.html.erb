@@ -1,5 +1,4 @@
 <% content_for :navigation, render('layouts/custom_navigation', obj: 'Setup project information', obj2: :back) %>
-<%=render 'shared/errors', obj: @project %>
 
 <div class="add-project-content" >
 	<div class="add-project-content-top">
@@ -20,14 +19,18 @@
 				<i class="material-icons project-data-type">access_time</i>
 				<div>
 					<div class="checked-input">
-						<%= form_for @project, :html => {:class => 'edit-view-styling'} do |f| %>
+
+						<%= simple_form_for @project, error: 'Username is mandatory, please specify one', :html => {:class => 'edit-view-styling'} do |f| %>
 						<%=	f.text_field :work_hours %>
+
 						<i class="icon-14-check material-icons">check_circle</i>
 					</div>
-					<div id="underline1"></div>
+					<div id="underline1<%= @project.errors[:work_hours].present? ?  "-error" : "" %>"> </div> 
 				</div>
+
 				<p class="margin-correction">How many hours will the team need to complete this project?</p>
 			</div>
+			<%= f.error :work_hours %>
 		</div>
 		<div>
 			<div>
@@ -38,12 +41,14 @@
 				<div>
 					<div class="checked-input">
 						<%=	f.text_field :hours_sold_for %>
+
 						<i class="icon-14-check material-icons">check_circle</i>
 					</div>
-					<div id="underline2"></div>
+					<div id="underline2<%= @project.errors[:hours_sold_for].present? ?  "-error" : "" %>"></div>
 				</div>
 				<p class="margin-correction">How many hours is the client being billed?<a id="fill-hours" href="#"> Set equal to work hours</a></p>
 			</div>
+			<%= f.error :hours_sold_for %>
 		</div>
 		<div>
 			<div>
@@ -54,11 +59,14 @@
 				<div>
 					<div class="checked-input">
 						<%= f.date_field :project_start_date, "data-provide" => 'datepicker'  %>
+
 						<i class="icon-14-check material-icons">check_circle</i>
 					</div>
-					<div id="underline3"></div>
+					<div id="underline3<%= @project.errors[:project_start_date].present? ?  "-error" : "" %>"></div>
+
 				</div>
 			</div>
+			<%= f.error :project_start_date %>
 		</div>
 		<div>
 			<div>
@@ -69,12 +77,14 @@
 				<div>
 					<div class="checked-input">
 						<%= f.date_field :project_end_date, "data-provide" => 'datepicker'  %>
+
 						<i class="icon-14-check material-icons">check_circle</i>
 					</div>
-					<div id="underline4"></div>
+					<div id="underline4<%= @project.errors[:project_end_date].present? ?  "-error" : "" %>"></div>
 				</div>
 				<p class="margin-correction">Calculate end date based on work hours</p>
 			</div>
+			<%= f.error :project_end_date %>
 		</div>
 		<div class="add-project-buttons">
 			<div>
@@ -94,21 +104,25 @@
 	$("input#project_work_hours").focusin(function(){
 		$(this).css("color", "#0D39FF");
 		$("#underline1").css("border-bottom", "1px solid #0D39FF");
+		$("#underline1-error").css("border-bottom", "1px solid #0D39FF");
 	});
 
 	$("input#project_work_hours").focusout(function(){
 		$(this).css("color", "#4A4A4A");
 		$("#underline1").css("border-bottom", "1px solid #9B9B9B");
+		$("#underline1-error").css("border-bottom", "1px solid #E11750");
 	});
-
+	
 	$("input#project_hours_sold_for").focusin(function(){
 		$(this).css("color", "#0D39FF");
 		$("#underline2").css("border-bottom", "1px solid #0D39FF");
+		$("#underline2-error").css("border-bottom", "1px solid #0D39FF");
 	});
 
 	$("input#project_hours_sold_for").focusout(function(){
 		$(this).css("color", "#4A4A4A");
 		$("#underline2").css("border-bottom", "1px solid #9B9B9B");
+		$("#underline2-error").css("border-bottom", "1px solid #E11750");
 	});
 
 	//	$("input#project_work_hours").focusin(function(){

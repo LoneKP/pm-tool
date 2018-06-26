@@ -303,6 +303,20 @@ delete-button {
 	margin-left: -15px;
 }
 
+.icon-messages-close {
+	font-size: 14px !important;
+	color: #B8E986;
+	background-color: rgb(var(--primary-color));
+	border-radius: 50%;
+	display: flex;
+	align-content: center;
+	vertical-align: middle !important;
+	padding: 3px;
+	margin-left: auto;
+}
+
+
+
 .icon-close {
 	font-size: 14px;
 	color: rgb(var(--primary-color));
@@ -865,10 +879,26 @@ a:hover, a:visited, a:link, a:active
 	margin-bottom: 30px;
 }
 
+#underline1-error {
+	height: 1px;
+	width: 160px;
+	border-bottom: 1px solid #E11750;
+	margin-top: 10px;
+	margin-bottom: 30px;
+}
+
 #underline2 {
 	height: 1px;
 	width: 160px;
 	border-bottom: 1px solid #9B9B9B;
+	margin-top: 10px;
+	margin-bottom: 30px;
+}
+
+#underline2-error {
+	height: 1px;
+	width: 160px;
+	border-bottom: 1px solid #E11750;
 	margin-top: 10px;
 	margin-bottom: 30px;
 }
@@ -881,10 +911,26 @@ a:hover, a:visited, a:link, a:active
 	margin-bottom: 30px;
 }
 
+#underline3-error {
+	height: 1px;
+	width: 160px;
+	border-bottom: 1px solid #E11750;
+	margin-top: 10px;
+	margin-bottom: 30px;
+}
+
 #underline4 {
 	height: 1px;
 	width: 160px;
 	border-bottom: 1px solid #9B9B9B;
+	margin-top: 10px;
+	margin-bottom: 30px;
+}
+
+#underline4-error {
+	height: 1px;
+	width: 160px;
+	border-bottom: 1px solid #E11750;
 	margin-top: 10px;
 	margin-bottom: 30px;
 }
@@ -1324,5 +1370,15 @@ input.add-risk-action {
 	font-weight: 500;
 	line-height: 19px;
 	margin-left: 24px;
-
 }
+
+.error {
+	color: #E11750;
+	font-family: "Work Sans";
+	font-size: 12px;
+	line-height: 14px;
+	margin-top: -25px;
+	margin-bottom: 20px;
+	margin-left: 39px;
+}
+

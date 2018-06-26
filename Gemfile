@@ -8,6 +8,7 @@ end
 
 #gem 'bootstrap-sass', '3.3.7'
 gem 'bootstrap', '~> 4.0.0'
+gem 'simple_form'
 gem 'material-sass', '~> 4.0.0'
 gem 'material_icons'
 gem 'business_time'

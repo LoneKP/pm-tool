@@ -7,7 +7,7 @@ class ProjectDataFetcher
 	def call
 		@project.project_name = project_name
 		@project.client_name = client_name
-#		@project.hours_sold_for = hours_sold_for
+		#		@project.hours_sold_for = hours_sold_for
 		@project.total_time_hours = total_billable_time_entries
 		@project.programming_hours = programming_hours
 		@project.project_management_hours = project_management_hours
@@ -21,6 +21,19 @@ class ProjectDataFetcher
 	end
 
 	#	private
+
+#	def response_time_entries
+#		response_time_entries_per_project = []
+#
+#		loop.with_index(1) do |_,index|
+#			response = wrapper.time_entries(index, harvest_project_id)
+#			response_time_entries_per_project << response['time_entries']	
+#
+#			break if response['page'] == response['total_pages']
+#		end
+#
+#		response_time_entries_per_project
+#	end
 
 	def response_time_entries
 		response_time_entries_raw = wrapper.time_entries(1, harvest_project_id)			
@@ -49,6 +62,8 @@ class ProjectDataFetcher
 		response_time_entries_per_project
 	end
 
+
+
 	def wrapper
 		@_wrapper ||= HarvestApiWrapper.new
 	end
@@ -61,8 +76,6 @@ class ProjectDataFetcher
 		#		rand(1..8)
 		1
 	end
-
-
 
 	def billable_time_entries
 		@_billable_time_entries ||= response_time_entries.select { |time_entry| time_entry.dig('billable') }
@@ -137,7 +150,7 @@ class ProjectDataFetcher
 	def hours_sold_for
 		@project.hours_sold_for
 	end
-	
+
 	def work_hours
 		@project.work_hours
 	end
@@ -153,8 +166,6 @@ class ProjectDataFetcher
 	def completion_percentage
 		work_hours != nil ? (total_billable_time_entries / work_hours) * 100 : nil
 	end
-
-
 
 end
 
