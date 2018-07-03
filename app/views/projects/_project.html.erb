@@ -164,7 +164,6 @@
 			<% if project.added_to_dashboard == true %>
 
 			<%= form_for project do |f| %>
-			<%= f.text_area :evaluation, size: "60x2" %>
 			<%= f.hidden_field :archived, :value => true %>
 			<%= f.hidden_field :added_to_dashboard, :value => false %>
 			<p><%= f.submit 'Archive project', :class => 'archive-project-btn', :action => 'archived_projects' %></p>

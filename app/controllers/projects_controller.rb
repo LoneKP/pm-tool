@@ -51,7 +51,7 @@ class ProjectsController < ApplicationController
 	def destroy
 		@project = Project.find(params[:id])
 		@project.destroy
-		redirect_to dashboard_url
+		redirect_to dashboard_url, notice: "You succesfully deleted #{@project.client_name} - #{@project.project_name}"
 	end
 
 	private

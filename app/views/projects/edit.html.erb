@@ -78,7 +78,7 @@
 					<div class="checked-input">
 						<%= f.date_field :project_end_date, "data-provide" => 'datepicker'  %>
 
-						<i class="icon-14-check material-icons"><% @project.errors[:project_end_date].present? ? "error" : "check_circle" %></i>
+						<i class="icon-14-check material-icons"><%= @project.errors[:project_end_date].present? ? "error" : "check_circle" %></i>
 					</div>
 					<div id="underline4<%= @project.errors[:project_end_date].present? ?  "-error" : "" %>"></div>
 				</div>
@@ -98,36 +98,35 @@
 </div>
 
 <script>
-	$('input').attr('autocomplete','off');
+	$(document).on('turbolinks:load', function() {
 
+		$('input').attr('autocomplete','off');
 
-	$("input#project_work_hours").focusin(function(){
-		$(this).css("color", "#0D39FF");
-		$("#underline1").css("border-bottom", "1px solid #0D39FF");
-		$("#underline1-error").css("border-bottom", "1px solid #0D39FF");
-	});
+		$(document).ready(function (){
+			validate();
+			$('input#project_work_hours, input#project_hours_sold_for, input#project_project_start_date, input#project_project_end_date').change(validate);
+		});
 
-
-
-	$(document).ready(function(){ 
-			tmpval = $(this).val();
-			if(tmpval == '') {
-
-				$('input#project_work_hours').next().addClass("icon-14-check-attention");
-				$('input#project_work_hours').next().text('error')
-				$('input#project_work_hours').next().removeClass("icon-14-check");
-
-			} else {
-				$('input#project_work_hours').next().addClass("icon-14-check");
-				$('input#project_work_hours').next().removeClass("icon-14-check-attention");
-				$('input#project_work_hours').next().text('check_circle')
+		function validate(){
+			if ($('input#project_work_hours').val().length   >   0   &&
+					$('input#project_hours_sold_for').val().length  >   0   &&
+					$('input#project_project_start_date').val().length    >   0 &&
+					$('input#project_project_end_date').val().length    >   0) 
+			{
+				$('.add-project-inactive').addClass("add-project")
+				$('.add-project-inactive').removeClass("add-project-inactive")
+				$(".add-project").prop('disabled', false);
 			}
-			});
-	
-		$('input#project_work_hours').on('change keydown keyup paste mouseup', function(){
-			tmpval = $(this).val();
-			if(tmpval == '' ) {
+			else {
+				$('.add-project').addClass("add-project-inactive")
+				$('.add-project').removeClass("add-project")
+				$(".add-project-inactive").prop('disabled', true);
+			}
+		}
 
+		$(document).ready(function(){ 
+			tmpval = $('input#project_work_hours').val();
+			if(tmpval == '') {
 				$('input#project_work_hours').next().addClass("icon-14-check-attention");
 				$('input#project_work_hours').next().text('error')
 				$('input#project_work_hours').next().removeClass("icon-14-check");
@@ -135,51 +134,176 @@
 			} else {
 				$('input#project_work_hours').next().addClass("icon-14-check");
 				$('input#project_work_hours').next().removeClass("icon-14-check-attention");
+				$('input#project_work_hours').next().removeClass("icon-14-check-error");
 				$('input#project_work_hours').next().text('check_circle')
 			}
 		});
-	
-//hvis felter er tomme eller hvis der er bogstaver i talfelter skal submit deaktiveres
+
+		$('input#project_work_hours').blur(function(){
+			tmpval = $(this).val();
+			if((tmpval == '' ) || (!$.isNumeric(tmpval))) { 
+
+				$('input#project_work_hours').next().addClass("icon-14-check-attention");
+				$('input#project_work_hours').next().text('error')
+				$('input#project_work_hours').next().removeClass("icon-14-check");
+
+			} else {
+				$('input#project_work_hours').next().addClass("icon-14-check");
+				$('input#project_work_hours').next().removeClass("icon-14-check-attention");
+				$('input#project_work_hours').next().removeClass("icon-14-check-error");
+				$('input#project_work_hours').next().text('check_circle')
+			}
+		});
+
+
+		$(document).ready(function(){ 
+			tmpval = $('input#project_hours_sold_for').val();
+			if(tmpval == '') {
+				$('input#project_hours_sold_for').next().addClass("icon-14-check-attention");
+				$('input#project_hours_sold_for').next().text('error')
+				$('input#project_hours_sold_for').next().removeClass("icon-14-check");
+
+
+			} else {
+				$('input#project_hours_sold_for').next().addClass("icon-14-check");
+				$('input#project_hours_sold_for').next().removeClass("icon-14-check-attention");
+				$('input#project_hours_sold_for').next().removeClass("icon-14-check-error");
+				$('input#project_hours_sold_for').next().text('check_circle')
+
+
+			}
+		});
+
+		$('input#project_hours_sold_for').blur(function(){
+			tmpval = $(this).val();
+			if((tmpval == '' ) || (!$.isNumeric(tmpval))) { 
+
+				$('input#project_hours_sold_for').next().addClass("icon-14-check-attention");
+				$('input#project_hours_sold_for').next().text('error')
+				$('input#project_hours_sold_for').next().removeClass("icon-14-check");
+
+
+			} else {
+				$('input#project_hours_sold_for').next().addClass("icon-14-check");
+				$('input#project_hours_sold_for').next().removeClass("icon-14-check-attention");
+				$('input#project_hours_sold_for').next().removeClass("icon-14-check-error");
+				$('input#project_hours_sold_for').next().text('check_circle')
+			}
+		});
+
+
+		$(document).ready(function(){ 
+			tmpval = $('input#project_project_start_date').val();
+			if(tmpval == '') {
+				$('input#project_project_start_date').next().addClass("icon-14-check-attention");
+				$('input#project_project_start_date').next().text('error')
+				$('input#project_project_start_date').next().removeClass("icon-14-check");
+
+			} else {
+				$('input#project_project_start_date').next().addClass("icon-14-check");
+				$('input#project_project_start_date').next().removeClass("icon-14-check-attention");
+				$('input#project_project_start_date').next().removeClass("icon-14-check-error");
+				$('input#project_project_start_date').next().text('check_circle')
+			}
+		});
+
+		$('input#project_project_start_date').blur(function(){
+			tmpval = $(this).val();
+			if(tmpval == '' ) { 
+
+				$('input#project_project_start_date').next().addClass("icon-14-check-attention");
+				$('input#project_project_start_date').next().text('error')
+				$('input#project_project_start_date').next().removeClass("icon-14-check");
+
+			} else {
+				$('input#project_project_start_date').next().addClass("icon-14-check");
+				$('input#project_project_start_date').next().removeClass("icon-14-check-attention");
+				$('input#project_project_start_date').next().removeClass("icon-14-check-error");
+				$('input#project_project_start_date').next().text('check_circle')
+			}
+		});
+
+		$(document).ready(function(){ 
+			tmpval = $('input#project_project_end_date').val();
+			if(tmpval == '') {
+				$('input#project_project_end_date').next().addClass("icon-14-check-attention");
+				$('input#project_project_end_date').next().text('error')
+				$('input#project_project_end_date').next().removeClass("icon-14-check");
+
+			} else {
+				$('input#project_project_end_date').next().addClass("icon-14-check");
+				$('input#project_project_end_date').next().removeClass("icon-14-check-attention");
+				$('input#project_project_end_date').next().removeClass("icon-14-check-error");
+				$('input#project_project_end_date').next().text('check_circle')
+			}
+		});
+
+		$('input#project_project_end_date').blur(function(){
+			tmpval = $(this).val();
+			if(tmpval == '' ) { 
+
+				$('input#project_project_end_date').next().addClass("icon-14-check-attention");
+				$('input#project_project_end_date').next().text('error')
+				$('input#project_project_end_date').next().removeClass("icon-14-check");
+
+			} else {
+				$('input#project_project_end_date').next().addClass("icon-14-check");
+				$('input#project_project_end_date').next().removeClass("icon-14-check-attention");
+				$('input#project_project_end_date').next().removeClass("icon-14-check-error");
+				$('input#project_project_end_date').next().text('check_circle')
+			}
+		});
 
 
 
-	$("input#project_work_hours").focusout(function(){
-		$(this).css("color", "#4A4A4A");
-		$("#underline1").css("border-bottom", "1px solid #9B9B9B");
-		$("#underline1-error").css("border-bottom", "1px solid #E11750");
+
+		//hvis felter er tomme eller hvis der er bogstaver i talfelter skal submit deaktiveres
+		$("input#project_work_hours").focusin(function(){
+			$(this).css("color", "#0D39FF");
+			$("#underline1").css("border-bottom", "1px solid #0D39FF");
+			$("#underline1-error").css("border-bottom", "1px solid #0D39FF");
+		});
+
+		$("input#project_work_hours").focusout(function(){
+			$(this).css("color", "#4A4A4A");
+			$("#underline1").css("border-bottom", "1px solid #9B9B9B");
+			$("#underline1-error").css("border-bottom", "1px solid #E11750");
+		});
+
+		$("input#project_hours_sold_for").focusin(function(){
+			$(this).css("color", "#0D39FF");
+			$("#underline2").css("border-bottom", "1px solid #0D39FF");
+			$("#underline2-error").css("border-bottom", "1px solid #0D39FF");
+		});
+
+		$("input#project_hours_sold_for").focusout(function(){
+			$(this).css("color", "#4A4A4A");
+			$("#underline2").css("border-bottom", "1px solid #9B9B9B");
+			$("#underline2-error").css("border-bottom", "1px solid #E11750");
+		});
+
+		$("input#project_project_start_date").focusin(function(){
+			$(this).css("color", "#0D39FF");
+			$("#underline3").css("border-bottom", "1px solid #0D39FF");
+			$("#underline3-error").css("border-bottom", "1px solid #E11750");
+		});
+
+		$("input#project_project_start_date").focusout(function(){
+			$(this).css("color", "#4A4A4A");
+			$("#underline3").css("border-bottom", "1px solid #9B9B9B");
+			$("#underline3-error").css("border-bottom", "1px solid #E11750");
+		});
+
+		$("input#project_project_end_date").focusin(function(){
+			$(this).css("color", "#0D39FF");
+			$("#underline4").css("border-bottom", "1px solid #0D39FF");
+			$("#underline4-error").css("border-bottom", "1px solid #E11750");
+		});
+
+		$("input#project_project_end_date").focusout(function(){
+			$(this).css("color", "#4A4A4A");
+			$("#underline4").css("border-bottom", "1px solid #9B9B9B");
+			$("#underline4-error").css("border-bottom", "1px solid #E11750");
+		});
 	});
-
-	$("input#project_hours_sold_for").focusin(function(){
-		$(this).css("color", "#0D39FF");
-		$("#underline2").css("border-bottom", "1px solid #0D39FF");
-		$("#underline2-error").css("border-bottom", "1px solid #0D39FF");
-	});
-
-	$("input#project_hours_sold_for").focusout(function(){
-		$(this).css("color", "#4A4A4A");
-		$("#underline2").css("border-bottom", "1px solid #9B9B9B");
-		$("#underline2-error").css("border-bottom", "1px solid #E11750");
-	});
-
-	//	$("input#project_work_hours").focusin(function(){
-	//		$(this).css("color", "#0D39FF");
-	//		$("#underline3").css("border-bottom", "1px solid #0D39FF");
-	//	});
-	//
-	//	$("input#project_work_hours").focusout(function(){
-	//		$(this).css("color", "#4A4A4A");
-	//		$("#underline3").css("border-bottom", "1px solid #9B9B9B");
-	//	});
-	//
-	//	$("input#project_work_hours").focusin(function(){
-	//		$(this).css("color", "#0D39FF");
-	//		$("#underline4").css("border-bottom", "1px solid #0D39FF");
-	//	});
-	//
-	//	$("input#project_work_hours").focusout(function(){
-	//		$(this).css("color", "#4A4A4A");
-	//		$("#underline4").css("border-bottom", "1px solid #9B9B9B");
-	//	});
-
-
 </script>

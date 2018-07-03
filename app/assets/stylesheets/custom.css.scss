@@ -975,6 +975,12 @@ a:hover, a:visited, a:link, a:active
 	margin: auto;
 }
 
+.modal-archive {
+
+	height: 400px;	
+
+}
+
 .project-modal-header a {
 	position: absolute;
 	text-align: right; 
@@ -1026,6 +1032,16 @@ a:hover, a:visited, a:link, a:active
 	color: #FFF;
 	margin-left: 24px;
 }
+
+.add-project-inactive {
+	border-radius: 20px;
+	background-color: #9B9B9B;
+	padding: 8px 22px 8px 22px;
+	color: #FFF;
+	margin-left: 24px;
+	cursor: not-allowed;
+}
+
 
 .dont-add-project {
 	border: 1px solid #0D39FF;
@@ -1373,6 +1389,7 @@ input.add-risk-action {
 	display: flex;
 	padding-top: 17px;
 	padding-bottom: 17px;
+	align-items: center;
 }
 
 .notice {
@@ -1394,3 +1411,6 @@ input.add-risk-action {
 	margin-left: 39px;
 }
 
+.margin-left-auto {
+	margin-left: auto;
+}
