@@ -9,13 +9,6 @@
 				</h6>
 			</div>
 
-			<% created_at = RiskAction.select(:created_at).where(project_id:project.id).first %> 
-		
-			<div class="box d-flex flex-row">
-				<i class="icon-14-risk-update material-icons">access_time</i>
-				<p class="risk-update-text"> 9 days since last <%= link_to 'risk update', new_project_risk_action_path(project), :action => 'new', data: { turbolinks: false } %></p>
-			</div>
-	
 		
 
 			<div class="box gear-menu-wrapper">
