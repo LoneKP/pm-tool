@@ -285,6 +285,12 @@ delete-button {
 	text-decoration: none;
 }
 
+.icon-14-risk-update {
+	font-size: 19px !important;
+	color: rgb(var(--primary-color));
+	//	margin-left: -59px;
+}
+
 .icon-14-check {
 	font-size: 14px !important;
 	color: rgb(var(--primary-color));
@@ -1106,7 +1112,7 @@ a:hover, a:visited, a:link, a:active
 	background-color: #FFFFFF;	
 	box-shadow: 0 2px 4px 0 rgba(0,0,0,0.25);
 	position: absolute;
-	margin-left: -155px;
+	margin-left: 12px;
 	margin-top: -8px;
 	display: flex;
 	flex-direction: column;
@@ -1414,3 +1420,39 @@ input.add-risk-action {
 .margin-left-auto {
 	margin-left: auto;
 }
+
+.margin-right-auto {
+	margin-right: auto;
+}
+
+.risk-update-text {
+	color: #4a4a4a;
+	font-family: "Work Sans";
+	font-size: 14px;
+	line-height: 16px;
+	margin-left: 12px;
+}
+
+.innter-risk-update {
+	width: 50%;
+	margin: 0 auto;
+}
+
+.box {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+}
+
+.box:first-child {
+	justify-content: flex-start;
+}
+
+.box:nth-child(2) {
+	justify-content: center;
+}
+
+.box:last-child {
+	justify-content: flex-end;
+}
+

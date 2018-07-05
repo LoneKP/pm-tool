@@ -2,13 +2,23 @@
 	<% obj.each do |project| %>
 
 	<div class="d-flex card client<%= project.color_number %>">
-		<div class="d-flex flex-row justify-content-between">
-			<div>
+		<div class="d-flex">
+			<div class="box">
 				<h6 class="title">
 					<%=project.client_name %> - <%=project.project_name %>
 				</h6>
 			</div>
-			<div class="gear-menu-wrapper">
+
+			<% created_at = RiskAction.select(:created_at).where(project_id:project.id).first %> 
+		
+			<div class="box d-flex flex-row">
+				<i class="icon-14-risk-update material-icons">access_time</i>
+				<p class="risk-update-text"> 9 days since last <%= link_to 'risk update', new_project_risk_action_path(project), :action => 'new', data: { turbolinks: false } %></p>
+			</div>
+	
+		
+
+			<div class="box gear-menu-wrapper">
 				<div class="gear-menu client<%= project.color_number %>">
 					<i class="client<%= project.color_number %> close-gear-menu material-icons close-gear-icon">close</i>
 					<a class="details">
