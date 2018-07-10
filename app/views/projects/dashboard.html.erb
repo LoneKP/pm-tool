@@ -23,7 +23,7 @@
 
 
 			<% if @projects.any? {|project| project_in_need_of_risk_update?(project) } %>
-			<p class="text-24">You have a few projects in need of a risk update</p> 
+			<p class="text-24">You have <%= pluralize( @projects.count {|project| project_in_need_of_risk_update?(project) }, 'project') %> in need of a risk update</p> 
 			<% elsif @projects.any? {|project| project.completion_percentage > 103 } %>
 			<p class="text-24">Some of your projects have gone over time. Do something, pleeease!</p> 
 			<% 	else %>
