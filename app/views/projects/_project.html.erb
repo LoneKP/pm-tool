@@ -1,6 +1,7 @@
 <div class="col-10" >
 	<% obj.each do |project| %>
 
+
 	<div class="d-flex card client<%= project.color_number %>">
 		<div class="d-flex">
 			<div class="box">
@@ -9,7 +10,35 @@
 				</h6>
 			</div>
 
-		
+			<% today = Time.now.to_date %>
+			<% last_risk_update = (RiskAction.where(project_id:project.id).last&.created_at)&.to_date %>
+
+			<% if last_risk_update.present? %>
+			<% days_since_last_risk_update = (today - last_risk_update).to_i %>
+			<% if days_since_last_risk_update < 6 %>
+
+			<% else %>
+
+			<div class="box d-flex flex-row">
+				<i class="icon-14-risk-update material-icons">access_time</i>
+				<p class="risk-update-text"> <%= pluralize(days_since_last_risk_update, 'day') %> since last <%= link_to 'risk update', new_project_risk_action_path(project), :action => 'new', data: { turbolinks: false } %></p>
+			</div>
+
+			<% end %>
+
+			<% else %>
+
+			<div class="box d-flex flex-row">
+				<i class="icon-14-risk-update material-icons">access_time</i>
+				<p class="risk-update-text">Make your first <%= link_to 'risk update', new_project_risk_action_path(project), :action => 'new', data: { turbolinks: false } %></p>
+			</div>
+
+			<% end %>
+
+
+
+
+
 
 			<div class="box gear-menu-wrapper">
 				<div class="gear-menu client<%= project.color_number %>">

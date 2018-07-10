@@ -25,6 +25,7 @@ class ProjectsController < ApplicationController
 	def dashboard
 		@projects = Project.all.where(added_to_dashboard:true)
 		@risk_actions = RiskAction.all
+		
 	end
 
 	def archived_projects
