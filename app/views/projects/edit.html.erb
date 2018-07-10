@@ -107,11 +107,14 @@
 			$('input#project_work_hours, input#project_hours_sold_for, input#project_project_start_date, input#project_project_end_date').change(validate);
 		});
 
+		//function to validate whether all criterias are fulfilled and color "add project" accordingly
 		function validate(){
-			if ($('input#project_work_hours').val().length   >   0   &&
-					$('input#project_hours_sold_for').val().length  >   0   &&
-					$('input#project_project_start_date').val().length    >   0 &&
-					$('input#project_project_end_date').val().length    >   0) 
+			if (
+				$('input#project_work_hours').val().length   >   0 && ($.isNumeric($('input#project_work_hours').val())) &&
+				$('input#project_hours_sold_for').val().length  >   0   && ($.isNumeric($('input#project_hours_sold_for').val())) &&
+				$('input#project_project_start_date').val().length    >   0 && 
+				$('input#project_project_end_date').val().length    >   0 
+			) 
 			{
 				$('.add-project-inactive').addClass("add-project")
 				$('.add-project-inactive').removeClass("add-project-inactive")
@@ -141,7 +144,7 @@
 
 		$('input#project_work_hours').blur(function(){
 			tmpval = $(this).val();
-			if((tmpval == '' ) || (!$.isNumeric(tmpval))) { 
+			if(tmpval == '' ) { 
 
 				$('input#project_work_hours').next().addClass("icon-14-check-attention");
 				$('input#project_work_hours').next().text('error')
@@ -155,6 +158,21 @@
 			}
 		});
 
+		$('input#project_work_hours').blur(function(){
+			tmpval = $(this).val();
+			if (!$.isNumeric(tmpval)) { 
+
+				$('input#project_work_hours').next().addClass("icon-14-check-error");
+				$('input#project_work_hours').next().text('error')
+				$('input#project_work_hours').next().removeClass("icon-14-check");
+
+			} else {
+				$('input#project_work_hours').next().addClass("icon-14-check");
+				$('input#project_work_hours').next().removeClass("icon-14-check-attention");
+				$('input#project_work_hours').next().removeClass("icon-14-check-error");
+				$('input#project_work_hours').next().text('check_circle')
+			}
+		});
 
 		$(document).ready(function(){ 
 			tmpval = $('input#project_hours_sold_for').val();
@@ -163,25 +181,20 @@
 				$('input#project_hours_sold_for').next().text('error')
 				$('input#project_hours_sold_for').next().removeClass("icon-14-check");
 
-
 			} else {
 				$('input#project_hours_sold_for').next().addClass("icon-14-check");
 				$('input#project_hours_sold_for').next().removeClass("icon-14-check-attention");
 				$('input#project_hours_sold_for').next().removeClass("icon-14-check-error");
 				$('input#project_hours_sold_for').next().text('check_circle')
-
-
 			}
 		});
 
 		$('input#project_hours_sold_for').blur(function(){
 			tmpval = $(this).val();
-			if((tmpval == '' ) || (!$.isNumeric(tmpval))) { 
-
+			if(tmpval == '' )  { 
 				$('input#project_hours_sold_for').next().addClass("icon-14-check-attention");
 				$('input#project_hours_sold_for').next().text('error')
 				$('input#project_hours_sold_for').next().removeClass("icon-14-check");
-
 
 			} else {
 				$('input#project_hours_sold_for').next().addClass("icon-14-check");
@@ -191,6 +204,20 @@
 			}
 		});
 
+		$('input#project_hours_sold_for').blur(function(){
+			tmpval = $(this).val();
+			if (!$.isNumeric(tmpval)) { 
+				$('input#project_hours_sold_for').next().addClass("icon-14-check-error");
+				$('input#project_hours_sold_for').next().text('error')
+				$('input#project_hours_sold_for').next().removeClass("icon-14-check");
+
+			} else {
+				$('input#project_hours_sold_for').next().addClass("icon-14-check");
+				$('input#project_hours_sold_for').next().removeClass("icon-14-check-attention");
+				$('input#project_hours_sold_for').next().removeClass("icon-14-check-error");
+				$('input#project_hours_sold_for').next().text('check_circle')
+			}
+		});
 
 		$(document).ready(function(){ 
 			tmpval = $('input#project_project_start_date').val();
@@ -241,7 +268,6 @@
 		$('input#project_project_end_date').blur(function(){
 			tmpval = $(this).val();
 			if(tmpval == '' ) { 
-
 				$('input#project_project_end_date').next().addClass("icon-14-check-attention");
 				$('input#project_project_end_date').next().text('error')
 				$('input#project_project_end_date').next().removeClass("icon-14-check");
@@ -254,10 +280,6 @@
 			}
 		});
 
-
-
-
-		//hvis felter er tomme eller hvis der er bogstaver i talfelter skal submit deaktiveres
 		$("input#project_work_hours").focusin(function(){
 			$(this).css("color", "#0D39FF");
 			$("#underline1").css("border-bottom", "1px solid #0D39FF");

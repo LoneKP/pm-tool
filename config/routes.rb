@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-	root 'projects#index' 
+	root 'projects#dashboard' 
 	resources :projects do
 		resources :risk_actions, only: [:index, :create, :new]
 	end

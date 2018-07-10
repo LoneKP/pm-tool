@@ -31,11 +31,25 @@ module ProjectHelper
 			return false
 		end
 	end
+
+	def project_in_need_of_risk_update?(project)
+		today = Time.now.to_date
+		last_risk_update = (RiskAction.where(project_id:project.id).last&.created_at)&.to_date 
+		if last_risk_update.present?
+			days_since_last_risk_update = (today - last_risk_update).to_i
+			if days_since_last_risk_update < 6 
+				false
+			else
+				true
+			end 
+		else
+			true
+		end
+	end
+
 	
 	
 	
-	 
-		
 
 end
 

@@ -2,7 +2,6 @@
 
 <div class="aligner-item-top"></div>
 
-
 <div>
 	<p class="text-32"><%= @project.project_name %></p>
 </div>
@@ -62,25 +61,56 @@
 <div class="aligner-item-bottom"></div>
 
 <script>
+	$(document).ready(function (){
+		validate();
+		$('input#risk_action_risk, input#risk_action_action').change(validate);
+	});
+
+	//function to validate whether all criterias are fulfilled and color "add" accordingly
+	function validate(){
+		if (
+			$('input#risk_action_risk').val().length   >   0 && 
+			$('input#risk_action_action').val().length  >   0   
+		) 
+		{
+			$('.add-project-inactive').addClass("add-risk-action")
+			$('.add-project-inactive').removeClass("add-project-inactive")
+			$(".add-risk-action").prop('disabled', false);
+			
+			$('.add-and-create-another-inactive').addClass("add-and-create-another")
+			$('.add-and-create-another-inactive').removeClass("add-and-create-another-inactive")
+			$(".add-and-create-another").prop('disabled', false);
+		}
+		else {
+			$('.add-risk-action').addClass("add-project-inactive")
+			$('.add-risk-action').removeClass("add-risk-action")
+			$(".add-project-inactive").prop('disabled', true);
+
+			$('.add-and-create-another').addClass("add-and-create-another-inactive")
+			$('.add-and-create-another').removeClass("add-and-create-another")
+			$(".add-and-create-another-inactive").prop('disabled', true);
+		}
+	}
+
 	$('input').attr('autocomplete','off');
 
 	$("input#risk_action_risk").focusin(function(){
-//		$(this).css("color", "#0D39FF");
+		//		$(this).css("color", "#0D39FF");
 		$("#underline5").css("border-bottom", "1px solid #0D39FF");
 	});
 
 	$("input#risk_action_risk").focusout(function(){
-//		$(this).css("color", "#4A4A4A");
+		//		$(this).css("color", "#4A4A4A");
 		$("#underline5").css("border-bottom", "1px solid #9B9B9B");
 	});
 
 	$("input#risk_action_action").focusin(function(){
-//		$(this).css("color", "#0D39FF");
+		//		$(this).css("color", "#0D39FF");
 		$("#underline6").css("border-bottom", "1px solid #0D39FF");
 	});
 
 	$("input#risk_action_action").focusout(function(){
-//		$(this).css("color", "#4A4A4A");
+		//		$(this).css("color", "#4A4A4A");
 		$("#underline6").css("border-bottom", "1px solid #9B9B9B");
 	});
 </script>

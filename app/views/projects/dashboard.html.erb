@@ -11,16 +11,20 @@
 	<div class="col-1"></div>
 	<div class="col-10 d-flex flex-row mt-266">
 		<div class="d-flex flex-column justify-content-center mr-3">
-			<% if @projects.any? {|project| project.completion_percentage > 103 } %>
+			<% if @projects.any? {|project| project.completion_percentage > 103 || project_in_need_of_risk_update?(project) } %>
 			<i class="material-icons icon-24-attention">error</i>
 			<% 	else %>
-				<i class="material-icons icon-24">trending_up</i>
+			<i class="material-icons icon-24">trending_up</i>
 			<% 	end %>
-		
+
 		</div>
 		<div class="d-flex flex-column">
-			<p class="text-16">Welcome back, Lone</p>
-			<% if @projects.any? {|project| project.completion_percentage > 103 } %>
+			<p class="text-16">Welcome back</p>
+
+
+			<% if @projects.any? {|project| project_in_need_of_risk_update?(project) } %>
+			<p class="text-24">You have a few projects in need of a risk update</p> 
+			<% elsif @projects.any? {|project| project.completion_percentage > 103 } %>
 			<p class="text-24">Some of your projects have gone over time. Do something, pleeease!</p> 
 			<% 	else %>
 			<p class="text-24">Everything seems to be on track!</p>
