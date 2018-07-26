@@ -63,7 +63,7 @@
 <script>
 	$(document).ready(function (){
 		validate();
-		$('input#risk_action_risk, input#risk_action_action').change(validate);
+		$('input#risk_action_risk, input#risk_action_action').keyup(validate);
 	});
 
 	//function to validate whether all criterias are fulfilled and color "add" accordingly

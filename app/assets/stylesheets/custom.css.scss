@@ -58,6 +58,13 @@ h1,h2,h3,h4,h5,h6,p {
 	font-family: "Work Sans";
 }
 
+h6 {
+	color: #000000;
+	font-family: "Work Sans";
+	font-size: 24px;
+	line-height: 28px;
+}
+
 a {
 	color: #0D39FF;
 }
@@ -92,11 +99,22 @@ p.text-24 {
 	line-height: 28px;
 }
 
+
+
 p.text-32 {
 	color: #000000;
 	font-size: 32px;
 	line-height: 38px;
 }
+
+p.text-44 {
+	color: #4A4A4A;
+	font-family: "Work Sans";
+	font-size: 44px;
+	font-weight: 600;
+	line-height: 52px;
+}
+
 .title {
 	font-size: 14px;
 	font-weight: 500;
@@ -203,6 +221,10 @@ p {
 
 .hide {
 	display:none;
+}
+
+.visibility-hidden {
+	visibility: hidden;
 }
 
 //.monthly-process-assessment-hide {
@@ -824,12 +846,10 @@ a:hover, a:visited, a:link, a:active
 	display:flex;
 	justify-content: space-between;
 	align-items: center;
-
 }
 
 #add-project-flow-title {
 	justify-content: space-between;
-
 }
 
 .add-project-content {
@@ -1056,7 +1076,6 @@ a:hover, a:visited, a:link, a:active
 	cursor: not-allowed;
 }
 
-
 .dont-add-project {
 	border: 1px solid #0D39FF;
 	border-radius: 20px;
@@ -1068,7 +1087,6 @@ a:hover, a:visited, a:link, a:active
 .add-project-buttons {
 	align-items: flex-end;
 	margin-top: 64px;
-
 }
 
 .add-project:hover {
@@ -1464,3 +1482,78 @@ input.add-risk-action {
 	justify-content: flex-end;
 }
 
+.project-details-content-top {
+	display: flex;
+	flex-direction: column;
+	margin-top: 111px;
+}
+
+.project-details-content-top > div {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.process-details-wrapper > div > div {
+	border-radius: 12px;
+	background-color: #FFFFFF;
+	box-shadow: 0 8px 16px 0 rgba(var(--primary-color),0.25);
+	height: 289px;
+	margin-bottom: 27px;
+}
+
+.risk-actions-details-wrapper > div > div:first-of-type {
+	height: 44px;
+	border-radius: 12px;
+	background-color: #FFFFFF;
+	box-shadow: 0 8px 16px 0 rgba(var(--primary-color),0.25);
+}
+
+.risk-actions-details-wrapper > div > div:last-of-type {
+	height: 32px;
+}
+
+.risk-actions-details-wrapper > div:nth-child(3n+1) > div:first-of-type  {
+	border-radius: 22px;
+	background-color: #CFCFCF;
+	color: #FFF;
+	box-shadow: none;
+
+}
+
+.risk-actions-details-wrapper > div:nth-child(3n+1) > div p {
+	color: #FFF;
+
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	text-align: center;
+}
+
+.rectangle-4 {
+	height: 44px;
+	width: 160px;
+	border-radius: 22px;
+	background-color: #CFCFCF;
+	box-shadow: 0 8px 16px 0 rgba(13,57,255,0.25);
+}
+
+.headline-projects-view {
+	margin-top: 21px;
+	margin-bottom: 24px;
+}
+
+.border-right {
+	border-right: 3px dotted #CFCFCF !important;
+}
+
+.risk-action-text p {
+	font-size: 12px;
+	font-weight: 500;
+	line-height: 14px;
+	position: relative;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%); 
+}

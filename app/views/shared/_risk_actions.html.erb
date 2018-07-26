@@ -1,0 +1,26 @@
+<% @risk_actions.each do |risk_action| %>
+<div class="row risk-actions-details-wrapper">
+	<div class="col-2">
+		<div class="col-12">
+			<p><%= risk_action.created_at.strftime('%d.%m.%Y') %></p>
+		</div>
+		<div class="col-6 <%= risk_action == @risk_actions.last ? "" : "border-right" %>"> 
+		</div>
+	</div>
+	<div class="col-5">
+		<div class="col-12 risk-action-text">
+			<p>Risk: <%= risk_action.risk %></p>
+		</div>
+		<div class="col-6">
+		</div>
+	</div>
+	<div class="col-5">
+		<div class="col-12 risk-action-text">
+			<p>Action: <%= risk_action.action %> </p>
+		</div>
+		<div class="col-6">
+		</div>
+	</div>
+</div>
+
+<% end %>

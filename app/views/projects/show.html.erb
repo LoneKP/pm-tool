@@ -1,18 +1,46 @@
 <% content_for :navigation, render('layouts/custom_navigation_no_link', obj: :back) %>
 
-<div class="add-project-content-top">
+<div class="project-details-content-top">
 	<div>
-		<p class="text-32"><%= @project.project_name %></p>
+		<p class="text-24"><%= @project.client_name %></p>
+		<p class="text-14">Data received from <a target="_blank" href="https://abtion.harvestapp.com/projects/<%= @project.harvest_project_id %>">Harvest</a></p>
 	</div>
 	<div id="add-project-flow-title">
-		<p class="company-name"><%= @project.client_name %></p>
-		<p class="text-14">Data received from <a target="_blank" href="https://abtion.harvestapp.com/projects/<%= @project.harvest_project_id %>">Harvest</a></p>
+		<p class="text-44"><%= @project.project_name %></p>
+	</div>
+	<div>
+		<%= completion_indicator(@project) %>
 	</div>
 </div>
 
-<h6>Time information</h6>
-<h6>Work Distribution</h6>
-<h6>Risks and actions</h6>
+
+<h6>Process details</h6>
+<div class="row process-details-wrapper">
+	<div class="col-4">
+		<div class="col-12">
+			<p>first box</p>
+		</div>
+	</div>
+	<div class="col-8">
+		<div class="col-12">
+			<p>second box</p>
+		</div>
+	</div>
+	<div class="col-8">
+		<div class="col-12">
+			<p>third box</p>
+		</div>
+	</div>
+	<div class="col-4">
+		<div class="col-12">
+			<p>fourth box</p>
+		</div>
+	</div>
+</div>
+
+<h6 class="headline-projects-view">Risks and actions</h6>
+
+<%= render 'shared/risk_actions' %>
 
 <% @risk_actions_grouped.each do |(week, risk_action)| %>
 
@@ -23,6 +51,8 @@
 	<li>Action: <%= risk_action.action %></li>
 </ul>
 
+
 <% end %>
 <% end %>
 
+<h6>History</h6>
