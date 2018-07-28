@@ -47,9 +47,28 @@ module ProjectHelper
 		end
 	end
 
-	
-	
-	
+	def calculate_day_progression(project)
+		start_date = project.project_start_date.to_date
+		end_date = project.project_end_date.to_date
+		total_days = (end_date - start_date).to_i
+		today = Time.now.to_date
+		progressed_days = (today - start_date).to_f
+		progressed_days_percentage = (progressed_days / total_days)*100
+
+		if progressed_days > total_days
+			#end date has been passed
+			100
+		elsif progressed_days == total_days
+			#this is the end date
+			100
+		else
+			progressed_days_percentage
+		end
+	end
+
+
+
+
 
 end
 

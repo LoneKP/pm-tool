@@ -50,6 +50,9 @@
 		</div>
 		<div class="submit-risk-action">
 			<%= link_to "View all risks", project_risk_actions_url, class: 'view-all-risks' %>
+			<%= f.hidden_field :work_hours, :value => @project.work_hours %>
+			<%= f.hidden_field :completion_percentage, :value => @project.completion_percentage %>
+			<%= f.hidden_field :total_time_hours, :value => @project.total_time_hours %>
 			<%= f.submit "Add & create another", class: 'add-and-create-another' %>
 			<%= f.submit 'Add', :class => 'add-risk-action' %>
 			<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180625215709) do
+ActiveRecord::Schema.define(version: 20180727091246) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,19 +19,19 @@ ActiveRecord::Schema.define(version: 20180625215709) do
     t.integer "harvest_project_id"
     t.string "project_name"
     t.string "client_name"
-    t.integer "hours_sold_for"
-    t.integer "total_time_hours"
-    t.integer "programming_hours"
-    t.integer "project_management_hours"
-    t.integer "meetings_hours"
-    t.integer "design_hours"
-    t.integer "completion_percentage"
+    t.float "hours_sold_for"
+    t.float "total_time_hours"
+    t.float "programming_hours"
+    t.float "project_management_hours"
+    t.float "meetings_hours"
+    t.float "design_hours"
+    t.float "completion_percentage"
     t.datetime "project_start_date"
     t.datetime "project_end_date"
     t.integer "color_number"
     t.boolean "added_to_dashboard"
     t.boolean "archived"
-    t.integer "work_hours"
+    t.float "work_hours"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "evaluation"
@@ -43,6 +43,9 @@ ActiveRecord::Schema.define(version: 20180625215709) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "project_id"
+    t.float "work_hours"
+    t.float "completion_percentage"
+    t.float "total_time_hours"
   end
 
   create_table "unadded_projects", force: :cascade do |t|

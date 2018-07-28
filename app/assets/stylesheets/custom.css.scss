@@ -1519,24 +1519,14 @@ input.add-risk-action {
 	background-color: #CFCFCF;
 	color: #FFF;
 	box-shadow: none;
-
 }
 
 .risk-actions-details-wrapper > div:nth-child(3n+1) > div p {
 	color: #FFF;
-
 	position: relative;
 	top: 50%;
 	transform: translateY(-50%);
 	text-align: center;
-}
-
-.rectangle-4 {
-	height: 44px;
-	width: 160px;
-	border-radius: 22px;
-	background-color: #CFCFCF;
-	box-shadow: 0 8px 16px 0 rgba(13,57,255,0.25);
 }
 
 .headline-projects-view {

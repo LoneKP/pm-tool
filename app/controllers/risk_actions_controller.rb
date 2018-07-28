@@ -34,7 +34,10 @@ class RiskActionsController < ApplicationController
 
 	private
 	def risk_action_params
-		params.require(:risk_action).permit(:risk, :action)	end
+		params.require(:risk_action).permit(:risk, :action, :work_hours, :completion_percentage, :total_time_hours)	
+
+	end
+
 
 
 end
