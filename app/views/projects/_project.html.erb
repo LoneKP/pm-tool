@@ -1,7 +1,5 @@
 <div class="col-10" >
 	<% obj.each do |project| %>
-
-
 	<div class="d-flex card client<%= project.color_number %>">
 		<div class="d-flex">
 			<div class="box">
@@ -131,7 +129,9 @@
 				<p class="tekst right-align"><%= project.project_end_date.strftime('%d.%m.%Y') %></p>
 			</div>
 		</div>
+
 	</div>		
+
 
 	<!--Delete modal			-->
 	<div id="delete-project-modal-<%= project.id %>" class="modal">
@@ -195,6 +195,7 @@
 
 			<% end %>
 		</div>
+
 	</div>	
 
 	<% end %>
