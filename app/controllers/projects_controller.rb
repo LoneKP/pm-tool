@@ -9,6 +9,8 @@ class ProjectsController < ApplicationController
 		@project = Project.find(params[:id])
 		@risk_actions = RiskAction.where(project_id: params[:id])
 		@risk_actions_grouped = @risk_actions.group_by{ |x| x.created_at.beginning_of_week }
+		@graph_billable_design_time = ProjectDataFetcher.new(@project).billable_design_time_entries_over_time 
+		@graph_billable_programming_time = ProjectDataFetcher.new(@project).billable_programming_time_entries_over_time 
 	end
 
 	def update

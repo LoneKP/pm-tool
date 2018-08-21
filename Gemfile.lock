@@ -61,6 +61,7 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (>= 2.0, < 4.0)
+    chartkick (3.0.1)
     childprocess (0.9.0)
       ffi (~> 1.0, >= 1.0.11)
     coderay (1.1.2)
@@ -85,6 +86,8 @@ GEM
     ffi (1.9.23)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    groupdate (4.0.1)
+      activesupport (>= 4.2)
     httparty (0.16.2)
       multi_xml (>= 0.5.2)
     i18n (1.0.0)
@@ -246,8 +249,10 @@ DEPENDENCIES
   business_time
   byebug
   capybara (~> 2.13)
+  chartkick
   coffee-rails (~> 4.2)
   dotenv-rails
+  groupdate
   httparty
   jbuilder (~> 2.5)
   jquery-rails

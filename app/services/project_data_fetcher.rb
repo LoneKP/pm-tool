@@ -22,18 +22,18 @@ class ProjectDataFetcher
 
 	#	private
 
-#	def response_time_entries
-#		response_time_entries_per_project = []
-#
-#		loop.with_index(1) do |_,index|
-#			response = wrapper.time_entries(index, harvest_project_id)
-#			response_time_entries_per_project << response['time_entries']	
-#
-#			break if response['page'] == response['total_pages']
-#		end
-#
-#		response_time_entries_per_project
-#	end
+	#	def response_time_entries
+	#		response_time_entries_per_project = []
+	#
+	#		loop.with_index(1) do |_,index|
+	#			response = wrapper.time_entries(index, harvest_project_id)
+	#			response_time_entries_per_project << response['time_entries']	
+	#
+	#			break if response['page'] == response['total_pages']
+	#		end
+	#
+	#		response_time_entries_per_project
+	#	end
 
 	def response_time_entries
 		response_time_entries_raw = wrapper.time_entries(1, harvest_project_id)			
@@ -110,12 +110,20 @@ class ProjectDataFetcher
 		@_design_hours ||= design_billable_time_entries.sum { |time_entry| time_entry.dig('hours') }
 	end
 
+	def billable_design_time_entries_over_time
+		(design_billable_time_entries.map { |time_entry| time_entry.values_at('spent_date', 'hours')}).reverse.to_h
+	end
+
 	def programming_billable_time_entries
 		@_programming_billable_time_entries ||=	billable_time_entries.select { |time_entry| time_entry.dig('task', 'name') == 'Programming' }
 	end
 
 	def programming_hours
 		@_programming_hours ||= programming_billable_time_entries.sum { |time_entry| time_entry.dig('hours') }
+	end
+	
+	def billable_programming_time_entries_over_time
+		(programming_billable_time_entries.map { |time_entry| time_entry.values_at('spent_date', 'hours')}).reverse.to_h
 	end
 
 	def project_management_billable_time_entries

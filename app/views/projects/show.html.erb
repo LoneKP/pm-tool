@@ -14,11 +14,19 @@
 </div>
 
 
+	
+	<%= column_chart [
+  {name: "Series A", data: @graph_billable_design_time},
+  {name: "Series B", data: @graph_billable_programming_time}
+], stacked: true %>
+
+
+
 <h6>Process details</h6>
 <div class="row process-details-wrapper">
 	<div class="col-4">
 		<div class="col-12">
-			<p>first box</p>
+			<p></p>
 		</div>
 	</div>
 	<div class="col-8">

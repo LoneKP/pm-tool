@@ -14,6 +14,8 @@
 //= require rails-ujs
 //= require jquery3
 //= require popper
+//= require Chart.bundle
+//= require chartkick
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .
