@@ -15,6 +15,8 @@
 //= require jquery3
 //= require popper
 //= require Chart.bundle
+//= require highcharts
+//= require highcharts/highcharts-more
 //= require chartkick
 //= require bootstrap-sprockets
 //= require turbolinks

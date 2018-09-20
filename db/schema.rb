@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180729200334) do
+ActiveRecord::Schema.define(version: 20180909151109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20180729200334) do
     t.float "total_time_hours"
     t.float "progressed_hourly_rate"
     t.bigint "project_id"
+    t.integer "year"
     t.index ["project_id"], name: "index_revenue_months_on_project_id"
   end
 
@@ -58,6 +59,19 @@ ActiveRecord::Schema.define(version: 20180729200334) do
     t.float "work_hours"
     t.float "completion_percentage"
     t.float "total_time_hours"
+  end
+
+  create_table "time_trackings", force: :cascade do |t|
+    t.datetime "date"
+    t.float "total_hours"
+    t.bigint "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.float "total_hours_design"
+    t.float "total_hours_programming"
+    t.float "total_hours_project_management"
+    t.float "total_hours_meetings"
+    t.index ["project_id"], name: "index_time_trackings_on_project_id"
   end
 
 end
