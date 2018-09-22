@@ -23,15 +23,17 @@
 <% sum_pm = 0 %>
 
 <%= area_chart [
-	{name: "Design", data: (TimeTracking.where(project_id:@project.id).group_by_day(:date).sum(:total_hours_design)).map {|k,v|[k,(sum_design += v)]}.to_h},
+
 	{name: "Programming", data: (TimeTracking.where(project_id:@project.id).group_by_day(:date).sum(:total_hours_programming)).map {|k,v|[k,(sum_programming += v)]}.to_h},
+	{name: "Daily Standup", data: (TimeTracking.where(project_id:@project.id).group_by_day(:date).sum(:total_hours_daily_standup)).map {|k,v|[k,(sum_pm += v)]}.to_h},
 	{name: "Project Management", data: (TimeTracking.where(project_id:@project.id).group_by_day(:date).sum(:total_hours_project_management)).map {|k,v|[k,(sum_pm += v)]}.to_h},
+	{name: "Design", data: (TimeTracking.where(project_id:@project.id).group_by_day(:date).sum(:total_hours_design)).map {|k,v|[k,(sum_design += v)]}.to_h},
 	{name: "Meetings", data: (TimeTracking.where(project_id:@project.id).group_by_day(:date).sum(:total_hours_meetings)).map {|k,v|[k,(sum_meetings += v)]}.to_h}
 	#		{name: "Total", data: (TimeTracking.group_by_day(:date).sum(:total_hours)).map {|k,v|[k,(sum += v)]}.to_h}
 	], adapter: "highcharts",
 stacked: true,
 title: 'Time Statistics',
-colors: ['green', 'blue', 'red', 'purple']
+colors: ['#A9EFB2', '#5F6AC7', '#728CFF', '#68AAD4', '#99ACFF']
 %>
 
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180909151109) do
+ActiveRecord::Schema.define(version: 20180920060010) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 20180909151109) do
     t.float "total_hours_programming"
     t.float "total_hours_project_management"
     t.float "total_hours_meetings"
+    t.float "total_hours_daily_standup"
     t.index ["project_id"], name: "index_time_trackings_on_project_id"
   end
 

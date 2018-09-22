@@ -13,6 +13,7 @@ class ProjectTimeFetcher
 			entry.total_hours_programming = hours.dig("programming_hours")
 			entry.total_hours_project_management = hours.dig("project_management_hours")
 			entry.total_hours_meetings = hours.dig("meetings_hours")
+			entry.total_hours_daily_standup = hours.dig("daily_standup_hours")
 			entry.total_hours = hours.dig("total_billable_hours")
 			entry.save
 		end
@@ -203,6 +204,36 @@ class ProjectTimeFetcher
 	def meetings_hours
 		meetings_hours_per_date.update(meetings_hours_per_date) { |k,v| meetings_hours_per_date[k]=Hash["meetings_hours",v] }
 	end
+	
+	#daily standup part
+
+	def daily_standup_time_entries
+		@_daily_standup_time_entries ||= billable_time_entries.select { |time_entry| time_entry.dig('task', 'id') == 9701231 }
+	end
+
+	def daily_standup_billable_time_entries_grouped_by_date
+		daily_standup_time_entries.group_by { |time_entry| time_entry["spent_date"]}
+	end
+
+	def daily_standup_billable_time_entries_hours_per_day
+		daily_standup_billable_time_entries_grouped_by_date.values.map {|array| array.map {|entry| entry.dig('hours')}}
+	end
+
+	def total_hours_daily_standup
+		(daily_standup_billable_time_entries_hours_per_day.map {|a| a.sum }).each_slice(1).to_a
+	end
+
+	def daily_standup_billable_time_entries_date
+		daily_standup_billable_time_entries_grouped_by_date.values.map {|array| array.map {|entry| entry.dig('spent_date')}.uniq}
+	end
+
+	def daily_standup_hours_per_date
+		Hash[daily_standup_billable_time_entries_date.flatten.zip total_hours_daily_standup.flatten]
+	end
+
+	def daily_standup_hours
+		daily_standup_hours_per_date.update(daily_standup_hours_per_date) { |k,v| daily_standup_hours_per_date[k]=Hash["daily_standup_hours",v] }
+	end
 
 	#combine
 	def combine_project_management_and_meetings_hours
@@ -217,8 +248,12 @@ class ProjectTimeFetcher
 		combine_design_hours_and_programming_hours.merge(combine_project_management_and_meetings_hours){|key,oldval,newval| oldval.merge(newval) }
 	end
 
-	def combine_all_hours
+	def combine_with_billable_hours
 		combine_all_task_hours.merge(billable_hours){|key,oldval,newval| oldval.merge(newval) }
+	end
+	
+	def combine_all_hours
+		combine_with_billable_hours.merge(daily_standup_hours){|key,oldval,newval| oldval.merge(newval) }
 	end
 
 end
