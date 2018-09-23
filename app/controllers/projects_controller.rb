@@ -9,8 +9,6 @@ class ProjectsController < ApplicationController
 		@project = Project.find(params[:id])
 		@risk_actions = RiskAction.where(project_id: params[:id])
 		@risk_actions_grouped = @risk_actions.group_by{ |x| x.created_at.beginning_of_week }
-		@graph_billable_design_time = ProjectDataFetcher.new(@project).billable_design_time_entries_over_time 
-		@graph_billable_programming_time = ProjectDataFetcher.new(@project).billable_programming_time_entries_over_time 
 	end
 
 	def update
@@ -25,7 +23,8 @@ class ProjectsController < ApplicationController
 	end
 
 	def dashboard
-		@projects = Project.all.where(added_to_dashboard:true)
+		@user = User.find(6)
+		@projects = Project.all
 		@risk_actions = RiskAction.all
 		@revenue_month = RevenueMonth.new
 	end
@@ -38,6 +37,7 @@ class ProjectsController < ApplicationController
 		@project = Project.new
 		@projects = Project.all
 		@projects_grouped_by_client = Project.all.group_by { |projects| projects.client_name }
+		@user = User.find(6)
 	end
 
 	#	def create

@@ -19,9 +19,9 @@
 <div class="project-boxes">
 	<% projects_in_four.each do |project| %>
 
-	<% if project_is_already_on_dashboard?(project.harvest_project_id)%>
+	<% if project_is_already_on_dashboard?(project.harvest_project_id, @user)%>
 
-	<div <%= if_project_is_added_to_dashboard_grey_out(project.harvest_project_id)%> >
+	<div <%= if_project_is_added_to_dashboard_grey_out(project.harvest_project_id, @user)%> >
 		<p><%= project.project_name %></p>
 		<i class="material-icons">done</i>
 	</div>
@@ -29,7 +29,7 @@
 	<% else %>
 
 	<%= link_to edit_project_path(project), :action => 'edit', data: { turbolinks: false } do %>
-	<div <%=if_project_is_added_to_dashboard_grey_out(project.harvest_project_id)%> >
+	<div <%=if_project_is_added_to_dashboard_grey_out(project.harvest_project_id, @user)%> >
 		<p><%= project.project_name %></p>
 	</div>
 	<% end %>
