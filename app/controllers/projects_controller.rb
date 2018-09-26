@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
 
-
+@user = User.first
 	def new
 		@project = Project.new	
 	end
@@ -14,6 +14,7 @@ class ProjectsController < ApplicationController
 	def update
 		@project = Project.find(params[:id])
 		@project.update(project_params)
+		@project.responsibilities.create(user:User.first)
 		ProjectDataFetcher.new(@project).call
 		if @project.update(project_params)
 			redirect_to dashboard_url, notice: "Congratulations! You have successfully added/edited a project."
@@ -23,7 +24,7 @@ class ProjectsController < ApplicationController
 	end
 
 	def dashboard
-		@user = User.find(6)
+		@user = User.first
 		@projects = Project.all
 		@risk_actions = RiskAction.all
 		@revenue_month = RevenueMonth.new
@@ -37,7 +38,7 @@ class ProjectsController < ApplicationController
 		@project = Project.new
 		@projects = Project.all
 		@projects_grouped_by_client = Project.all.group_by { |projects| projects.client_name }
-		@user = User.find(6)
+		@user = User.first
 	end
 
 	#	def create

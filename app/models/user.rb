@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-	has_many :responsibilities
+	has_many :responsibilities, dependent: :destroy
 	has_many :projects, :through => :responsibilities
 	before_save {self.email = email.downcase}
 	validates :username, presence: true, uniqueness: { case_sensitive: false }

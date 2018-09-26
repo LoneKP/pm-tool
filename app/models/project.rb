@@ -1,6 +1,6 @@
 class Project < ApplicationRecord
 	has_many :risk_actions, inverse_of: :project, autosave: true
-	has_many :responsibilities
+	has_many :responsibilities, dependent: :destroy
 	has_many :users, :through => :responsibilities
 	accepts_nested_attributes_for :risk_actions
 	has_many :revenue_months, inverse_of: :project, autosave: true
