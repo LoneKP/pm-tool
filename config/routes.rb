@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 	resources :projects do
 		resources :risk_actions, only: [:index, :create, :new]
 	end
-	
+
 	resources :projects do
 		resources :revenue_months
 	end

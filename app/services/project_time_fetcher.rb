@@ -1,6 +1,7 @@
 class ProjectTimeFetcher
 
-	def initialize(project)
+	def initialize(project, api_wrapper = nil)
+		@_wrapper = api_wrapper
 		@project = project
 	end
 

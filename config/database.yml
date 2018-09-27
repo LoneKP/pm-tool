@@ -26,7 +26,7 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: lonekp
+  database: lones-pm-tool-test
   pool: 5
 
 
