@@ -6,6 +6,7 @@
 			<div class="projectio-menu">Projectio</div>
 			<div class="burger-menu-line"></div>
 			<div class="burger-menu-items">
+				<% if logged_in? %>
 				<div>
 					<i class="material-icons">person</i>
 					<a href="#"><%= @user != nil ? @user.username : 'No user logged in' %></a>
@@ -20,12 +21,14 @@
 				</div>
 				<div>
 					<i class="material-icons">exit_to_app</i>
-<!--					<a href="#">Log out</a>-->
 					<%= link_to 'Log out', logout_path, :method => :delete %>
-				
-					
-			
 				</div>
+				<% else %>
+				<div>
+					<i class="material-icons">input</i>
+					<%= link_to 'Log in', login_path %>
+				</div>
+				<% end %>
 			</div>
 		</div>
 	</div>
@@ -40,6 +43,7 @@
 				<div class="row">
 					<i id="burger-icon" class="material-icons icon-menu">menu</i>
 				</div>
+				<% if logged_in? %>
 				<div class="menu-items">
 					<a> 
 						<%= link_to 'Revenue', '/revenue', :class => current_class?('/revenue') %>
@@ -54,6 +58,13 @@
 						<%= link_to 'Dashboard', '/dashboard', :class => current_class?('/dashboard') %>
 					</a>
 				</div>
+				<% else %>
+				<div class="menu-items">
+					<a> 
+						<%= link_to 'Log in', login_path %>
+					</a>
+				</div>
+				<% end %>
 			</div>
 			<div class="col-1"></div>
 		</div>

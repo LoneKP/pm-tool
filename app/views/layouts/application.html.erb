@@ -14,20 +14,29 @@
 
 	<body class="body">
 		<div class="container-fluid">
+	
 
-			<% if content_for? :navigation %>
-			<%= content_for :navigation %>
-			<% else %>
-			<%= render 'layouts/navigation' %>
-			<% end %>
+				<% if content_for? :navigation %>
+				<%= content_for :navigation %>
+				<% else %>
+				<%= render 'layouts/navigation' %>
+				<% end %>
+				
+
+			
 			<% if flash[:notice] %>
 			<%= render 'layouts/messages' %>
 			<% end %>
-
+			<% if flash[:alert] %>
+			<%= render 'layouts/alerts' %>
+			<% end %>
 		</div>
+		
 		<div class="container">
 			<%= yield %>
 		</div>
+
 		<!--   <%= debug(params) if Rails.env.development? %>-->
 	</body>
+
 </html>

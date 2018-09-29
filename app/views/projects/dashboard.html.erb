@@ -6,7 +6,7 @@
 		<input class="search-bar" type="text" name="search" placeholder="Project, risk, ID, or something completely different">
 	</div>
 </div>	
-
+<% if logged_in? %>
 <div class="row">
 	<div class="col-1"></div>
 	<div class="col-10 d-flex flex-row mt-266">
@@ -19,7 +19,7 @@
 
 		</div>
 		<div class="d-flex flex-column">
-			<p class="text-16">Welcome back</p>
+			<p class="text-16">Welcome back, <%= @user.username.downcase.capitalize %></p>
 
 
 			<% if @user.projects.any? {|project| project_in_need_of_risk_update?(project) } %>
@@ -33,14 +33,30 @@
 	</div>
 	<div class="col-1"></div>
 </div>
+<% else %>
+<div class="row">
+	<div class="col-1"></div>
+	<div class="col-10 d-flex flex-row mt-266">
+		<div class="d-flex flex-column justify-content-center mr-3">
+			<i class="material-icons icon-24-no-background"></i>
+		</div>
+		<div class="d-flex flex-column">
+			<p class="text-16">Hi there!</p>
+			<p class="text-24">You need to start by signing in!</p>	
+		</div>
+	</div>
+	<div class="col-1"></div>
+</div>
+<% end %>
 
+<% if logged_in? %>
 <div class="row">
 	<div class="col-1 monthly-process-assessment-hide"></div>
 	<%= render 'project', obj: @user.projects %>
 	<div class="col-2">
 		<% @user.projects.each do |project| %>
 		<div class="monthly-process-assessment-active">
-	
+
 		</div>
 
 		<% end %>
@@ -58,6 +74,16 @@
 </div>
 <% end %>
 
+<% else %>
+
+<%= link_to login_path do %>
+<div class="mt-350 new-project">
+	<i class="material-icons icon-add mr-133">input</i>
+	<p class="text-24 blue">Log in</p>
+</div>
+<% end %>
+
+<% end %>
 
 
 

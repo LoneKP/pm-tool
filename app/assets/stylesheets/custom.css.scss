@@ -344,6 +344,18 @@ delete-button {
 	margin-left: -15px;
 }
 
+.icon-messages-alert {
+	font-size: 20px !important;
+	color: #FFF;
+//	background-color: #FFF;
+	border-radius: 50%;
+	display: flex;
+	align-content: center;
+	vertical-align: middle !important;
+	padding: 3px;
+	margin-left: -15px;
+}
+
 .icon-messages-close {
 	font-size: 14px !important;
 	color: #B8E986;
@@ -388,6 +400,17 @@ delete-button {
 	align-content: center;
 	vertical-align: middle !important;
 	//	padding: 3px;
+}
+
+.icon-24-no-background {
+	font-size: 24px !important;
+	color: rgb(var(--primary-color));
+	background-color: #FFF;
+	border-radius: 50%;
+	display: flex;
+	align-content: center;
+	vertical-align: middle !important;
+	padding: 3px;
 }
 
 .icon-padding {
@@ -1425,8 +1448,28 @@ input.add-risk-action {
 	align-items: center;
 }
 
+.message-bar-wrapper-alert {
+	background-color: #FFCC77;
+	opacity: 0.98;
+	width: 100%;
+	border:2px;
+	position: fixed;
+	top: 54px;
+	left: 0;
+	z-index: 10;
+}
+
 .notice {
 	color: #0D39FF;
+	font-family: "Work Sans";
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 19px;
+	margin-left: 24px;
+}
+
+.notice-alert {
+	color: #FFF;
 	font-family: "Work Sans";
 	font-size: 16px;
 	font-weight: 500;
@@ -1547,4 +1590,12 @@ input.add-risk-action {
 	top: 50%;
 	-webkit-transform: translateY(-50%);
 	transform: translateY(-50%); 
+}
+
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 40vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
 }
