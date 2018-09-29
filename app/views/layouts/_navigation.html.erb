@@ -8,7 +8,7 @@
 			<div class="burger-menu-items">
 				<div>
 					<i class="material-icons">person</i>
-					<a href="#">Lone Kjeldgaard</a>
+					<a href="#"><%= @user != nil ? @user.username : 'No user logged in' %></a>
 				</div>
 				<div>
 					<i class="material-icons">settings_applications</i>
@@ -18,12 +18,20 @@
 					<i class="material-icons">settings_applications</i>
 					<a href="#">Abtion</a>
 				</div>
+				<div>
+					<i class="material-icons">exit_to_app</i>
+<!--					<a href="#">Log out</a>-->
+					<%= link_to 'Log out', logout_path, :method => :delete %>
+				
+					
+			
+				</div>
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="row" >
-	
+
 
 
 		<div class="top-nav" id="hide-menu-items">

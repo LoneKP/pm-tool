@@ -11,6 +11,9 @@ Rails.application.routes.draw do
 	resources :risk_actions, only: [:edit, :update, :destroy]
 
 
+	get 'login', to: 'sessions#new'
+	post 'login', to: 'sessions#create'
+	delete 'logout', to: 'sessions#destroy', as:  'logout'
 	get 'archived_projects', to: 'projects#archived_projects'
 	get 'revenue', to: 'projects#revenue'
 	get 'dashboard', to: "projects#dashboard"
@@ -19,3 +22,4 @@ Rails.application.routes.draw do
 
 	# For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
+
