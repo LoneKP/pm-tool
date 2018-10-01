@@ -51,10 +51,10 @@
 					<a class="client<%= project.color_number %> archive-project" href="#archive-project-modal-<%= project.id %>" rel="modal:open">
 						<div>
 							<i class="client<%= project.color_number %> material-icons">folder</i>
-							<% if project.added_to_dashboard == true %>
-							<p>Archive project</p>
+							<% if project.closed == false %>
+							<p>Close project</p>
 							<% else %>
-							<p>Unarchive project</p>
+							<p>Reopen project</p>
 							<% end %>
 						</div>
 					</a>
@@ -153,16 +153,16 @@
 		</div>
 		<div class="project-modal-footer">
 			<a href="#" rel="modal:close"><div  class="cancel">Cancel</div></a>	
-			<%= link_to 'Delete', project_path(project), method: :delete, :class => 'delete-project-btn' %>
+			<%= link_to 'Delete', project_path(project, user_id:@user.id), method: :delete, :class => 'delete-project-btn' %>
 		</div>
 	</div>		
 
-	<!--Archive modal			-->
+	<!--Close project modal			-->
 	<div id="archive-project-modal-<%= project.id %>" class="modal">
 		<div class="project-modal-header mb-3">
 			<div>
 				<i class="material-icons blue">folder</i>
-				<p class="text-24 blue">Archive project?</p>
+				<p class="text-24 blue">Close project?</p>
 			</div>
 			<div>
 				<a href="#" class="material-icons" rel="modal:close">
@@ -172,25 +172,23 @@
 
 		</div>
 		<div class="project-modal-content">
-			<p class="text-16-19%> ">Did you finish this project? Is it invoiced and closed? Then it's time to archive it!</p>
+			<p class="text-16-19%> ">Did you finish this project? Is it invoiced and closed? Then it's time to close it!</p>
 			<p id="id"></p>
 		</div>
 		<div class="project-modal-footer">
 			<a href="#" rel="modal:close"><div  class="cancel">Cancel</div></a>	
 
-			<% if project.added_to_dashboard == true %>
+			<% if project.closed == false %>
 
 			<%= form_for project do |f| %>
-			<%= f.hidden_field :archived, :value => true %>
-			<%= f.hidden_field :added_to_dashboard, :value => false %>
-			<p><%= f.submit 'Archive project', :class => 'archive-project-btn', :action => 'archived_projects' %></p>
+			<%= f.hidden_field :closed, :value => true %>	
+			<p><%= f.submit 'Close project', :class => 'archive-project-btn', :action => 'closed_projects' %></p>
 			<% end %>
 
 			<% else %>
 			<%= form_for project do |f| %>
-			<%= f.hidden_field :archived, :value => false %>
-			<%= f.hidden_field :added_to_dashboard, :value => true %>
-			<p><%= f.submit 'Unarchive project', :class => 'archive-project-btn' %></p>
+			<%= f.hidden_field :closed, :value => false %>
+			<p><%= f.submit 'Reopen project', :class => 'archive-project-btn' %></p>
 			<% end %>
 
 			<% end %>

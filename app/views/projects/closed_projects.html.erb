@@ -14,7 +14,7 @@
 		</div>
 		<div class="d-flex flex-column">
 			<p class="text-16">Congratulations!</p>
-			<p class="text-24">Here are your archived projects</p>
+			<p class="text-24">Here are your closed projects</p>
 		</div>
 	</div>
 	<div class="col-1"></div>
@@ -22,7 +22,7 @@
 
 <div class="row">
 <div class="col-1 monthly-process-assessment-hide"></div>
-<%= render 'project', obj: @archived_projects %>
+<%= render 'project', obj: @user.projects.where(closed:true) %> 
 <div class="col-1 monthly-process-assessment-hide"></div>
 <div class="monthly-process-assessment-active col-2">
 </div>

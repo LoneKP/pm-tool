@@ -14,12 +14,19 @@ class ProjectsController < ApplicationController
 	def update
 		@project = Project.find(params[:id])
 		@project.update(project_params)
-		@project.responsibilities.create(user:current_user)
-		ProjectDataFetcher.new(@project).call
+		if @project.responsibilities.where(user_id:current_user.id).exists?
+			ProjectDataFetcher.new(@project).call
+			puts 'the current user already had a relation to this project'
+		else
+			@project.responsibilities.create(user:current_user)
+			ProjectDataFetcher.new(@project).call
+			puts 'the current user did not have a relation to this project, so the relation was created'
+		end
+
 		if @project.update(project_params)
 			redirect_to dashboard_url, notice: "Congratulations! You have successfully added/edited a project."
 		else
-			render 'edit'
+			render 'edit', alert: "Something went wrong"
 		end
 	end
 
@@ -29,9 +36,14 @@ class ProjectsController < ApplicationController
 		@risk_actions = RiskAction.all
 		@revenue_month = RevenueMonth.new
 	end
+	
+	def revenue
+		@user = current_user
+	end
 
-	def archived_projects
-		@archived_projects = Project.all.where(archived:true)
+	def closed_projects
+		@user = current_user
+		@closed_projects = Project.all.where(closed:true)	
 	end
 
 	def index
@@ -41,17 +53,9 @@ class ProjectsController < ApplicationController
 		@user = current_user
 	end
 
-	#	def create
-	#		#		render plain: params[:project].inspect
-	#		@project = Project.new(project_params)
-	#		@project.save
-	#		redirect_to projects_url
-	#	end
-
 	def edit
 		@project = Project.find(params[:id])
 	end
-
 
 	def destroy
 		@project = Project.find(params[:id])
@@ -61,7 +65,7 @@ class ProjectsController < ApplicationController
 
 	private
 	def project_params
-		params.require(:project).permit(:harvest_project_id, :added_to_dashboard, :work_hours, :hours_sold_for, :project_start_date, :project_end_date, :archived, :evaluation)
+		params.require(:project).permit(:harvest_project_id, :added_to_dashboard, :work_hours, :hours_sold_for, :project_start_date, :project_end_date, :closed, :evaluation)
 	end
 
 end

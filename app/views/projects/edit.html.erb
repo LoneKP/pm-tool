@@ -88,8 +88,14 @@
 		</div>
 		<div class="add-project-buttons">
 			<div>
+				<% if %>
+				<% @project.responsibilities.count > 0 %>
+				<%= link_to "Back to dashboard", projects_url, class: 'dont-add-project' %>
+				<%= f.submit 'Update project', :class => 'add-project' %>
+				<% else %>
 				<%= link_to "Don't add", projects_url, class: 'dont-add-project' %>
 				<%= f.submit 'Add Project', :class => 'add-project' %>
+				<% end %>
 				<% end %>
 			</div>
 		</div>

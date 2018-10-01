@@ -9,7 +9,8 @@
 				<% if logged_in? %>
 				<div>
 					<i class="material-icons">person</i>
-					<a href="#"><%= @user != nil ? @user.username : 'No user logged in' %></a>
+					<a href="#"><%= @user.first_name%> <%=@user.last_name %></a>
+				
 				</div>
 				<div>
 					<i class="material-icons">settings_applications</i>
@@ -49,7 +50,7 @@
 						<%= link_to 'Revenue', '/revenue', :class => current_class?('/revenue') %>
 					</a>
 					<a>
-						<%= link_to 'Archived projects', '/archived_projects', :class => current_class?('/archived_projects') %>
+						<%= link_to 'Closed projects', '/closed_projects', :class => current_class?('/closed_projects') %>
 					</a>
 					<a> 
 						<%= link_to 'All projects', '/projects', :class => current_class?('/projects') %>

@@ -11,7 +11,7 @@
 	<div class="col-1"></div>
 	<div class="col-10 d-flex flex-row mt-266">
 		<div class="d-flex flex-column justify-content-center mr-3">
-			<% if @user.projects.any? {|project| project.completion_percentage > 103 || project_in_need_of_risk_update?(project) } %>
+			<% if @user.projects.where(closed:false).any? {|project| project.completion_percentage > 103 || project_in_need_of_risk_update?(project) } %>
 			<i class="material-icons icon-24-attention">error</i>
 			<% 	else %>
 			<i class="material-icons icon-24">trending_up</i>
@@ -19,12 +19,12 @@
 
 		</div>
 		<div class="d-flex flex-column">
-			<p class="text-16">Welcome back, <%= @user.username.downcase.capitalize %></p>
+			<p class="text-16">Welcome back, <%= @user.first_name.downcase.capitalize %>!</p>
 
 
-			<% if @user.projects.any? {|project| project_in_need_of_risk_update?(project) } %>
-			<p class="text-24">You have <%= pluralize( @user.projects.count {|project| project_in_need_of_risk_update?(project) }, 'project') %> in need of a risk update</p> 
-			<% elsif @user.projects.any? {|project| project.completion_percentage > 103 } %>
+			<% if @user.projects.where(closed:false).any? {|project| project_in_need_of_risk_update?(project) } %>
+			<p class="text-24">You have <%= pluralize( @user.projects.where(closed:false).count {|project| project_in_need_of_risk_update?(project) }, 'project') %> in need of a risk update</p> 
+			<% elsif @user.projects.where(closed:false).any? {|project| project.completion_percentage > 103 } %>
 			<p class="text-24">Some of your projects have gone over time. Do something, pleeease!</p> 
 			<% 	else %>
 			<p class="text-24">Everything seems to be on track!</p>
@@ -52,9 +52,9 @@
 <% if logged_in? %>
 <div class="row">
 	<div class="col-1 monthly-process-assessment-hide"></div>
-	<%= render 'project', obj: @user.projects %>
+	<%= render 'project', obj: @user.projects.where(closed:false) %>
 	<div class="col-2">
-		<% @user.projects.each do |project| %>
+		<% @user.projects.where(closed:false).each do |project| %>
 		<div class="monthly-process-assessment-active">
 
 		</div>

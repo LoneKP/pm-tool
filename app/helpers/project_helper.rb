@@ -17,7 +17,7 @@ module ProjectHelper
 
 
 	def if_project_is_added_to_dashboard_grey_out(id, user)
-		if user.projects.exists?(harvest_project_id: id) or user.projects.exists?(harvest_project_id: id, archived:true)
+		if user.projects.exists?(harvest_project_id: id) or user.projects.exists?(harvest_project_id: id, closed:true)
 			return ['class="already-on-dashboard"'].join.html_safe
 		else
 			return ''
@@ -25,7 +25,7 @@ module ProjectHelper
 	end
 
 	def project_is_already_on_dashboard?(id, user)
-		if user.projects.exists?(harvest_project_id: id) or user.projects.exists?(harvest_project_id: id, archived:true)
+		if user.projects.exists?(harvest_project_id: id) or user.projects.exists?(harvest_project_id: id, closed:true)
 			return true
 		else
 			return false

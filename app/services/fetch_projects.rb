@@ -4,7 +4,8 @@ class FetchProjects
 
 	#if project exists - update, if not - create. 
 	def update_projects
-		Project.where(added_to_dashboard:false, archived:false).delete_all
+		
+		Project.left_joins(:users).where( users: {id: nil } ).delete_all
 		active_and_billable_projects.map do |project| 
 			client_name = project.values_at('client').map {|client| client.values_at('name')}.join('')
 			project_name = project.values_at('name').join('')
@@ -21,8 +22,7 @@ class FetchProjects
 					hours_sold_for: hours_sold_for,
 					project_start_date: project_start_date,
 					project_end_date: project_end_date, 
-					added_to_dashboard: false,
-					archived: false
+					closed: false
 					)
 
 			else

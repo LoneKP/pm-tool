@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 	get 'login', to: 'sessions#new'
 	post 'login', to: 'sessions#create'
 	delete 'logout', to: 'sessions#destroy', as:  'logout'
-	get 'archived_projects', to: 'projects#archived_projects'
+	get 'closed_projects', to: 'projects#closed_projects'
 	get 'revenue', to: 'projects#revenue'
 	get 'dashboard', to: "projects#dashboard"
 	get 'projects', to: "projects#projects"
