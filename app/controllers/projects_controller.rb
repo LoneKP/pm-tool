@@ -20,6 +20,7 @@ class ProjectsController < ApplicationController
 		else
 			@project.responsibilities.create(user:current_user)
 			ProjectDataFetcher.new(@project).call
+			ProjectTimeFetcher.new(@project).call
 			puts 'the current user did not have a relation to this project, so the relation was created'
 		end
 
