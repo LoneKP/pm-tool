@@ -6,8 +6,8 @@ class ProjectTimeFetcher
 	end
 
 	def call
+		TimeTracking.delete_all
 		combine_all_hours.each do |date, hours|
-			TimeTracking.delete_all
 			entry = TimeTracking.new
 			entry.project_id = @project.id
 			entry.date = date
