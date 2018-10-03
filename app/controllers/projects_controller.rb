@@ -37,14 +37,18 @@ class ProjectsController < ApplicationController
 		@risk_actions = RiskAction.all
 		@revenue_month = RevenueMonth.new
 	end
-	
+
 	def revenue
 		@user = current_user
 	end
 
+	def team
+		@user = current_user
+		@projects = Project.joins(:users).uniq
+	end
+
 	def closed_projects
 		@user = current_user
-		@closed_projects = Project.all.where(closed:true)	
 	end
 
 	def index
