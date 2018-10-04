@@ -6,7 +6,7 @@ class ProjectTimeFetcher
 	end
 
 	def call
-		TimeTracking.delete_all
+		TimeTracking.where(project_id: @project.id).delete_all
 		combine_all_hours.each do |date, hours|
 			entry = TimeTracking.new
 			entry.project_id = @project.id
