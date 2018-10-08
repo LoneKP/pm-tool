@@ -1171,6 +1171,22 @@ a:hover, a:visited, a:link, a:active
 	justify-content: space-around;
 }
 
+.gear-menu-team {
+	//	height: 204px;
+	//	width: 182px;
+	border-radius: 4px;	
+	background-color: #FFFFFF;	
+	position: absolute;
+	margin-left: 12px;
+	margin-top: -8px;
+	display: flex;
+	flex-direction: column;
+	align-content: flex-start;
+	align-items: flex-start;
+	justify-content: space-around;
+}
+
+
 .close-gear-icon {
 	text-align: right;
 	vertical-align: top;
@@ -1191,7 +1207,16 @@ a:hover, a:visited, a:link, a:active
 	margin-right: 24px;
 	margin-bottom: 12px;
 	cursor: pointer;
+}
 
+.gear-menu-team div {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-end;
+	justify-content: space-around;
+	margin-right: 24px;
+	margin-bottom: 12px;
+	cursor: pointer;
 }
 
 .gear-menu div i {
@@ -1201,7 +1226,20 @@ a:hover, a:visited, a:link, a:active
 	margin-left: 14px;
 }
 
+.gear-menu-team div i {
+	height: 20px;
+	color: rgb(var(--primary-color));
+	margin-right: 10px;
+	margin-left: 14px;
+}
+
 .gear-menu div p {
+	color: rgb(var(--primary-color));
+	font-size: 14px;
+	line-height: 16px;
+}
+
+.gear-menu-team div p {
 	color: rgb(var(--primary-color));
 	font-size: 14px;
 	line-height: 16px;
@@ -1630,6 +1668,24 @@ input.add-risk-action {
     background: #68AAD4;
 }
 
+.contact-people-label-team-view {
+	display: flex;
+//	margin-top: 24px;
+//	margin-bottom: 44px;
+	flex-wrap: wrap;
+}
+
+.contact-people-label-team-view p {
+	margin-right: 8px;
+	border-radius: 16px;	
+	background-color: rgb(var(--primary-color));
+	padding: 4px 12px 4px 12px; 
+	color: #FFFFFF;	
+	font-family: "Work Sans";	
+	font-size: 10px;	
+	line-height: 12px;
+	margin-bottom: 10px;
+}
 
 
 //.contact-people-label p:nth-child(even) {

@@ -8,28 +8,12 @@
 				</h6>
 			</div>
 
-			<% today = Time.now.to_date %>
-			<% last_risk_update = (RiskAction.where(project_id:project.id).last&.created_at)&.to_date %>
-			<% if last_risk_update.present? %>	
-			<% days_since_last_risk_update = (today - last_risk_update).to_i %>		
-			<% if days_since_last_risk_update < 6 %>
-			<% else %>
-			<div class="box d-flex flex-row">
-				<i class="icon-14-risk-update material-icons">access_time</i>
-				<p class="risk-update-text"> <%= pluralize(days_since_last_risk_update, 'day') %> since last <%= link_to 'risk update', new_project_risk_action_path(project), :action => 'new', data: { turbolinks: false } %></p>
-			</div>
-			<% end %>
-			<% else %>
-			<div class="box d-flex flex-row">
-				<i class="icon-14-risk-update material-icons">access_time</i>
-				<p class="risk-update-text">Make your first <%= link_to 'risk update', new_project_risk_action_path(project), :action => 'new', data: { turbolinks: false } %></p>
-			</div>
-			<% end %>
+
 
 
 			<div class="box gear-menu-wrapper">
-				<div class="gear-menu client<%= project.color_number %>">
-					<i class="client<%= project.color_number %> close-gear-menu material-icons close-gear-icon">close</i>
+				<div class="gear-menu-team client<%= project.color_number %>">
+			
 					<a class="details">
 						<%= link_to project_path(project), :action => 'show', data: { turbolinks: false } do %>
 						<div>
@@ -38,55 +22,23 @@
 						</div>
 						<% end %>
 					</a>
-					<div class="client<%= project.color_number %> line"></div>
-					<a class="risk-action">
-						<%= link_to new_project_risk_action_path(project), :action => 'new', data: { turbolinks: false } do %>
-						<div>
-							<i class="client<%= project.color_number %> material-icons">error</i>
-							<p>Add risk / action</p>
-						</div>
-						<% end %>
-					</a>
-					<div class="client<%= project.color_number %> line"></div>
-					<a class="client<%= project.color_number %> archive-project" href="#archive-project-modal-<%= project.id %>" rel="modal:open">
-						<div>
-							<i class="client<%= project.color_number %> material-icons">folder</i>
-							<% if project.closed == false %>
-							<p>Close project</p>
-							<% else %>
-							<p>Reopen project</p>
-							<% end %>
-						</div>
-					</a>
-
-
-					<div class="client<%= project.color_number %> line"></div>
-					<a>
-						<%= link_to edit_project_path(project), :action => 'edit', data: { turbolinks: false } do %>
-						<div>
-							<i class="client<%= project.color_number %> material-icons">edit</i>
-							<p>Edit project</p>
-						</div>
-						<% end %>
-					</a>
-
-					<div class="client<%= project.color_number %> line"></div>
-					<a class="client<%= project.color_number %> delete-project" href="#delete-project-modal-<%= project.id %>" rel="modal:open">
-						<div>
-							<i class="material-icons">delete_forever</i>
-							<p>Remove project</p>
-						</div>
-					</a>
+				
 				</div>
-				<i class="open-gear-menu material-icons icon_20 client<%= project.color_number %>">settings</i>
-			</div>
-		</div>
-		<%= completion_indicator(project) %>
 
+			</div>
+	
+		</div>
+	
+		<%= completion_indicator(project) %>
+			<div class="contact-people-label-team-view">
+			<% project.users.each do |user| %> 
+			<p><%= user.first_name %> <%= user.last_name %></p>
+			<% end %>
+			</div>
 		<div class="d-flex flex-row justify-content-between">
 			<div class="mt-66">
 				<p class="tekst"><i class="material-icons icon_12 client<%= project.color_number %>">attach_money</i><span>Sold hours:</span> <%=project.hours_sold_for.round %> hours</p>
-				<p class="tekst mt-2"><i class="material-icons icon_12 client<%= project.color_number %>">access_time</i><span>Work hours:</span><%=project.work_hours.round %> hours</p>
+				<p class="tekst mt-2"><i class="material-icons icon_12 client<%= project.color_number %>">access_time</i><span>Work hours:</span><%= project.work_hours.round %> hours</p>
 			</div>
 			<div class="wrapper">
 				<div class="circle client<%= project.color_number %>">
