@@ -206,9 +206,10 @@ class ProjectTimeFetcher
 	def meetings_hours
 		meetings_hours_per_date.update(meetings_hours_per_date) { |k,v| meetings_hours_per_date[k]=Hash["meetings_hours",v] }
 	end
-	
+
 	#daily standup part
 
+	#make into a constant
 	def daily_standup_time_entries
 		@_daily_standup_time_entries ||= billable_time_entries.select { |time_entry| time_entry.dig('task', 'id') == 9701231 }
 	end
@@ -253,7 +254,7 @@ class ProjectTimeFetcher
 	def combine_with_billable_hours
 		combine_all_task_hours.merge(billable_hours){|key,oldval,newval| oldval.merge(newval) }
 	end
-	
+
 	def combine_all_hours
 		combine_with_billable_hours.merge(daily_standup_hours){|key,oldval,newval| oldval.merge(newval) }
 	end
