@@ -347,7 +347,7 @@ delete-button {
 .icon-messages-alert {
 	font-size: 20px !important;
 	color: #FFF;
-//	background-color: #FFF;
+	//	background-color: #FFF;
 	border-radius: 50%;
 	display: flex;
 	align-content: center;
@@ -1547,6 +1547,10 @@ input.add-risk-action {
 	margin-bottom: 27px;
 }
 
+.highcharts-container {
+	border-radius: 12px;
+}
+
 .risk-actions-details-wrapper > div > div:first-of-type {
 	height: 44px;
 	border-radius: 12px;
@@ -1593,9 +1597,41 @@ input.add-risk-action {
 }
 
 .vertical-center {
-  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
-  min-height: 40vh; /* These two lines are counted as one :-)       */
+	min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+	min-height: 40vh; /* These two lines are counted as one :-)       */
 
-  display: flex;
-  align-items: center;
+	display: flex;
+	align-items: center;
 }
+
+.contact-people-label {
+	display: flex;
+	margin-top: 24px;
+	margin-bottom: 44px;
+	flex-wrap: wrap;
+}
+
+.contact-people-label p {
+	margin-right: 16px;
+	border-radius: 16px;	
+	background-color: #99ACFF;
+	padding: 6px 24px 6px 24px; 
+	color: #FFFFFF;	
+	font-family: "Work Sans";	
+	font-size: 16px;	
+	line-height: 19px;
+	margin-bottom: 10px;
+}
+.contact-people-label p:nth-child(2n+0) {
+	background-color: #FF96B4;
+}
+
+.contact-people-label p:nth-child(3n+0) {
+    background: #68AAD4;
+}
+
+
+
+//.contact-people-label p:nth-child(even) {
+//	background-color: #FF96B4;
+//}
