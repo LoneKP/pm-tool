@@ -46,8 +46,9 @@ title: 'Time Statistics',
 colors: ['#A9EFB2', '#5F6AC7', '#728CFF', '#68AAD4', '#99ACFF']
 %>
 
-
 	</div>
+	
+<!--
 	<div class="col-8">
 		<div class="col-12">
 			<p>second box</p>
@@ -63,23 +64,14 @@ colors: ['#A9EFB2', '#5F6AC7', '#728CFF', '#68AAD4', '#99ACFF']
 			<p>fourth box</p>
 		</div>
 	</div>
+-->
 </div>
 
 <h6 class="headline-projects-view">Risks and actions</h6>
 
 <%= render 'shared/risk_actions' %>
 
-<% @risk_actions_grouped.each do |(week, risk_action)| %>
-
-<h3>Week: <%= week.strftime('%W').to_i %></h3>
-<% risk_action.each do |risk_action| %>
-<ul>
-	<li>Risk: <%= risk_action.risk %></li>
-	<li>Action: <%= risk_action.action %></li>
-</ul>
 
 
-<% end %>
-<% end %>
 
-<h6>History</h6>
+<!--<h6>History</h6>-->
