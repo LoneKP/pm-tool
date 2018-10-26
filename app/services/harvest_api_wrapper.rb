@@ -37,5 +37,16 @@ class HarvestApiWrapper
 			"User-Agent" => agent
 			}
 	end
+
+#	def headers_oauth(agent)
+#				{
+#			"Authorization" => "Bearer #{ACCESS_TOKEN}", 
+#			"User-Agent" => agent
+#			}
+#	end
+
+#	resp = HTTParty.get("http://example1.com?a=123&b=456")
+#res.request.last_uri.to_s
+	
 end
 

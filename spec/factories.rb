@@ -1,4 +1,7 @@
 FactoryBot.define do
+  factory :model do
+    
+  end
 
 	factory :user do
 		first_name { "John" }

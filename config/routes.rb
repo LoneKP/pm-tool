@@ -1,5 +1,6 @@
 require 'sidekiq/web'
 Rails.application.routes.draw do
+  devise_for :models
 	root 'projects#dashboard' 
 	resources :projects do
 		resources :risk_actions, only: [:index, :create, :new]
@@ -10,7 +11,7 @@ Rails.application.routes.draw do
 	end
 
 	resources :risk_actions, only: [:edit, :update, :destroy]
-
+	
 
 	get 'login', to: 'sessions#new'
 	post 'login', to: 'sessions#create'
