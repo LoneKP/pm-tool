@@ -1,6 +1,6 @@
 require 'sidekiq/web'
 Rails.application.routes.draw do
-  devise_for :models
+
 	root 'projects#dashboard' 
 	resources :projects do
 		resources :risk_actions, only: [:index, :create, :new]
