@@ -11,8 +11,8 @@ Rails.application.routes.draw do
 	end
 
 	resources :risk_actions, only: [:edit, :update, :destroy]
-	
 
+	get '/harvest_oauth2/callback', to: 'users#create'
 	get 'login', to: 'sessions#new'
 	post 'login', to: 'sessions#create'
 	delete 'logout', to: 'sessions#destroy', as:  'logout'

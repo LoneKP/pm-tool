@@ -13,7 +13,6 @@ class SessionsController < ApplicationController
 			puts "user does not exist"
 			redirect_to login_path, alert: "Sorry! This user does not exist - please try with a different email"
 		end
-
 	end
 
 	def destroy
@@ -21,8 +20,4 @@ class SessionsController < ApplicationController
 		redirect_to login_path
 	end
 
-	private
-	#	def session_params
-	#		params.require(:session).permit(:email)
-	#	end
 end
