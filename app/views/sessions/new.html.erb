@@ -1,26 +1,13 @@
-<h1>Prjectio login page </h1>
+<h1>Login</h1>
 
-<%= form_for(:session, :html => {class: "form-horizontal", role: "form"}, url: login_path) do |f| %>
 
-<div class="row vertical-center">
-	<div class="col-2"></div>
 
-	<div class="col-6">
-		<%= f.email_field :email, class: "form-control", placeholder: "Enter email", autofocus: true %>
-	</div>
-
-	<div class="col-2">
-		<%= f.submit "Log in", class: 'add-project' %>
-	</div>
-	
-	<div class="col-2"></div>
-
+<%= link_to 'https://id.getharvest.com/oauth2/authorize?client_id=XRkPD4vFB4Jmv5NLXTJ_k8me&response_type=code
+' do %>
+<div class="mt-350 new-project">
+	<i class="material-icons icon-add mr-133">input</i>
+	<p class="text-24 blue">Log in with Harvest</p>
 </div>
-
 <% end %>
-
-
-<%= link_to 'connect to Harvest', 'https://id.getharvest.com/oauth2/authorize?client_id=XRkPD4vFB4Jmv5NLXTJ_k8me&response_type=code
-' %>
 
 
