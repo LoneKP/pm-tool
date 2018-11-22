@@ -311,7 +311,6 @@ delete-button {
 .icon-14-risk-update {
 	font-size: 16px !important;
 	color: rgb(var(--primary-color));
-	//	margin-left: -59px;
 }
 
 .icon-14-check {
@@ -1526,7 +1525,7 @@ input.add-risk-action {
 }
 
 .margin-left-auto {
-	margin-left: auto;
+	margin-left: auto !important;
 }
 
 .margin-right-auto {
@@ -1665,13 +1664,13 @@ input.add-risk-action {
 }
 
 .contact-people-label p:nth-child(3n+0) {
-    background: #68AAD4;
+	background: #68AAD4;
 }
 
 .contact-people-label-team-view {
 	display: flex;
-//	margin-top: 24px;
-//	margin-bottom: 44px;
+	//	margin-top: 24px;
+	//	margin-bottom: 44px;
 	flex-wrap: wrap;
 }
 
@@ -1688,6 +1687,68 @@ input.add-risk-action {
 }
 
 
-//.contact-people-label p:nth-child(even) {
-//	background-color: #FF96B4;
-//}
+.project-filter-container {
+	display: flex;
+	margin-top: 115px;
+}
+
+.project-filters {
+	display: flex;
+	padding-left: 27px;
+	padding-right: 27px;
+	padding-bottom: 10px;
+	align-items: center;
+}
+
+.project-filter-container a.selected {
+	border-bottom: 5px;
+	border-style: none none solid none;
+	border-color: rgb(var(--primary-color));
+	opacity: 1;
+	padding-bottom: 5px;
+}
+
+.project-filter-container a.selected p {
+	color: rgb(var(--primary-color));
+	font-weight: 600;
+	opacity: 1;
+}
+
+.project-filter-container a.selected i {
+	color: rgb(var(--primary-color));
+	opacity: 1;
+}
+
+.project-filter-container > a p {
+	opacity: 0.5;
+	color: #4A4A4A;
+	font-family: "Open Sans";
+	font-size: 16px;
+	line-height: 22px;
+}
+
+.search-bar-filters {
+	margin-left: auto !important;
+}
+
+.search-bar-filters i {
+	color: rgb(var(--primary-color));
+}
+
+.project-filter-container > a > div > div:first-child {
+	margin-right: 18px;
+}
+
+.project-filters i {
+	font-size: 24px !important;
+	color: #4A4A4A;
+	opacity: 0.5;
+}
+
+.project-filters-underline {
+	background-color: rgba(74,74,74,0.3);
+	height: 2px;
+	width: 100%;
+	margin-top: -1px;
+	margin-bottom: 45px;
+}

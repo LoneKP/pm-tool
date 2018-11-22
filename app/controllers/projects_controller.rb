@@ -1,5 +1,8 @@
 class ProjectsController < ApplicationController
 
+	has_scope :closed, type: :boolean
+
+
 	def new
 		@project = Project.new	
 	end
@@ -11,15 +14,16 @@ class ProjectsController < ApplicationController
 	end
 
 	def update
+		@user = current_user
 		@project = Project.find(params[:id])
 		@project.update(project_params)
 		if @project.responsibilities.where(user_id:current_user.id).exists?
-			ProjectDataFetcher.new(@project).call
+			ProjectDataFetcher.new(@project, @user).call
 			puts 'the current user already had a relation to this project'
 		else
 			@project.responsibilities.create(user:current_user)
-			ProjectDataFetcher.new(@project).call
-			ProjectTimeFetcher.new(@project).call
+			ProjectDataFetcher.new(@project, @user).call
+			ProjectTimeFetcher.new(@project, @user).call
 			puts 'the current user did not have a relation to this project, so the relation was created'
 		end
 
@@ -32,7 +36,7 @@ class ProjectsController < ApplicationController
 
 	def dashboard
 		@user = current_user
-		@projects = Project.all
+		@projects = @user.projects.where(closed:false, organization_id: @user.organization.id)
 		@risk_actions = RiskAction.all
 		@revenue_month = RevenueMonth.new
 	end
@@ -43,18 +47,29 @@ class ProjectsController < ApplicationController
 
 	def team
 		@user = current_user
-		@projects = Project.joins(:users).uniq
+		@projects = Project.where(organization_id: @user.organization.id).joins(:users).uniq
 	end
 
 	def closed_projects
 		@user = current_user
+		@projects = @user.projects.where(closed:true, organization_id: @user.organization.id)
 	end
 
 	def index
-		@project = Project.new
-		@projects = Project.all
-		@projects_grouped_by_client = Project.all.group_by { |projects| projects.client_name }
 		@user = current_user
+		@project = Project.new
+		@filtering = params[:filtering]
+
+
+		if @filtering == 'dashboard'
+			@projects = @user.projects.where(closed:false, organization_id:@user.organization_id )
+		elsif @filtering == 'closed'
+			@projects = Project.all.where(closed:true, organization_id:@user.organization_id )
+		else
+			@projects = Project.all.where(closed:false, organization_id:@user.organization_id )
+		end
+
+		@projects_grouped_by_client = @projects.group_by { |projects| projects.client_name }
 	end
 
 	def edit

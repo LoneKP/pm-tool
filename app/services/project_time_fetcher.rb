@@ -1,8 +1,9 @@
 class ProjectTimeFetcher
 
-	def initialize(project, api_wrapper = nil)
+	def initialize(project, user, api_wrapper = nil)
 		@_wrapper = api_wrapper
 		@project = project
+		@user = user
 	end
 
 	def call
@@ -24,7 +25,7 @@ class ProjectTimeFetcher
 	#	private
 
 	def response_time_entries
-		response_time_entries_raw = wrapper.time_entries(1, harvest_project_id)			
+		response_time_entries_raw = wrapper(@user).time_entries(1, harvest_project_id)			
 
 		#Getting the number of pages of the paginated response from projects API	 
 		number_of_pages = response_time_entries_raw['total_pages']
@@ -37,7 +38,7 @@ class ProjectTimeFetcher
 			#for loop to loop through all the pages and fetch all and put into the variable response_time_entries_per_project
 
 			for i in 1..number_of_pages do	
-				time_entries_raw = wrapper.time_entries(i, harvest_project_id)
+				time_entries_raw = wrapper(@user).time_entries(i, harvest_project_id)
 
 				next_array = time_entries_raw['time_entries']
 
@@ -51,8 +52,8 @@ class ProjectTimeFetcher
 	end
 
 
-	def wrapper
-		@_wrapper ||= HarvestApiWrapper.new
+	def wrapper(user)
+		@_wrapper ||= HarvestApiWrapper.new(@user)
 	end
 
 	def harvest_project_id

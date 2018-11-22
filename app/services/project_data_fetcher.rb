@@ -1,7 +1,8 @@
 class ProjectDataFetcher
 
-	def initialize(project)
+	def initialize(project, user)
 		@project = project
+		@user = user
 	end
 
 	def call
@@ -17,6 +18,7 @@ class ProjectDataFetcher
 		#		@project.project_start_date = project_start_date
 		@project.project_end_date = project_end_date
 		@project.color_number = color_number
+		@project.organization_id = @user.organization_id
 		@project.save
 	end
 
@@ -36,7 +38,7 @@ class ProjectDataFetcher
 	#	end
 
 	def response_time_entries
-		response_time_entries_raw = wrapper.time_entries(1, harvest_project_id)			
+		response_time_entries_raw = wrapper(@user).time_entries(1, harvest_project_id)			
 
 		#Getting the number of pages of the paginated response from projects API	 
 		number_of_pages = response_time_entries_raw['total_pages']
@@ -49,7 +51,7 @@ class ProjectDataFetcher
 			#for loop to loop through all the pages and fetch all and put into the variable response_time_entries_per_project
 
 			for i in 1..number_of_pages do	
-				time_entries_raw = wrapper.time_entries(i, harvest_project_id)
+				time_entries_raw = wrapper(@user).time_entries(i, harvest_project_id)
 
 				next_array = time_entries_raw['time_entries']
 
@@ -64,8 +66,8 @@ class ProjectDataFetcher
 
 
 
-	def wrapper
-		@_wrapper ||= HarvestApiWrapper.new
+	def wrapper(user)
+		@_wrapper ||= HarvestApiWrapper.new(@user)
 	end
 
 	def harvest_project_id
@@ -143,7 +145,7 @@ class ProjectDataFetcher
 	end
 
 	def response_projects
-		wrapper.project(harvest_project_id)
+		wrapper(@user).project(harvest_project_id)
 	end
 
 	#	def hours_sold_for

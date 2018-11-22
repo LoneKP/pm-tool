@@ -1,22 +1,9 @@
-class HarvestApiWrapper 
-	include HTTParty	
-
-	def initialize(user)
-		@user = user
-	end
+class HarvestApiWrapper_old
+	include HTTParty
 
 	def project(project_id)
 		HTTParty.get(
 			"https://api.harvestapp.com/api/v2/projects/#{project_id}.json", 
-			headers: headers(
-				"https://api.harvestapp.com/api/v2/projects.json"
-				)
-			).parsed_response				
-	end
-
-	def user_info
-		HTTParty.get(
-			'https://id.getharvest.com/api/v2/accounts', 
 			headers: headers(
 				"https://api.harvestapp.com/api/v2/projects.json"
 				)
@@ -42,21 +29,16 @@ class HarvestApiWrapper
 			).parsed_response
 	end
 
-
-
-	#		private
+	
+	private
 
 	def headers(agent)
-
 		{
-			"Authorization" => @user.access_token,
-			"Harvest-Account-Id" => @user.organization.harvest_account_id.to_s,
+			"Harvest-Account-ID" => ENV.fetch('HARVEST_API_ID'), 
+			"Authorization" => "Bearer #{ENV.fetch('HARVEST_API_BEARER')}", 
 			"User-Agent" => agent
 			}
 	end
+
 end
-
-
-
-
 

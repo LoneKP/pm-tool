@@ -1,11 +1,18 @@
 class FetchProjects
+	
+	def initialize(user)
+		@user = user
+	end
+
 	#find_or_create_by
 	#find_or_initialize_by
 
 	#if project exists - update, if not - create. 
 	def update_projects
 		
-		Project.left_joins(:users).where( users: {id: nil } ).delete_all
+		projects_not_added = Project.left_joins(:users).where( users: {id: nil } )
+		projects_not_added.where(organization_id: @user.organization_id).delete_all
+		
 		active_and_billable_projects.map do |project| 
 			client_name = project.values_at('client').map {|client| client.values_at('name')}.join('')
 			project_name = project.values_at('name').join('')
@@ -21,7 +28,8 @@ class FetchProjects
 					harvest_project_id: harvest_project_id,	
 					hours_sold_for: hours_sold_for,
 					project_start_date: project_start_date,
-					project_end_date: project_end_date, 
+					project_end_date: project_end_date,
+					organization_id: @user.organization_id,
 					closed: false
 					)
 
@@ -31,8 +39,8 @@ class FetchProjects
 		end
 	end
 
-	def wrapper
-		@_wrapper ||= HarvestApiWrapper.new
+	def wrapper(user)
+		@_wrapper ||= HarvestApiWrapper.new(@user)
 	end
 
 	def active_and_billable_projects
@@ -48,7 +56,7 @@ class FetchProjects
 	end
 
 	def all_projects_page_one_response
-		wrapper.all_projects(1)
+		wrapper(@user).all_projects(1)
 	end
 
 	def projects_page_one
@@ -64,7 +72,7 @@ class FetchProjects
 		all_projects_when_more_pages = []
 
 		for i in 1..number_of_pages do	
-			all_projects_collected = wrapper.all_projects(i)
+			all_projects_collected = wrapper(@user).all_projects(i)
 
 			next_array = all_projects_collected['projects']
 
