@@ -22,6 +22,8 @@ class HarvestAccess
 		if @user.organization_id != organization.id
 			@user.access_token = access_token 
 			@user.organization_id = organization.id
+			user.first_name = first_name
+			user.last_name = last_name
 			@user.save
 		else
 			@user

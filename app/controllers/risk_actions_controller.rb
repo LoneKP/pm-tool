@@ -1,4 +1,5 @@
 class RiskActionsController < ApplicationController
+	before_action :require_user
 
 	def new
 		@risk_action = RiskAction.new

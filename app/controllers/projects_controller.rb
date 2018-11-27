@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
 
 	has_scope :closed, type: :boolean
-
+	before_action :require_user
 
 	def new
 		@project = Project.new	
@@ -31,7 +31,7 @@ class ProjectsController < ApplicationController
 			redirect_to dashboard_url, notice: "Congratulations! You have successfully added/edited a project."
 		else
 			render 'edit', alert: "Something went wrong"
-		end
+		end	
 	end
 
 	def dashboard
@@ -47,7 +47,7 @@ class ProjectsController < ApplicationController
 
 	def team
 		@user = current_user
-		@projects = Project.where(organization_id: @user.organization.id).joins(:users).uniq
+		@projects = Project.where(organization_id: @user.organization.id, closed: false).joins(:users).uniq
 	end
 
 	def closed_projects
@@ -59,7 +59,6 @@ class ProjectsController < ApplicationController
 		@user = current_user
 		@project = Project.new
 		@filtering = params[:filtering]
-
 
 		if @filtering == 'dashboard'
 			@projects = @user.projects.where(closed:false, organization_id:@user.organization_id )
