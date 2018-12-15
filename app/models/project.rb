@@ -8,8 +8,8 @@ class Project < ApplicationRecord
 	validates :work_hours, :hours_sold_for, :project_start_date, :project_end_date, presence: true, on: :update
 	validates :work_hours, :hours_sold_for, numericality: true, on: :update
 
-	belongs_to :organization, inverse_of: :users, optional: true
-	validates_presence_of :organization
+	belongs_to :organisation, inverse_of: :users, optional: true
+	validates_presence_of :organisation
 
 	scope :closed, -> { where(closed: true) }
 	

@@ -36,7 +36,7 @@ class ProjectsController < ApplicationController
 
 	def dashboard
 		@user = current_user
-		@projects = @user.projects.where(closed:false, organization_id: @user.organization.id)
+		@projects = @user.projects.where(closed:false, organisation_id: @user.organisation.id)
 		@risk_actions = RiskAction.all
 		@revenue_month = RevenueMonth.new
 	end
@@ -47,12 +47,12 @@ class ProjectsController < ApplicationController
 
 	def team
 		@user = current_user
-		@projects = Project.where(organization_id: @user.organization.id, closed: false).joins(:users).uniq
+		@projects = Project.where(organisation_id: @user.organisation.id, closed: false).joins(:users).uniq
 	end
 
 	def closed_projects
 		@user = current_user
-		@projects = @user.projects.where(closed:true, organization_id: @user.organization.id)
+		@projects = @user.projects.where(closed:true, organisation_id: @user.organisation.id)
 	end
 
 	def index
@@ -61,11 +61,11 @@ class ProjectsController < ApplicationController
 		@filtering = params[:filtering]
 
 		if @filtering == 'dashboard'
-			@projects = @user.projects.where(closed:false, organization_id:@user.organization_id )
+			@projects = @user.projects.where(closed:false, organisation_id:@user.organisation_id )
 		elsif @filtering == 'closed'
-			@projects = Project.all.where(closed:true, organization_id:@user.organization_id )
+			@projects = Project.all.where(closed:true, organisation_id:@user.organisation_id )
 		else
-			@projects = Project.all.where(closed:false, organization_id:@user.organization_id )
+			@projects = Project.all.where(closed:false, organisation_id:@user.organisation_id )
 		end
 
 		@projects_grouped_by_client = @projects.group_by { |projects| projects.client_name }

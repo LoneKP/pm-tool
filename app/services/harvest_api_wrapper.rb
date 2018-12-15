@@ -57,7 +57,7 @@ class HarvestApiWrapper
 
 		{
 			"Authorization" => @user.access_token,
-			"Harvest-Account-Id" => @user.organization.harvest_account_id.to_s,
+			"Harvest-Account-Id" => @user.organisation.harvest_account_id.to_s,
 			"User-Agent" => agent
 			}
 	end

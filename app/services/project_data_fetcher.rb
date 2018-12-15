@@ -18,7 +18,7 @@ class ProjectDataFetcher
 		#		@project.project_start_date = project_start_date
 		@project.project_end_date = project_end_date
 		@project.color_number = color_number
-		@project.organization_id = @user.organization_id
+		@project.organisation_id = @user.organisation_id
 		@project.save
 	end
 

@@ -6,15 +6,15 @@ class HarvestAccess
 	end
 
 	def call
-		organization
+		organisation
 		create_or_find_user
-		handle_if_user_has_a_different_organization
+		handle_if_user_has_a_different_organisation
 	end
 
-	def organization
-		@_organization ||= Organization.where(harvest_account_id: harvest_account_id).first_or_create do |organization|
-			organization.organization_name = organization_name
-			organization.harvest_account_id = harvest_account_id	
+	def organisation
+		@_organisation ||= Organisation.where(harvest_account_id: harvest_account_id).first_or_create do |organisation|
+			organisation.organisation_name = organisation_name
+			organisation.harvest_account_id = harvest_account_id	
 		end
 	end
 
@@ -24,14 +24,14 @@ class HarvestAccess
 			user.last_name = last_name
 			user.email = email
 			user.access_token = access_token 
-			user.organization_id = organization.id
+			user.organisation_id = organisation.id
 		end
 	end
 
-	def handle_if_user_has_a_different_organization
-		if @user.organization_id != organization.id
+	def handle_if_user_has_a_different_organisation
+		if @user.organisation_id != organisation.id
 			@user.access_token = access_token 
-			@user.organization_id = organization.id
+			@user.organisation_id = organisation.id
 			user.first_name = first_name
 			user.last_name = last_name
 			@user.save
@@ -82,8 +82,8 @@ class HarvestAccess
 		@_email ||= user_info['user']['email']
 	end
 
-	def organization_name
-		@_organization_name ||= user_info['accounts'][0]['name']
+	def organisation_name
+		@_organisation_name ||= user_info['accounts'][0]['name']
 	end
 
 	def harvest_account_id

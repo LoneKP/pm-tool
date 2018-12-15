@@ -1,8 +1,29 @@
 <% content_for :navigation, render('custom_setup_top_bar', obj: 'Setup organisation', obj2: 'My organisation is already signed up') %>
-<h1>Setup organisation</h1>
 
 
-<p>Name:</p>
+
+<div class="setup-organisation-box">
+	<div>
+		<i class="material-icons icon-46">business</i>
+	</div>
+	<div>
+		<p class="setup-organisation-headline">Setup organisation</p>
+	</div>
+	<div>
+		<div>
+			<p class="organisation-name">
+				Organisation name
+			</p>
+		</div>
+		<%= simple_form_for @organization, :html => {:class => 'edit-view-styling'} do |f| %>
+		<%=	f.text_field :organization %>
+		<% end %>
+		
+		<div class="organisation-underline">
+
+		</div>
+	</div>
+</div>
 
 
 <%= render 'setup_navigation', back: '/#', forward: 'connect-to-tools' %>

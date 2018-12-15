@@ -412,6 +412,17 @@ delete-button {
 	padding: 3px;
 }
 
+.icon-46 {
+	font-size: 46px !important;
+	color: #FFF;
+	background-color: rgb(var(--primary-color));
+	border-radius: 50%;
+	display: flex;
+	align-content: center;
+	vertical-align: middle !important;
+	padding: 27px;
+}
+
 .icon-padding {
 	//	margin-right: 18px;
 	font-size: 16px !important;
@@ -1771,4 +1782,27 @@ input.add-risk-action {
 	justify-content: space-between;
 }
 
+.setup-organisation-box {
+	height: 528px;
+	width: 608px;
+	border-radius: 12px;
+	background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 100%);
+	box-shadow: 0 8px 16px 0 rgba(13,57,255,0.25);
+}
 
+.setup-organisation-headline {
+	color: #212121;
+	font-family: "Work Sans";
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 28px;
+	text-align: center;
+}
+
+.organisation-name {
+	color: #21214A;
+	font-family: "Work Sans";
+	font-size: 12px;
+	line-height: 14px;
+	text-align: center;
+}

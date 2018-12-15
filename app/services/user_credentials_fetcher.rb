@@ -7,7 +7,7 @@ class UserCredentialsFetcher
 	end
 
 	def call
-		@user = {'first_name' => first_name, 'last_name' => last_name, 'email' => email, 'organization' => organization}
+		@user = {'first_name' => first_name, 'last_name' => last_name, 'email' => email, 'organisation' => organisation}
 	end
 
 	def first_name
@@ -22,8 +22,8 @@ class UserCredentialsFetcher
 		@_email ||= user_info['user']['email']
 	end
 
-	def organization
-		@_organization ||= user_info['accounts'][0]['name']
+	def organisation
+		@_organisation ||= user_info['accounts'][0]['name']
 	end
 	
 

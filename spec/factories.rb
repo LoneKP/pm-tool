@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :organization do
+  factory :organisation do
     name { "MyString" }
     harvest_account_id { 1 }
   end

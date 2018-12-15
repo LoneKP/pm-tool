@@ -11,7 +11,7 @@ class FetchProjects
 	def update_projects
 		
 		projects_not_added = Project.left_joins(:users).where( users: {id: nil } )
-		projects_not_added.where(organization_id: @user.organization_id).delete_all
+		projects_not_added.where(organisation_id: @user.organisation_id).delete_all
 		
 		active_and_billable_projects.map do |project| 
 			client_name = project.values_at('client').map {|client| client.values_at('name')}.join('')
@@ -29,7 +29,7 @@ class FetchProjects
 					hours_sold_for: hours_sold_for,
 					project_start_date: project_start_date,
 					project_end_date: project_end_date,
-					organization_id: @user.organization_id,
+					organisation_id: @user.organisation_id,
 					closed: false
 					)
 
