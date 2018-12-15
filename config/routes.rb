@@ -2,13 +2,15 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
 
 	root 'pages#landing_page' 
-	
-	get '/setup/intro', to: 'pages#intro'
-	get '/setup/setup-organization', to: 'pages#setup_organization'
-	get '/setup/invite-users', to: 'pages#invite_users'
-	get '/setup/authorize-tools', to: 'pages#authorize_tools'
-	get '/setup/success', to: 'pages#success'
-	
+
+
+	get '/setup/setup-organisation', to: 'setup_steps#setup_organisation'
+	get '/setup/connect-to-tools', to: 'setup_steps#connect_to_tools'
+	get '/setup/sign-in', to: 'setup_steps#sign_in'
+	get '/setup/create-user', to: 'setup_steps#create_user'
+	get '/setup/invite-colleagues', to: 'setup_steps#invite_colleagues'
+	get '/setup/done', to: 'setup_steps#done'
+
 	resources :projects do
 		resources :risk_actions, only: [:index, :create, :new]
 	end

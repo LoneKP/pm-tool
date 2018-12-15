@@ -718,7 +718,20 @@ input.search-bar:focus::-webkit-input-placeholder {
 	font-family: "Work Sans";
 	font-size: 14px;
 	line-height: 16px;
+}
 
+.setup-login-information {
+	color: #0D39FF;
+	font-family: "Work Sans";
+	font-size: 14px;
+	line-height: 16px;
+}
+
+.setup-login-information-small {
+	color: #0D39FF;
+	font-family: "Work Sans";
+	font-size: 12px;
+	line-height: 14px;
 }
 
 .menu-items a {
@@ -1752,3 +1765,10 @@ input.add-risk-action {
 	margin-top: -1px;
 	margin-bottom: 45px;
 }
+
+.setup-navigation {
+	display: flex;
+	justify-content: space-between;
+}
+
+

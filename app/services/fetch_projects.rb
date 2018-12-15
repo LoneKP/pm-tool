@@ -37,6 +37,7 @@ class FetchProjects
 				puts "Project, #{project_name} already exists (harvest_project_id: #{harvest_project_id})"
 			end
 		end
+	
 	end
 
 	def wrapper(user)
@@ -56,7 +57,7 @@ class FetchProjects
 	end
 
 	def all_projects_page_one_response
-		wrapper(@user).all_projects(1)
+		response = wrapper(@user).all_projects(1)
 	end
 
 	def projects_page_one

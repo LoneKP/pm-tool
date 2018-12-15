@@ -34,12 +34,19 @@ class HarvestApiWrapper
 
 
 	def all_projects(page)
-		HTTParty.get(
+		response = HTTParty.get(
 			"https://api.harvestapp.com/v2/projects?page=#{page}&per_page=100", 
 			headers: headers(
 				"https://api.harvestapp.com/api/v2/users/me.json"
 				)
 			).parsed_response
+		
+		if response.has_key?('error')
+			p response
+			raise "login error" 
+		end
+		
+		response
 	end
 
 

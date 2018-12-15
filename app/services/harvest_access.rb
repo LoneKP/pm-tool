@@ -6,11 +6,19 @@ class HarvestAccess
 	end
 
 	def call
-		organization = Organization.where(harvest_account_id: harvest_account_id).first_or_create do |organization|
+		organization
+		create_or_find_user
+		handle_if_user_has_a_different_organization
+	end
+
+	def organization
+		@_organization ||= Organization.where(harvest_account_id: harvest_account_id).first_or_create do |organization|
 			organization.organization_name = organization_name
 			organization.harvest_account_id = harvest_account_id	
 		end
+	end
 
+	def create_or_find_user
 		@user = User.where(email: email).first_or_create do |user|
 			user.first_name = first_name
 			user.last_name = last_name
@@ -18,7 +26,9 @@ class HarvestAccess
 			user.access_token = access_token 
 			user.organization_id = organization.id
 		end
+	end
 
+	def handle_if_user_has_a_different_organization
 		if @user.organization_id != organization.id
 			@user.access_token = access_token 
 			@user.organization_id = organization.id
@@ -28,7 +38,6 @@ class HarvestAccess
 		else
 			@user
 		end
-		@user
 	end
 
 	def authorization_code_flow
@@ -57,7 +66,7 @@ class HarvestAccess
 	def user_info
 		@_user_info ||= HTTParty.get('https://id.getharvest.com/api/v2/accounts', 
 			:headers => { 'Authorization' => access_token,
-				'User-Agent' => 'Prjectio (lonekp000@hotmail.com)'
+				'User-Agent' => 'Prjectio (lk@abtion.com)'
 				} )
 	end
 

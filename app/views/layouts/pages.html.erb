@@ -16,21 +16,6 @@
 		<div class="container-fluid">
 
 		
-			<% if content_for? :navigation %>
-			<%= content_for :navigation %>
-			<% elsif content_for? :blank %>
-			<%= render 'layouts/blank' %>
-			<% else %>
-			<%= render 'layouts/navigation' %>
-			<% end %>
-
-		
-			<% if flash[:notice] %>
-			<%= render 'layouts/messages' %>
-			<% end %>
-			<% if flash[:alert] %>
-			<%= render 'layouts/alerts' %>
-			<% end %>
 		</div>
 
 		<div class="container">
