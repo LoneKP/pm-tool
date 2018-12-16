@@ -3,8 +3,13 @@ Rails.application.routes.draw do
 
 	root 'pages#landing_page' 
 
+	#	get '/setup/setup-organisation', to: 'setup_steps#setup_organisation'
+	get '/setup/setup-organisation' => 'setup_steps#setup_organisation'
 
-	get '/setup/setup-organisation', to: 'setup_steps#setup_organisation'
+
+
+
+
 	get '/setup/connect-to-tools', to: 'setup_steps#connect_to_tools'
 	get '/setup/sign-in', to: 'setup_steps#sign_in'
 	get '/setup/create-user', to: 'setup_steps#create_user'
@@ -20,6 +25,9 @@ Rails.application.routes.draw do
 	end
 
 	resources :risk_actions, only: [:edit, :update, :destroy]
+	resources :organisations
+
+	get '/organisations/:id', to: 'setup_steps#connect_to_tools'
 
 	get '/harvest_oauth2/callback', to: 'sessions#create'
 	get '/projects_on_dashboard', to: 'projects#index'

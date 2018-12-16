@@ -512,7 +512,7 @@ delete-button {
 	margin-top: ($spacer * 1.33) !important;
 }
 
-.mb-200 {
+.mt-200 {
 	margin-top: ($spacer * 2) !important;
 }
 
@@ -521,8 +521,36 @@ delete-button {
 	margin-right: ($spacer * 1.33) !important;
 }
 
+.mt-300 {
+	margin-top: ($spacer * 3) !important;
+}
+
+.mb-300 {
+	margin-bottom: ($spacer * 3) !important;
+}
+
+.mb-350 {
+	margin-bottom: ($spacer * 3.5) !important;
+}
+
+.mb-400 {
+	margin-bottom: ($spacer * 4) !important;
+}
+
+.mb-420 {
+	margin-bottom: ($spacer * 4.2) !important;
+}
+
+.mb-450 {
+	margin-bottom: ($spacer * 4.5) !important;
+}
+
 .mt-350 {
 	margin-top: ($spacer * 3.5) !important;
+}
+
+.mt-400 {
+	margin-top: ($spacer * 4) !important;
 }
 
 .margin-correction {
@@ -1778,19 +1806,27 @@ input.add-risk-action {
 }
 
 .setup-navigation {
+	margin-top: 50px;
+	margin-bottom: 66px;
+}
+
+.setup-navigation > div {
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 }
 
 .setup-organisation-box {
-	height: 528px;
-	width: 608px;
 	border-radius: 12px;
 	background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 100%);
 	box-shadow: 0 8px 16px 0 rgba(13,57,255,0.25);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 30px;
 }
 
-.setup-organisation-headline {
+.setup-headline-box {
 	color: #212121;
 	font-family: "Work Sans";
 	font-size: 24px;
@@ -1799,10 +1835,133 @@ input.add-risk-action {
 	text-align: center;
 }
 
-.organisation-name {
+.setup-headline-no-box {
+	color: #212121;
+	font-family: "Work Sans";
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 28px;
+	text-align: center;
+	margin-top: 136px;
+	margin-bottom: 12px;
+}
+
+.setup-subtitle {
 	color: #21214A;
 	font-family: "Work Sans";
 	font-size: 12px;
 	line-height: 14px;
 	text-align: center;
+}
+
+.next-and-add-organisation {
+	border-radius: 20px;
+	background-color: rgb(var(--primary-color));
+	padding: 8px 22px 8px 22px;
+	color: #FFF;
+	border: none;
+}
+
+.next-done {
+	border-radius: 20px;
+	background-color: rgb(var(--primary-color));
+	padding: 8px 22px 8px 22px;
+	color: #FFF;
+	border: none;
+	justify-content: center;
+	display: flex;
+}
+
+
+.organisation-underline {
+	height: 1px;
+	width: 217px;
+	background-color: #9B9B9B;
+	margin-bottom: 48px;
+}
+
+input#organisation_organisation_name {
+	color: rgb(var(--primary-color));
+	font-family: "Work Sans";
+	border: none;
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 28px;
+	outline:none;
+	caret-color: rgb(var(--primary-color));
+	width: 216px;
+	text-align: center;
+	margin-bottom: 12px;
+	margin-top: 12px;
+}
+
+.explainer {
+	opacity: 0.5;
+	color: #212121;
+	font-family: "Work Sans";
+	font-size: 14px;
+	line-height: 16px;
+	text-align: center;
+	margin-left: 64px;
+	margin-right: 64px;
+}
+
+.numbers-in-setup > div {
+	background-color: #9B9B9B;
+	border-radius: 50%;
+	height: 16px;
+	width: 16px;
+}
+
+.inside-number p {
+	color: #FFFFFF;
+	font-family: "Work Sans";
+	font-size: 10px;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.numbers-in-setup > div.selected {
+	background-color: rgb(var(--primary-color)) !important;
+	height: 24px !important;
+	width: 24px !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+}
+
+.inside-number p.selected {
+	color: #FFFFFF;
+	font-size: 12px;
+}
+
+.tool-boxes > div {
+	height: 114px;
+	width: 160px;
+	border-radius: 12px;
+	background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 100%);
+	box-shadow: 0 8px 16px 0 rgba(13,57,255,0.25);
+	margin-left: 15px;
+	margin-right: 15px;
+	margin-bottom: 24px;
+	align-items: center;
+	justify-content: center;
+	display: flex;
+}
+
+.tool-boxes {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	margin-left: -15px;
+	margin-right: -15px;
+	justify-content: center;
+	margin-top: 48px;
+	margin-bottom: 115px;
+}
+
+.tools-logo-height {
+	height: 70px;
 }

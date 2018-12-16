@@ -1,10 +1,53 @@
 <% content_for :navigation, render('custom_setup_top_bar', obj: 'Setup organisation', obj2: "My organisation doesn't user these tools") %>
-<h1>Connect to tools</h1>
+<p class="setup-headline-no-box">Connect to tools</p>
+<p class="setup-subtitle">What tools does your organisation use?</p>
 
-
-<div>
-	<i class="material-icons">arrow-right</i>
+<div class="row">
+<div class="col-1"></div>
+<div class="tool-boxes col-10">
+	<div>
+		<%= image_tag "harvest-logo-icon.png", class: "tools-logo-height"%>
+	</div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+</div>
+<div class="col-1"></div>
 </div>
 
+<div class="row setup-navigation">
+	<div class="col-1"></div>
+	<div class="back-button col-1">
+		<%= link_to 'setup-organisation' do %>
+		<p>Back</p>
+		<% end %>
+	</div>
+	<div class="col-2"></div>
+	<div class="col-4 numbers-in-setup inside-number">
+		<div>
+			<p>1</p>
+		</div>
+		<div class="selected">
+			<p class="selected">2</p>
+		</div>
+		<div>
+			<p>3</p>
+		</div>
+		<div>
+			<p>4</p>
+		</div>
+		<div>
+			<p>5</p>
+		</div>
+	</div>
+	<div class="col-2"></div>
+	<%= link_to 'sign-in' do %>
+	<div class="next-and-add-organisation">Next</div>
+	<% end %>
+	<div class="col-1"></div>
+</div>
 
-<%= render 'setup_navigation', back: 'setup-organisation', forward: 'sign-in' %>
