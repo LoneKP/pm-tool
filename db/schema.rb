@@ -10,98 +10,106 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_181_215_175_447) do
+ActiveRecord::Schema.define(version: 20190406110807) do
+
   # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
+  enable_extension "plpgsql"
 
-  create_table 'organisations', force: :cascade do |t|
-    t.string 'organisation_name'
-    t.integer 'harvest_account_id'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "harvest_integrations", force: :cascade do |t|
+    t.integer "harvest_account_id"
   end
 
-  create_table 'projects', force: :cascade do |t|
-    t.integer 'harvest_project_id'
-    t.string 'project_name'
-    t.string 'client_name'
-    t.float 'hours_sold_for'
-    t.float 'total_time_hours'
-    t.float 'programming_hours'
-    t.float 'project_management_hours'
-    t.float 'meetings_hours'
-    t.float 'design_hours'
-    t.float 'completion_percentage'
-    t.datetime 'project_start_date'
-    t.datetime 'project_end_date'
-    t.integer 'color_number'
-    t.boolean 'closed'
-    t.float 'work_hours'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.string 'evaluation'
-    t.bigint 'organisation_id'
-    t.index ['organisation_id'], name: 'index_projects_on_organisation_id'
+  create_table "organisations", force: :cascade do |t|
+    t.string "organisation_name"
+    t.integer "harvest_account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "harvest_integrations_id"
+    t.index ["harvest_integrations_id"], name: "index_organisations_on_harvest_integrations_id"
   end
 
-  create_table 'responsibilities', force: :cascade do |t|
-    t.bigint 'project_id'
-    t.bigint 'user_id'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['project_id'], name: 'index_responsibilities_on_project_id'
-    t.index ['user_id'], name: 'index_responsibilities_on_user_id'
+  create_table "projects", force: :cascade do |t|
+    t.integer "harvest_project_id"
+    t.string "project_name"
+    t.string "client_name"
+    t.float "hours_sold_for"
+    t.float "total_time_hours"
+    t.float "programming_hours"
+    t.float "project_management_hours"
+    t.float "meetings_hours"
+    t.float "design_hours"
+    t.float "completion_percentage"
+    t.datetime "project_start_date"
+    t.datetime "project_end_date"
+    t.integer "color_number"
+    t.boolean "closed"
+    t.float "work_hours"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "evaluation"
+    t.bigint "organisation_id"
+    t.index ["organisation_id"], name: "index_projects_on_organisation_id"
   end
 
-  create_table 'revenue_months', force: :cascade do |t|
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.string 'month'
-    t.integer 'completion_percentage'
-    t.float 'hours_sold_for'
-    t.float 'total_time_hours'
-    t.float 'progressed_hourly_rate'
-    t.bigint 'project_id'
-    t.integer 'year'
-    t.index ['project_id'], name: 'index_revenue_months_on_project_id'
+  create_table "responsibilities", force: :cascade do |t|
+    t.bigint "project_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_responsibilities_on_project_id"
+    t.index ["user_id"], name: "index_responsibilities_on_user_id"
   end
 
-  create_table 'risk_actions', force: :cascade do |t|
-    t.string 'risk'
-    t.string 'action'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.integer 'project_id'
-    t.float 'work_hours'
-    t.float 'completion_percentage'
-    t.float 'total_time_hours'
+  create_table "revenue_months", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "month"
+    t.integer "completion_percentage"
+    t.float "hours_sold_for"
+    t.float "total_time_hours"
+    t.float "progressed_hourly_rate"
+    t.bigint "project_id"
+    t.integer "year"
+    t.index ["project_id"], name: "index_revenue_months_on_project_id"
   end
 
-  create_table 'time_trackings', force: :cascade do |t|
-    t.datetime 'date'
-    t.float 'total_hours'
-    t.bigint 'project_id'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.float 'total_hours_design'
-    t.float 'total_hours_programming'
-    t.float 'total_hours_project_management'
-    t.float 'total_hours_meetings'
-    t.float 'total_hours_daily_standup'
-    t.index ['project_id'], name: 'index_time_trackings_on_project_id'
+  create_table "risk_actions", force: :cascade do |t|
+    t.string "risk"
+    t.string "action"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "project_id"
+    t.float "work_hours"
+    t.float "completion_percentage"
+    t.float "total_time_hours"
   end
 
-  create_table 'users', force: :cascade do |t|
-    t.string 'first_name'
-    t.string 'email'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.string 'last_name'
-    t.string 'access_token'
-    t.bigint 'organisation_id'
-    t.index ['organisation_id'], name: 'index_users_on_organisation_id'
+  create_table "time_trackings", force: :cascade do |t|
+    t.datetime "date"
+    t.float "total_hours"
+    t.bigint "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.float "total_hours_design"
+    t.float "total_hours_programming"
+    t.float "total_hours_project_management"
+    t.float "total_hours_meetings"
+    t.float "total_hours_daily_standup"
+    t.index ["project_id"], name: "index_time_trackings_on_project_id"
   end
 
-  add_foreign_key 'projects', 'organisations'
-  add_foreign_key 'users', 'organisations'
+  create_table "users", force: :cascade do |t|
+    t.string "first_name"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "last_name"
+    t.string "access_token"
+    t.bigint "organisation_id"
+    t.index ["organisation_id"], name: "index_users_on_organisation_id"
+  end
+
+  add_foreign_key "organisations", "harvest_integrations", column: "harvest_integrations_id"
+  add_foreign_key "projects", "organisations"
+  add_foreign_key "users", "organisations"
 end

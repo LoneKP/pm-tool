@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
   def new; end
 
   def create
+    
     @code = params[:code]
     @user = HarvestAccess.new(@code).call
     session[:user_id] = @user.id
