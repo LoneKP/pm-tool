@@ -1,6 +1,5 @@
 class ChangeNameOfArchivedProjectsColumn < ActiveRecord::Migration[5.1]
-  
-	 def change
+  def change
     rename_column :projects, :archived_projects, :archived
-  end
+ end
 end

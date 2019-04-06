@@ -4,8 +4,8 @@ class CreateTimeTrackings < ActiveRecord::Migration[5.1]
       t.datetime :date
       t.float :total_hours
       t.string :task
-			t.belongs_to :project, index: true
-			t.timestamps
+      t.belongs_to :project, index: true
+      t.timestamps
     end
   end
 end

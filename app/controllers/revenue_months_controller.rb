@@ -1,4 +1,3 @@
 class RevenueMonthsController < ApplicationController
-	def create
-	end
+  def create; end
 end

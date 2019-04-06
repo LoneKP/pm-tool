@@ -39,6 +39,7 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (8.0.0)
+    ast (2.4.0)
     autoprefixer-rails (8.2.0)
       execjs
     awesome_print (1.8.0)
@@ -102,6 +103,7 @@ GEM
       multi_xml (>= 0.5.2)
     i18n (1.0.0)
       concurrent-ruby (~> 1.0)
+    jaro_winkler (1.5.2)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
@@ -135,11 +137,15 @@ GEM
     nio4r (2.3.0)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
+    parallel (1.17.0)
+    parser (2.6.2.1)
+      ast (~> 2.4.0)
     pg (1.0.0)
     popper_js (1.12.9)
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
+    psych (3.1.0)
     puma (3.11.3)
     rack (2.0.4)
     rack-protection (2.0.1)
@@ -174,6 +180,7 @@ GEM
       method_source
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
+    rainbow (3.0.0)
     rake (12.3.1)
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
@@ -212,7 +219,18 @@ GEM
       rspec-mocks (~> 3.8.0)
       rspec-support (~> 3.8.0)
     rspec-support (3.8.0)
+    rubocop (0.67.2)
+      jaro_winkler (~> 1.5.1)
+      parallel (~> 1.10)
+      parser (>= 2.5, != 2.5.1.1)
+      psych (>= 3.1.0)
+      rainbow (>= 2.2.2, < 4.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 1.4.0, < 1.6)
+    rubocop-performance (1.0.0)
+      rubocop (>= 0.58.0)
     ruby-graphviz (1.2.3)
+    ruby-progressbar (1.10.0)
     ruby_dep (1.5.0)
     rubyzip (1.2.1)
     rufus-scheduler (3.4.2)
@@ -264,6 +282,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (4.1.8)
       execjs (>= 0.3.0, < 3)
+    unicode-display_width (1.5.0)
     web-console (3.5.1)
       actionview (>= 5.0)
       activemodel (>= 5.0)
@@ -306,6 +325,8 @@ DEPENDENCIES
   railties
   redis-rails
   rspec-rails
+  rubocop-performance
+  ruby-graphviz
   sass-rails (~> 5.0)
   selenium-webdriver
   sidekiq
@@ -319,4 +340,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-   1.16.2
+   1.17.2

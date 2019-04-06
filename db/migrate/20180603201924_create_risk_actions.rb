@@ -3,7 +3,7 @@ class CreateRiskActions < ActiveRecord::Migration[5.1]
     create_table :risk_actions do |t|
       t.string :risk
       t.string :action
-			t.timestamps
+      t.timestamps
     end
   end
 end
