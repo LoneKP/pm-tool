@@ -1,76 +1,62 @@
 <% content_for :navigation, render('custom_setup_top_bar', obj: 'Setup organisation', obj2: 'My organisation is already signed up') %>
-
-
-
 <div class="row">
-	<div class="col-3"></div>
-	<div class="setup-organisation-box col-6">
-		<div class="mt-5">
-			<i class="material-icons icon-46">business</i>
-		</div>
-		<div>
-			<p class="setup-headline-box mt-300 mb-300">Setup organisation</p>
-		</div>
-		<div>
-
-			<p class="setup-subtitle">
-				Organisation name
-			</p>
-
-		</div>
-		<div>
-
-			<%= form_for @organisation, :url => { controller: "organisations", action: "create"}, :html => {:class => 'edit-view-styling'} do |f| %>
-			<%=	f.text_field :organisation_name %>
-
-		</div>
-
-		<div class="organisation-underline"></div>
-
-		<div class="explainer mb-420">
-			<p>To get started you need to enter your organisation details.<br>
-				This way we can keep track of what projects you are working on together with your colleagues. Don't worry about price, Prject.io is completely free until you upgrade.</p>
-		</div>
-
-	</div>
-	<div class="col-3"></div>
+  <div class="col-3"></div>
+  <div class="setup-organisation-box col-6">
+    <div class="mt-5">
+      <i class="material-icons icon-46">business</i>
+    </div>
+    <div>
+      <p class="setup-headline-box mt-300 mb-300">Setup organisation</p>
+    </div>
+    <div>
+      <p class="setup-subtitle">
+        Organisation name
+      </p>
+    </div>
+    <div>
+      <%= form_for @organisation, :url => { controller: "organisations", action: "create"}, :html => {:class => 'edit-view-styling'} do |f| %>
+        <%=	f.text_field :organisation_name %>
+      </div>
+      <div class="organisation-underline"></div>
+      <div class="explainer mb-420">
+        <p>To get started you need to enter your organisation details.<br>
+          This way we can keep track of what projects you are working on together with your colleagues. Don't
+          worry about
+          price, Prject.io is completely free until you upgrade.</p>
+      </div>
+    </div>
+    <div class="col-3"></div>
+  </div>
+  <div class="row setup-navigation">
+    <div class="col-1"></div>
+    <div class="back-button col-1">
+      <%= link_to '/#' do %>
+        <p>Back</p>
+      <% end %>
+    </div>
+    <div class="col-2"></div>
+    <div class="col-4 numbers-in-setup inside-number">
+      <div class="selected">
+        <p class="selected">1</p>
+      </div>
+      <div>
+        <p>2</p>
+      </div>
+      <div>
+        <p>3</p>
+      </div>
+      <div>
+        <p>4</p>
+      </div>
+      <div>
+        <p>5</p>
+      </div>
+    </div>
+    <div class="col-2"></div>
+    <%= f.submit 'Next', :class => 'next-and-add-organisation col-1' %>
+  <% end %>
+  <div class="col-1"></div>
 </div>
-
-
-
-<div class="row setup-navigation">
-<div class="col-1"></div>
-	<div class="back-button col-1">
-		<%= link_to '/#' do %>
-		<p>Back</p>
-		<% end %>
-	</div>
-	<div class="col-2"></div>
-	<div class="col-4 numbers-in-setup inside-number">
-	<div class="selected">
-	<p class="selected">1</p>
-	</div>
-	<div>
-		<p>2</p>
-	</div>
-	<div>
-		<p>3</p>
-	</div>
-	<div>
-		<p>4</p>
-	</div>
-	<div>
-		<p>5</p>
-	</div>
-	</div>
-<div class="col-2"></div>
-	<%= f.submit 'Next', :class => 'next-and-add-organisation col-1' %>
-	<% end %>
-	<div class="col-1"></div>
-</div>
-
-
-
 <script>
-	$('input').attr('autocomplete','off');
+  $('input').attr('autocomplete', 'off');
 </script>

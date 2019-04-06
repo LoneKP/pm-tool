@@ -1,35 +1,33 @@
 <% content_for :navigation, render('custom_setup_top_bar', obj: 'Setup user', obj2: '') %>
 <h1>Create user</h1>
-
-
 <div class="row setup-navigation">
-<div class="col-1"></div>
-	<div class="back-button col-1">
-		<%= link_to 'sign-in' do %>
-		<p>Back</p>
-		<% end %>
-	</div>
-	<div class="col-2"></div>
-	<div class="col-4 numbers-in-setup inside-number">
-	<div>
-	<p>1</p>
-	</div>
-	<div>
-	<p>2</p>
-	</div>
-	<div>
-	<p>3</p>
-	</div>
-	<div class="selected">
-	<p class="selected">4</p>
-	</div>
-	<div>
-		<p>5</p>
-	</div>
-	</div>
-<div class="col-2"></div>
-	<%= link_to 'invite-colleagues' do %>
-	<div class="next-and-add-organisation">Next</div>
-	<% end %>
-	<div class="col-1"></div>
+  <div class="col-1"></div>
+  <div class="back-button col-1">
+    <%= link_to 'sign-in' do %>
+      <p>Back</p>
+    <% end %>
+  </div>
+  <div class="col-2"></div>
+  <div class="col-4 numbers-in-setup inside-number">
+    <div>
+      <p>1</p>
+    </div>
+    <div>
+      <p>2</p>
+    </div>
+    <div>
+      <p>3</p>
+    </div>
+    <div class="selected">
+      <p class="selected">4</p>
+    </div>
+    <div>
+      <p>5</p>
+    </div>
+  </div>
+  <div class="col-2"></div>
+  <%= link_to 'invite-colleagues' do %>
+    <div class="next-and-add-organisation">Next</div>
+  <% end %>
+  <div class="col-1"></div>
 </div>
