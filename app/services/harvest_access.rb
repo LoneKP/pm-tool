@@ -26,6 +26,7 @@ class HarvestAccess
       user.organisation_id = organisation.id
     end
     @user.access_token = access_token
+    @user.save
     @user
   end
 
