@@ -15,7 +15,10 @@ Rails.application.routes.draw do
   resources :organisations do  
     get :connect_to_tools
     get :sign_in
-    get :create_user
+    resources :users, only: %i[create new]
+  end
+
+  resources :users do
     get :invite_colleagues
     get :done
   end

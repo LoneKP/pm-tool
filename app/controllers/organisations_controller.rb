@@ -26,7 +26,7 @@ class OrganisationsController < ApplicationController
     @organisation = Organisation.find(params[:organisation_id])
   end
 
-  def create_user; end
+  # def create_user; end
 
   def invite_colleagues; end
 
