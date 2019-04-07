@@ -14,7 +14,7 @@
       </p>
     </div>
     <div>
-      <%= form_for @organisation, :url => { controller: "organisations", action: "create"}, :html => {:class => 'edit-view-styling'} do |f| %>
+      <%= form_for :organisation, :url => { controller: "organisations", action: "create"}, :html => {:class => 'edit-view-styling'} do |f| %>
         <%=	f.text_field :organisation_name %>
       </div>
       <div class="organisation-underline"></div>
