@@ -15,6 +15,11 @@ class OrganisationsController < ApplicationController
 
   def connect_to_tools
     @organisation = Organisation.find(params[:organisation_id])
+    if params[:code].present?
+      @code = params[:code]
+      @scope = params[:scope]
+      GetAccessToken.new(@code, @scope, @organisation).create_harvest_integration
+    end
   end
 
   def sign_in

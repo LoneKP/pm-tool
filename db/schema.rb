@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190406154903) do
+ActiveRecord::Schema.define(version: 20190407150259) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,14 +18,14 @@ ActiveRecord::Schema.define(version: 20190406154903) do
   create_table "harvest_integrations", force: :cascade do |t|
     t.integer "harvest_account_id"
     t.string "access_token"
+    t.bigint "organisation_id"
+    t.index ["organisation_id"], name: "index_harvest_integrations_on_organisation_id"
   end
 
   create_table "organisations", force: :cascade do |t|
     t.string "organisation_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "harvest_integrations_id"
-    t.index ["harvest_integrations_id"], name: "index_organisations_on_harvest_integrations_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -109,7 +109,7 @@ ActiveRecord::Schema.define(version: 20190406154903) do
     t.index ["organisation_id"], name: "index_users_on_organisation_id"
   end
 
-  add_foreign_key "organisations", "harvest_integrations", column: "harvest_integrations_id"
+  add_foreign_key "harvest_integrations", "organisations"
   add_foreign_key "projects", "organisations"
   add_foreign_key "users", "organisations"
 end
