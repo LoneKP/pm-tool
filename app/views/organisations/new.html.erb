@@ -16,47 +16,108 @@
     <div>
       <%= form_for :organisation, :url => { controller: "organisations", action: "create"}, :html => {:class => 'edit-view-styling'} do |f| %>
       <%=	f.text_field :organisation_name %>
+      <i class="material-icons">check_circle</i>
     </div>
-      <div class="organisation-underline"></div>
-      <div class="explainer mb-420">
-        <p>To get started you need to enter your organisation details.<br>
-          This way we can keep track of what projects you are working on together with your colleagues. Don't
-          worry about
-          price, Prject.io is completely free until you upgrade.</p>
-      </div>
+    <div class="sign-up-flow-underline"></div>
+    <div class="explainer mb-420">
+      <p>To get started you need to enter your organisation details.<br>
+        This way we can keep track of what projects you are working on together with your colleagues. Don't
+        worry about
+        price, Prject.io is completely free until you upgrade.</p>
     </div>
-    <div class="col-3"></div>
   </div>
-  <div class="row setup-navigation">
-    <div class="col-1"></div>
-    <div class="back-button col-1">
-      <%= link_to '/#' do %>
-        <p>Back</p>
-      <% end %>
+  <div class="col-3"></div>
+</div>
+<div class="row setup-navigation">
+  <div class="col-1"></div>
+  <div class="back-button col-1">
+    <%= link_to '/#' do %>
+    <p>Back</p>
+    <% end %>
+  </div>
+  <div class="col-2"></div>
+  <div class="col-4 numbers-in-setup inside-number">
+    <div class="selected">
+      <p class="selected">1</p>
     </div>
-    <div class="col-2"></div>
-    <div class="col-4 numbers-in-setup inside-number">
-      <div class="selected">
-        <p class="selected">1</p>
-      </div>
-      <div>
-        <p>2</p>
-      </div>
-      <div>
-        <p>3</p>
-      </div>
-      <div>
-        <p>4</p>
-      </div>
-      <div>
-        <p>5</p>
-      </div>
+    <div>
+      <p>2</p>
     </div>
-    <div class="col-2"></div>
-    <%= f.submit 'Next', :class => 'next-and-add-organisation col-1' %>
+    <div>
+      <p>3</p>
+    </div>
+    <div>
+      <p>4</p>
+    </div>
+    <div>
+      <p>5</p>
+    </div>
+  </div>
+  <div class="col-2"></div>
+  <%= f.submit 'Next', :class => 'next-and-add-organisation col-1' %>
   <% end %>
   <div class="col-1"></div>
 </div>
+
+
 <script>
-  $('input').attr('autocomplete', 'off');
+
+  $(document).on('turbolinks:load', function () {
+
+    $('input').attr('autocomplete', 'off');
+    $('input').attr('autocomplete', 'nope');
+
+    $(document).ready(function () {
+      validate();
+      $('input#organisation_organisation_name').keyup(validate);
+    });
+
+    //function to validate whether all criterias are fulfilled when typing in information in the form
+    function validate() {
+      if (
+        $('input#organisation_organisation_name').val().length > 0 
+      ) {
+        $('.next-and-add-organisation-inactive').addClass("next-and-add-organisation")
+        $('.next-and-add-organisation-inactive').removeClass("next-and-add-organisation-inactive")
+        $(".next-and-add-organisation").prop('disabled', false);
+      }
+      else {
+        $('.next-and-add-organisation').addClass("next-and-add-organisation-inactive")
+        $('.next-and-add-organisation').removeClass("next-and-add-organisation")
+        $(".next-and-add-organisation-inactive").prop('disabled', true);
+      }
+    }
+
+    $(document).ready(function () {
+      tmpval = $('input#organisation_organisation_name').val();
+      if (tmpval == '') {
+        $('input#organisation_organisation_name').next().addClass("icon-14-check-attention");
+        $('input#organisation_organisation_name').next().text('error')
+        $('input#organisation_organisation_name').next().removeClass("icon-14-check");
+
+      } else {
+        $('input#organisation_organisation_name').next().addClass("icon-14-check");
+        $('input#organisation_organisation_name').next().removeClass("icon-14-check-attention");
+        $('input#organisation_organisation_name').next().removeClass("icon-14-check-error");
+        $('input#organisation_organisation_name').next().text('check_circle')
+      }
+    });
+
+    $('input#organisation_organisation_name').keyup(function () {
+      tmpval = $(this).val();
+      if (tmpval == '') {
+
+        $('input#organisation_organisation_name').next().addClass("icon-14-check-attention");
+        $('input#organisation_organisation_name').next().text('error')
+        $('input#organisation_organisation_name').next().removeClass("icon-14-check");
+
+      } else {
+        $('input#organisation_organisation_name').next().addClass("icon-14-check");
+        $('input#organisation_organisation_name').next().removeClass("icon-14-check-attention");
+        $('input#organisation_organisation_name').next().removeClass("icon-14-check-error");
+        $('input#organisation_organisation_name').next().text('check_circle')
+      }
+    });
+
+  });
 </script>

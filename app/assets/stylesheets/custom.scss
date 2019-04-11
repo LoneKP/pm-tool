@@ -1870,6 +1870,34 @@ input.add-risk-action {
 	padding: 8px 22px 8px 22px;
 	color: #FFF;
 	border: none;
+	cursor: pointer;
+}
+
+.next-and-add-organisation-inactive {
+	border-radius: 20px;
+	background-color: #9B9B9B;
+	padding: 8px 22px 8px 22px;
+	color: #FFF;
+	border: none;
+	cursor: not-allowed;
+}
+
+.next-and-create-user {
+	border-radius: 20px;
+	background-color: rgb(var(--primary-color));
+	padding: 8px 22px 8px 22px;
+	color: #FFF;
+	border: none;
+	cursor: pointer;
+}
+
+.next-and-create-user-inactive {
+	border-radius: 20px;
+	background-color: #9B9B9B;
+	padding: 8px 22px 8px 22px;
+	color: #FFF;
+	border: none;
+	cursor: not-allowed;
 }
 
 .next-done {
@@ -1883,14 +1911,56 @@ input.add-risk-action {
 }
 
 
-.organisation-underline {
+.sign-up-flow-underline {
 	height: 1px;
-	width: 217px;
+	width: 50%;
 	background-color: #9B9B9B;
 	margin-bottom: 48px;
 }
 
 input#organisation_organisation_name {
+	color: rgb(var(--primary-color));
+	font-family: "Work Sans";
+	border: none;
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 28px;
+	outline:none;
+	caret-color: rgb(var(--primary-color));
+	width: 216px;
+	text-align: center;
+	margin-bottom: 12px;
+	margin-top: 12px;
+}
+input#user_first_name {
+	color: rgb(var(--primary-color));
+	font-family: "Work Sans";
+	border: none;
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 28px;
+	outline:none;
+	caret-color: rgb(var(--primary-color));
+	width: 216px;
+	text-align: center;
+	margin-bottom: 12px;
+	margin-top: 12px;
+}
+input#user_last_name {
+	color: rgb(var(--primary-color));
+	font-family: "Work Sans";
+	border: none;
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 28px;
+	outline:none;
+	caret-color: rgb(var(--primary-color));
+	width: 216px;
+	text-align: center;
+	margin-bottom: 12px;
+	margin-top: 12px;
+}
+input#user_email {
 	color: rgb(var(--primary-color));
 	font-family: "Work Sans";
 	border: none;

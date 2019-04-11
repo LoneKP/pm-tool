@@ -8,17 +8,39 @@
     </div>
     <p class="setup-headline-box mt-300 mb-300">Create user</p>
     <div>
+
       <p class="setup-subtitle">
-        Your E-mail
+        First name
       </p>
     </div>
 
     <div>
-      <%= form_for :user, :url => { controller: "users", action: "create"}, :html => {:class => 'edit-view-styling'} do |f| %>
+      <%= form_for :user, :url => { controller: "users", action: "create"} do |f| %>
+      <div>
+        <%=	f.text_field :first_name %>
+        <i class="material-icons">check_circle</i>
+      </div>
+    </div>
+    <div class="sign-up-flow-underline"></div>
+    <p class="setup-subtitle">
+      Last name
+    </p>
+    <div>
+      <%=	f.text_field :last_name %>
+      <i class="material-icons">check_circle</i>
+    </div>
+
+    <div class="sign-up-flow-underline"></div>
+    <p class="setup-subtitle">
+      E-mail
+    </p>
+    <div>
       <%=	f.text_field :email %>
+      <i class="material-icons">check_circle</i>
 
     </div>
 
+    <div class="sign-up-flow-underline"></div>
   </div>
 
 </div>
@@ -51,7 +73,141 @@
     </div>
   </div>
   <div class="col-2"></div>
-  <%= f.submit 'Next', :class => 'next-and-add-organisation col-1' %>
+  <%= f.submit 'Next', :class => 'next-and-create-user col-1' %>
   <% end %>
   <div class="col-1"></div>
 </div>
+
+<script>
+
+  $(document).on('turbolinks:load', function () {
+
+    $('input').attr('autocomplete', 'off');
+    $('input').attr('autocomplete', 'nope');
+
+    $(document).ready(function () {
+      validate();
+      $('input#user_email, input#user_first_name, input#user_last_name').keyup(validate);
+    });
+
+    //function to validate whether all criterias are fulfilled when typing in information in the form
+    function validate() {
+      if (
+        $('input#user_email').val().length > 0 && (isEmail(tmpval)) &&
+        $('input#user_first_name').val().length > 0 &&
+        $('input#user_last_name').val().length > 0
+      ) {
+        $('.next-and-create-user-inactive').addClass("next-and-create-user")
+        $('.next-and-create-user-inactive').removeClass("next-and-create-user-inactive")
+        $(".next-and-create-user").prop('disabled', false);
+      }
+      else {
+        $('.next-and-create-user').addClass("next-and-create-user-inactive")
+        $('.next-and-create-user').removeClass("next-and-create-user")
+        $(".next-and-create-user-inactive").prop('disabled', true);
+      }
+    }
+
+    $(document).ready(function () {
+      tmpval = $('input#user_first_name').val();
+      if (tmpval == '') {
+        $('input#user_first_name').next().addClass("icon-14-check-attention");
+        $('input#user_first_name').next().text('error')
+        $('input#user_first_namel').next().removeClass("icon-14-check");
+
+      } else {
+        $('input#user_first_name').next().addClass("icon-14-check");
+        $('input#user_first_name').next().removeClass("icon-14-check-attention");
+        $('input#user_first_name').next().removeClass("icon-14-check-error");
+        $('input#user_first_name').next().text('check_circle')
+      }
+    });
+
+    $('input#user_first_name').keyup(function () {
+      tmpval = $(this).val();
+      if (tmpval == '') {
+
+        $('input#user_first_name').next().addClass("icon-14-check-attention");
+        $('input#user_first_name').next().text('error')
+        $('input#user_first_name').next().removeClass("icon-14-check");
+
+      } else {
+        $('input#user_first_name').next().addClass("icon-14-check");
+        $('input#user_first_name').next().removeClass("icon-14-check-attention");
+        $('input#user_first_name').next().removeClass("icon-14-check-error");
+        $('input#user_first_name').next().text('check_circle')
+      }
+    });
+
+    $(document).ready(function () {
+      tmpval = $('input#user_last_name').val();
+      if (tmpval == '') {
+        $('input#user_last_name').next().addClass("icon-14-check-attention");
+        $('input#user_last_name').next().text('error')
+        $('input#user_last_name').next().removeClass("icon-14-check");
+
+      } else {
+        $('input#user_last_name').next().addClass("icon-14-check");
+        $('input#user_last_name').next().removeClass("icon-14-check-attention");
+        $('input#user_last_name').next().removeClass("icon-14-check-error");
+        $('input#user_last_name').next().text('check_circle')
+      }
+    });
+
+    $('input#user_last_name').keyup(function () {
+      tmpval = $(this).val();
+      if (tmpval == '') {
+
+        $('input#user_last_name').next().addClass("icon-14-check-attention");
+        $('input#user_last_name').next().text('error')
+        $('input#user_last_name').next().removeClass("icon-14-check");
+
+      } else {
+        $('input#user_last_name').next().addClass("icon-14-check");
+        $('input#user_last_name').next().removeClass("icon-14-check-attention");
+        $('input#user_last_name').next().removeClass("icon-14-check-error");
+        $('input#user_last_name').next().text('check_circle')
+      }
+    });
+
+    $(document).ready(function () {
+      tmpval = $('input#user_email').val();
+      if (tmpval == '') {
+        $('input#user_email').next().addClass("icon-14-check-attention");
+        $('input#user_email').next().text('error')
+        $('input#user_email').next().removeClass("icon-14-check");
+
+      } else {
+        $('input#user_email').next().addClass("icon-14-check");
+        $('input#user_email').next().removeClass("icon-14-check-attention");
+        $('input#user_email').next().removeClass("icon-14-check-error");
+        $('input#user_email').next().text('check_circle')
+      }
+    });
+
+    function isEmail(email) {
+      var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+      if (!regex.test(email)) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+
+    $('input#user_email').keyup(function () {
+      tmpval = $(this).val();
+      if (isEmail(tmpval)) {
+        $('input#user_email').next().addClass("icon-14-check");
+        $('input#user_email').next().removeClass("icon-14-check-attention");
+        $('input#user_email').next().removeClass("icon-14-check-error");
+        $('input#user_email').next().text('check_circle')
+      } else {
+        $('input#user_email').next().addClass("icon-14-check-attention");
+        $('input#user_email').next().text('error')
+        $('input#user_email').next().removeClass("icon-14-check");
+      }
+    });
+
+
+  });
+</script>
