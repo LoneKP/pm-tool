@@ -90,12 +90,16 @@
       $('input#user_email, input#user_first_name, input#user_last_name').keyup(validate);
     });
 
+
     //function to validate whether all criterias are fulfilled when typing in information in the form
     function validate() {
+      firstName = $('input#user_first_name').val();
+      lastName = $('input#user_last_name').val();
+      email = $('input#user_email').val();
       if (
-        $('input#user_email').val().length > 0 && (isEmail(tmpval)) &&
-        $('input#user_first_name').val().length > 0 &&
-        $('input#user_last_name').val().length > 0
+        firstName.length > 0 &&
+        lastName.length > 0 &&
+        email.length > 0 && (isEmail(email))
       ) {
         $('.next-and-create-user-inactive').addClass("next-and-create-user")
         $('.next-and-create-user-inactive').removeClass("next-and-create-user-inactive")
