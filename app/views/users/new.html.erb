@@ -9,38 +9,54 @@
     <p class="setup-headline-box mt-300 mb-300">Create user</p>
     <div>
 
+ 
+
       <p class="setup-subtitle">
         First name
       </p>
     </div>
 
     <div>
-      <%= form_for :user, :url => { controller: "users", action: "create"} do |f| %>
-      <div>
+      <%= form_for @user, :url => { controller: "users", action: "create"} do |f| %>
+
+      <div class="row">
         <%=	f.text_field :first_name %>
-        <i class="material-icons">check_circle</i>
+        <i class="material-icons flex-column-errors">check_circle</i>
       </div>
     </div>
     <div class="sign-up-flow-underline"></div>
     <p class="setup-subtitle">
       Last name
     </p>
-    <div>
+    <div class="row">
       <%=	f.text_field :last_name %>
-      <i class="material-icons">check_circle</i>
+      <i class="material-icons flex-column-errors">check_circle</i>
     </div>
 
     <div class="sign-up-flow-underline"></div>
     <p class="setup-subtitle">
       E-mail
     </p>
-    <div>
+    <div class="row">
       <%=	f.text_field :email %>
-      <i class="material-icons">check_circle</i>
+      <i class="material-icons flex-column-errors">check_circle</i>
 
     </div>
 
     <div class="sign-up-flow-underline"></div>
+
+
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this article from being saved:</h2>
+    
+        <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
   </div>
 
 </div>
