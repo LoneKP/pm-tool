@@ -1918,6 +1918,13 @@ input.add-risk-action {
 	margin-bottom: 48px;
 }
 
+.sign-up-flow-underline-error {
+	height: 1px;
+	width: 50%;
+	background-color: red;
+	margin-bottom: 48px;
+}
+
 input#organisation_organisation_name {
 	color: rgb(var(--primary-color));
 	font-family: "Work Sans";
@@ -2057,4 +2064,8 @@ div.field_with_errors + i {
 	display: flex !important;
     justify-content: center;
 	flex-direction: column;
+}
+
+.error-message {
+	padding-bottom: 30px;
 }
