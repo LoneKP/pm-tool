@@ -18,20 +18,19 @@ class GetAccessToken
   end
 
   def authorization_code_flow
-    @_authorization_code_flow ||= HTTParty.post("https://id.getharvest.com/api/v2/oauth2/token",
+    @_authorization_code_flow ||= HTTParty.post('https://id.getharvest.com/api/v2/oauth2/token',
                                                 body: {
                                                   code: @code,
-                                                  client_id: ENV["CLIENT_ID"],
-                                                  client_secret: ENV["CLIENT_SECRET"],
-                                                  grant_type: "authorization_code",
+                                                  client_id: ENV['CLIENT_ID'],
+                                                  client_secret: ENV['CLIENT_SECRET'],
+                                                  grant_type: 'authorization_code'
                                                 }.to_json,
                                                 headers: {
-                                                  "Content-Type" => "application/json",
+                                                  'Content-Type' => 'application/json'
                                                 })
   end
 
   def harvest_account_id
-    (@scope.gsub(/[^0-9]/, '')).to_i
+    @scope.gsub(/[^0-9]/, '').to_i
   end
-
 end

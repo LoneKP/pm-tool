@@ -1,7 +1,5 @@
 class OrganisationsController < ApplicationController
-  
-  def new
-  end
+  def new; end
 
   def create
     @organisation = Organisation.new(organisation_params)
