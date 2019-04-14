@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to user_invite_colleagues_path(@user)
     else
-      render 'new'
+      render "new"
     end
   end
 
@@ -21,6 +21,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :first_name, :last_name)
+    params.require(:user).permit(:email, :first_name, :last_name, :password, :password_confirmation)
   end
 end

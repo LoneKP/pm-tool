@@ -43,6 +43,7 @@ GEM
     autoprefixer-rails (8.2.0)
       execjs
     awesome_print (1.8.0)
+    bcrypt (3.1.12)
     bindex (0.5.0)
     bootstrap (4.0.0)
       autoprefixer-rails (>= 6.0.3)
@@ -233,6 +234,7 @@ GEM
     ruby-progressbar (1.10.0)
     ruby_dep (1.5.0)
     rubyzip (1.2.1)
+    rufo (0.5.1)
     rufus-scheduler (3.4.2)
       et-orbi (~> 1.0)
     sass (3.5.6)
@@ -299,6 +301,7 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_print
+  bcrypt
   bootstrap (~> 4.0.0)
   business_time
   byebug
@@ -327,6 +330,7 @@ DEPENDENCIES
   rspec-rails
   rubocop-performance
   ruby-graphviz
+  rufo
   sass-rails (~> 5.0)
   selenium-webdriver
   sidekiq

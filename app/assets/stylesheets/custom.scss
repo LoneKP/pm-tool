@@ -315,8 +315,8 @@ delete-button {
 
 .icon-14-check {
 	font-size: 14px !important;
-	color: rgb(var(--primary-color));
-	margin-top: 4px;
+	color: rgb(var(--primary-color)) !important;
+	margin-top: 4px !important;
 }
 
 .icon-14-check-error {
@@ -327,8 +327,8 @@ delete-button {
 
 .icon-14-check-attention {
 	font-size: 14px !important;
-	color: #FFCC77;
-	margin-top: 4px;
+	color: #FFCC77 !important;
+	margin-top: 4px !important;
 }
 
 .icon-messages {
@@ -1925,49 +1925,7 @@ input.add-risk-action {
 	margin-bottom: 48px;
 }
 
-input#organisation_organisation_name {
-	color: rgb(var(--primary-color));
-	font-family: "Work Sans";
-	border: none;
-	font-size: 24px;
-	font-weight: 600;
-	line-height: 28px;
-	outline:none;
-	caret-color: rgb(var(--primary-color));
-	width: 216px;
-	text-align: center;
-	margin-bottom: 12px;
-	margin-top: 12px;
-}
-input#user_first_name {
-	color: rgb(var(--primary-color));
-	font-family: "Work Sans";
-	border: none;
-	font-size: 24px;
-	font-weight: 600;
-	line-height: 28px;
-	outline:none;
-	caret-color: rgb(var(--primary-color));
-	width: 216px;
-	text-align: center;
-	margin-bottom: 12px;
-	margin-top: 12px;
-}
-input#user_last_name {
-	color: rgb(var(--primary-color));
-	font-family: "Work Sans";
-	border: none;
-	font-size: 24px;
-	font-weight: 600;
-	line-height: 28px;
-	outline:none;
-	caret-color: rgb(var(--primary-color));
-	width: 216px;
-	text-align: center;
-	margin-bottom: 12px;
-	margin-top: 12px;
-}
-input#user_email {
+input#organisation_organisation_name, input#user_first_name, input#user_last_name, input#user_email, input#user_password, input#user_password_confirmation {
 	color: rgb(var(--primary-color));
 	font-family: "Work Sans";
 	border: none;

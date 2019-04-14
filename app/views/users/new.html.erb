@@ -1,4 +1,4 @@
-<% content_for :navigation, render('layouts/custom_setup_top_bar', obj: 'Setup user', obj2: '') %>
+<% content_for :navigation, render('layouts/custom_setup_top_bar', obj: 'Setup user', obj2: '', organisation: @organisaion) %>
 
 <div class="row">
   <div class="col-3"></div>
@@ -39,6 +39,7 @@
     </div>
 
      <div class="sign-up-flow-underline<%= @user.errors[:last_name].any? ? '-error' : '' %>"></div>
+
     <p class="setup-subtitle">
       E-mail
     </p>
@@ -53,6 +54,36 @@
     </div>
 
     <div class="sign-up-flow-underline<%= @user.errors[:email].any? ? '-error' : '' %>"></div>
+
+    <p class="setup-subtitle">
+      Password
+    </p>
+    <div class="row">
+      <%=	f.password_field :password %>
+      <% if @user.errors[:password].any? %>
+      <i class="material-icons flex-column-errors">error</i>
+      <% else %>
+      <i class="material-icons flex-column-errors">check_circle</i>
+      <% end %>
+
+    </div>
+
+    <div class="sign-up-flow-underline<%= @user.errors[:password].any? ? '-error' : '' %>"></div>
+
+    <p class="setup-subtitle">
+      Confirm password
+    </p>
+    <div class="row">
+      <%=	f.password_field :password_confirmation %>
+      <% if @user.errors[:password_confirmation].any? %>
+      <i class="material-icons flex-column-errors">error</i>
+      <% else %>
+      <i class="material-icons flex-column-errors">check_circle</i>
+      <% end %>
+
+    </div>
+
+    <div class="sign-up-flow-underline<%= @user.errors[:password_confirmation].any? ? '-error' : '' %>"></div>
 
     <% if @user.errors.any? %>
       <div class="error-message">   
@@ -109,7 +140,7 @@
 
     $(document).ready(function () {
       validate();
-      $('input#user_email, input#user_first_name, input#user_last_name').keyup(validate);
+      $('input#user_email, input#user_first_name, input#user_last_name, input#user_password, input#user_password_confirmation').keyup(validate);
     });
 
 
@@ -118,10 +149,14 @@
       firstName = $('input#user_first_name').val();
       lastName = $('input#user_last_name').val();
       email = $('input#user_email').val();
+      password = $('input#user_password').val();
+      password_confirmation = $('input#user_password_confirmation').val();
       if (
         firstName.length > 1 &&
         lastName.length > 1 &&
-        isEmail(email)
+        isEmail(email) &&
+        password.length > 7 &&
+        password_confirmation.length > 7
       ) {
         $('.next-and-create-user-inactive').addClass("next-and-create-user")
         $('.next-and-create-user-inactive').removeClass("next-and-create-user-inactive")
@@ -222,15 +257,122 @@
 
     $('input#user_email').keyup(function () {
       tmpval = $(this).val();
+
+        // Change color of underline on keyup when there is an error
+        $('.field_with_errors > input#user_email').parent().parent().next().removeClass("sign-up-flow-underline-error");
+        $('.field_with_errors > input#user_email').parent().parent().next().addClass("sign-up-flow-underline");
+
       if (isEmail(tmpval)) {
         $('input#user_email').next().addClass("icon-14-check");
         $('input#user_email').next().removeClass("icon-14-check-attention");
         $('input#user_email').next().removeClass("icon-14-check-error");
         $('input#user_email').next().text('check_circle')
+
+        // Change colors on keyup when there is an error
+        $('.field_with_errors > input#user_email').parent().next().addClass("icon-14-check");
+        $('.field_with_errors > input#user_email').parent().next().removeClass("icon-14-check-attention");
+        $('.field_with_errors > input#user_email').parent().next().removeClass("icon-14-check-error");
+        $('.field_with_errors > input#user_email').parent().next().text('check_circle')
+
       } else {
         $('input#user_email').next().addClass("icon-14-check-attention");
         $('input#user_email').next().text('error')
         $('input#user_email').next().removeClass("icon-14-check");
+        
+        // Change colors on keyup when there is an error
+        $('.field_with_errors > input#user_email').parent().next().addClass("icon-14-check-attention");
+        $('.field_with_errors > input#user_email').parent().next().text('error')
+        $('.field_with_errors > input#user_email').parent().next().removeClass("icon-14-check");
+      }
+    });
+
+        $(document).ready(function () {
+      tmpval = $('input#user_password').val();
+      if (tmpval.length < 8) {
+        $('input#user_password').next().addClass("icon-14-check-attention");
+        $('input#user_password').next().text('error')
+        $('input#user_password').next().removeClass("icon-14-check");
+
+      } else {
+        $('input#user_password').next().addClass("icon-14-check");
+        $('input#user_password').next().removeClass("icon-14-check-attention");
+        $('input#user_password').next().removeClass("icon-14-check-error");
+        $('input#user_password').next().text('check_circle')
+      }
+    });
+
+    $('input#user_password').keyup(function () {
+      tmpval = $(this).val();
+
+        // Change color of underline on keyup when there is an error
+        $('.field_with_errors > input#user_password').parent().parent().next().removeClass("sign-up-flow-underline-error");
+        $('.field_with_errors > input#user_password').parent().parent().next().addClass("sign-up-flow-underline");
+
+      if (tmpval.length < 8) {
+
+        $('input#user_password').next().addClass("icon-14-check-attention");
+        $('input#user_password').next().text('error')
+        $('input#user_password').next().removeClass("icon-14-check");
+
+        $('.field_with_errors > input#user_password').parent().next().addClass("icon-14-check-attention");
+        $('.field_with_errors > input#user_password').parent().next().text('error')
+        $('.field_with_errors > input#user_password').parent().next().removeClass("icon-14-check");
+
+      } else {
+        $('input#user_password').next().addClass("icon-14-check");
+        $('input#user_password').next().removeClass("icon-14-check-attention");
+        $('input#user_password').next().removeClass("icon-14-check-error");
+        $('input#user_password').next().text('check_circle')
+
+        $('.field_with_errors > input#user_password').parent().next().addClass("icon-14-check");
+        $('.field_with_errors > input#user_password').parent().next().removeClass("icon-14-check-attention");
+        $('.field_with_errors > input#user_password').parent().next().removeClass("icon-14-check-error");
+        $('.field_with_errors > input#user_password').parent().next().text('check_circle')
+      }
+    });
+
+            $(document).ready(function () {
+      tmpval = $('input#user_password_confirmation').val();
+      if (tmpval.length < 8) {
+        $('input#user_password_confirmation').next().addClass("icon-14-check-attention");
+        $('input#user_password_confirmation').next().text('error')
+        $('input#user_password_confirmation').next().removeClass("icon-14-check");
+
+      } else {
+        $('input#user_password_confirmation').next().addClass("icon-14-check");
+        $('input#user_password_confirmation').next().removeClass("icon-14-check-attention");
+        $('input#user_password_confirmation').next().removeClass("icon-14-check-error");
+        $('input#user_password_confirmation').next().text('check_circle')
+      }
+    });
+
+    $('input#user_password_confirmation').keyup(function () {
+
+        // Change color of underline on keyup when there is an error
+        $('.field_with_errors > input#user_password_confirmation').parent().parent().next().removeClass("sign-up-flow-underline-error");
+        $('.field_with_errors > input#user_password_confirmation').parent().parent().next().addClass("sign-up-flow-underline");
+
+      tmpval = $(this).val();
+      if (tmpval.length < 8) {
+
+        $('input#user_password_confirmation').next().addClass("icon-14-check-attention");
+        $('input#user_password_confirmation').next().text('error')
+        $('input#user_password_confirmation').next().removeClass("icon-14-check");
+
+        $('.field_with_errors > input#user_password_confirmation').parent().next().addClass("icon-14-check-attention");
+        $('.field_with_errors > input#user_password_confirmation').parent().next().text('error')
+        $('.field_with_errors > input#user_password_confirmation').parent().next().removeClass("icon-14-check");
+
+      } else {
+        $('input#user_password_confirmation').next().addClass("icon-14-check");
+        $('input#user_password_confirmation').next().removeClass("icon-14-check-attention");
+        $('input#user_password_confirmation').next().removeClass("icon-14-check-error");
+        $('input#user_password_confirmation').next().text('check_circle')
+
+        $('.field_with_errors > input#user_password_confirmation').parent().next().addClass("icon-14-check");
+        $('.field_with_errors > input#user_password_confirmation').parent().next().removeClass("icon-14-check-attention");
+        $('.field_with_errors > input#user_password_confirmation').parent().next().removeClass("icon-14-check-error");
+        $('.field_with_errors > input#user_password_confirmation').parent().next().text('check_circle')
       }
     });
 
