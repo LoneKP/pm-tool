@@ -1,0 +1,54 @@
+<% content_for :navigation, render('layouts/custom_setup_top_bar', obj: 'Invite users', obj2: '') %>
+
+<div class="row">
+  <div class="col-3"></div>
+  <div class="invite-colleagues-box col-6">
+    <div class="mt-5">
+      <i class="material-icons icon-46">group_add</i>
+    </div>
+    <p class="setup-headline-box mt-300 mb-300">Invite colleagues</p>
+
+<%= form_for @invitation, :url => {controller: 'invitations', action: 'create' } do |f| %>
+
+<%=	f.text_field :email %>
+<%=	f.hidden_field :token, :value => 'this_is_a_token' %>
+<%=	f.hidden_field :user_id, :value => @user.id %>
+<%=	f.hidden_field :organisation_id, :value => @organisation.id %>
+
+
+  </div>
+  <div class="col-3"></div>
+</div>
+
+
+<div class="row setup-navigation">
+  <div class="col-1"></div>
+  <div class="back-button col-1">
+    <%= link_to 'create-user' do %>
+      <p>Back</p>
+    <% end %>
+	
+  </div>
+  <div class="col-2"></div>
+  <div class="col-4 numbers-in-setup inside-number">
+    <div>
+      <p>1</p>
+    </div>
+    <div>
+      <p>2</p>
+    </div>
+    <div>
+      <p>3</p>
+    </div>
+    <div>
+      <p>4</p>
+    </div>
+    <div class="selected">
+      <p class="selected">5</p>
+    </div>
+  </div>
+  <div class="col-2"></div>
+<%= f.submit 'Next', :class => 'next-and-create-user col-1' %>
+<% end %>
+  <div class="col-1"></div>
+</div>

@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     @organisation = Organisation.find(params[:organisation_id])
     @user.organisation = @organisation
     if @user.save
-      redirect_to user_invite_colleagues_path(@user)
+      redirect_to new_user_invitation_path(@user)
     else
       render "new"
     end
@@ -13,8 +13,6 @@ class UsersController < ApplicationController
   def new
     @user = User.new
   end
-
-  def invite_colleagues; end
 
   def done; end
 

@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_secure_password validations: false
   has_many :responsibilities, dependent: :destroy
   has_many :projects, through: :responsibilities
+  has_many :invitations
   before_save { self.email = email.downcase }
   validates :first_name, presence: true
   validates :first_name, length: { minimum: 2 }

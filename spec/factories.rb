@@ -1,4 +1,8 @@
 FactoryBot.define do
+  factory :invitation do
+    token { "MyString" }
+    email { "MyString" }
+  end
   factory :organisation do
     name { 'MyString' }
     harvest_account_id { 1 }
