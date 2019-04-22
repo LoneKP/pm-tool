@@ -6,6 +6,7 @@ class InvitationsController < ApplicationController
     @invitation.save
     if @invitation.save
       redirect_to user_done_path(@user)
+      UserMailer.invitation_email(@invitation, root_url(:invitation_token => @invitation.token)).deliver_later
     else
       render "new"
     end
