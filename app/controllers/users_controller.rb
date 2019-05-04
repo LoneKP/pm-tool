@@ -27,7 +27,6 @@ class UsersController < ApplicationController
     @user.organisation = @organisation
     @token = params[:invitation_token]
     @invitation = Invitation.where(token: @token)
-    pry
     if @user.save
       redirect_to root_path
     else

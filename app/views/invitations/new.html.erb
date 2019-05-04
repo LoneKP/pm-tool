@@ -7,17 +7,46 @@
       <i class="material-icons icon-46">group_add</i>
     </div>
     <p class="setup-headline-box mt-300 mb-300">Invite colleagues to join your organisation</p>
+    <p class="explainer mb-300">If you don't wish to invite any colleagues at the moment, just hit next. You can always
+      do this later.</p>
+    <div>
 
-    <%= form_for @invitation, :url => {controller: 'invitations', action: 'create' } do |f| %>
+      <p class="setup-subtitle">
+        Your colleague's email
+      </p>
 
-    <%=	f.text_field :email %>
+
+      <%= form_for @invitation, :url => {controller: 'invitations', action: 'create' } do |f| %>
+      <div class="row">
+        <%=	f.text_field :email %>
+        <% if @invitation.errors[:email].any? %>
+        <i class="material-icons flex-column-errors">error</i>
+        <% else %>
+        <i class="material-icons flex-column-errors">check_circle</i>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="sign-up-flow-underline<%= @invitation.errors[:email].any? ? '-error' : '' %>"></div>
+
     <%=	f.hidden_field :user_id, :value => @user.id %>
     <%=	f.hidden_field :organisation_id, :value => @organisation.id %>
+
+    <% if @invitation.errors.any? %>
+    <div class="error-message">
+      <% @invitation.errors.values.each do |messages| %>
+      <% messages.each do |message|  %>
+      <p class="text-14"><%= message.html_safe %></p>
+      <% end %>
+      <% end %>
+    </div>
+    <% end %>
 
 
   </div>
   <div class="col-3"></div>
 </div>
+
 
 
 <div class="row setup-navigation">
@@ -30,16 +59,16 @@
   </div>
   <div class="col-2"></div>
   <div class="col-4 numbers-in-setup inside-number">
-    <div>
+    <div class="selected">
       <p>1</p>
     </div>
-    <div>
+    <div class="selected">
       <p>2</p>
     </div>
-    <div>
+    <div class="selected">
       <p>3</p>
     </div>
-    <div>
+    <div class="selected">
       <p>4</p>
     </div>
     <div class="selected">
@@ -51,3 +80,104 @@
   <% end %>
   <div class="col-1"></div>
 </div>
+
+<script>
+
+  $(document).on('turbolinks:load', function () {
+
+    $('input').attr('autocomplete', 'off');
+    $('input').attr('autocomplete', 'nope');
+
+    $(document).ready(function () {
+      validate();
+      $('input#invitation_email').keyup(validate);
+    });
+
+
+    //function to validate whether all criterias are fulfilled when typing in information in the form
+    function validate() {
+      email = $('input#invitation_email').val();
+      if (
+        isEmail(email) || email.length == 0
+      ) {
+        $('.next-and-create-user-inactive').addClass("next-and-create-user")
+        $('.next-and-create-user-inactive').removeClass("next-and-create-user-inactive")
+        $(".next-and-create-user").prop('disabled', false);
+        $('input#invitation_email').next().addClass("visibility-hidden");
+      }
+      else {
+        $('.next-and-create-user').addClass("next-and-create-user-inactive")
+        $('.next-and-create-user').removeClass("next-and-create-user")
+        $(".next-and-create-user-inactive").prop('disabled', true);
+        $('input#invitation_email').next().removeClass("visibility-hidden");
+      }
+      
+      // Don't show checkmark to begin with, since the field is not required
+      if (
+        email.length == 0
+      ) {
+        $('input#invitation_email').next().addClass("visibility-hidden");
+      }
+      else {
+        $('input#invitation_email').next().removeClass("visibility-hidden");
+      }
+    }
+
+
+    $(document).ready(function () {
+      tmpval = $('input#invitation_email').val();
+      if (tmpval == '') {
+        $('input#invitation_email').next().addClass("icon-14-check-attention");
+        $('input#invitation_email').next().text('error')
+        $('input#invitation_email').next().removeClass("icon-14-check");
+
+      } else {
+        $('input#invitation_email').next().addClass("icon-14-check");
+        $('input#invitation_email').next().removeClass("icon-14-check-attention");
+        $('input#invitation_email').next().removeClass("icon-14-check-error");
+        $('input#invitation_email').next().text('check_circle')
+      }
+    });
+
+    function isEmail(email) {
+      var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+      if (!regex.test(email)) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+
+    $('input#invitation_email').keyup(function () {
+      tmpval = $(this).val();
+
+      // Change color of underline on keyup when there is an error
+      $('.field_with_errors > input#invitation_email').parent().parent().next().removeClass("sign-up-flow-underline-error");
+      $('.field_with_errors > input#invitation_email').parent().parent().next().addClass("sign-up-flow-underline");
+
+      if (isEmail(tmpval)) {
+        $('input#invitation_email').next().addClass("icon-14-check");
+        $('input#invitation_email').next().removeClass("icon-14-check-attention");
+        $('input#invitation_email').next().removeClass("icon-14-check-error");
+        $('input#invitation_email').next().text('check_circle')
+
+        // Change colors on keyup when there is an error
+        $('.field_with_errors > input#invitation_email').parent().next().addClass("icon-14-check");
+        $('.field_with_errors > input#invitation_email').parent().next().removeClass("icon-14-check-attention");
+        $('.field_with_errors > input#invitation_email').parent().next().removeClass("icon-14-check-error");
+        $('.field_with_errors > input#invitation_email').parent().next().text('check_circle')
+
+      } else {
+        $('input#invitation_email').next().addClass("icon-14-check-attention");
+        $('input#invitation_email').next().text('error')
+        $('input#invitation_email').next().removeClass("icon-14-check");
+
+        // Change colors on keyup when there is an error
+        $('.field_with_errors > input#invitation_email').parent().next().addClass("icon-14-check-attention");
+        $('.field_with_errors > input#invitation_email').parent().next().text('error')
+        $('.field_with_errors > input#invitation_email').parent().next().removeClass("icon-14-check");
+      }
+    });
+
+  });
+</script>

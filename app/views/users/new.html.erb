@@ -25,7 +25,7 @@
         <% end %>
       </div>
     </div>
-     <div class="sign-up-flow-underline<%= @user.errors[:first_name].any? ? '-error' : '' %>"></div>
+    <div class="sign-up-flow-underline<%= @user.errors[:first_name].any? ? '-error' : '' %>"></div>
     <p class="setup-subtitle">
       Last name
     </p>
@@ -38,7 +38,7 @@
       <% end %>
     </div>
 
-     <div class="sign-up-flow-underline<%= @user.errors[:last_name].any? ? '-error' : '' %>"></div>
+    <div class="sign-up-flow-underline<%= @user.errors[:last_name].any? ? '-error' : '' %>"></div>
 
     <p class="setup-subtitle">
       E-mail
@@ -86,13 +86,13 @@
     <div class="sign-up-flow-underline<%= @user.errors[:password_confirmation].any? ? '-error' : '' %>"></div>
 
     <% if @user.errors.any? %>
-      <div class="error-message">   
-        <% @user.errors.values.each do |messages| %>
-          <% messages.each do |message|  %>
-          <p class ="text-14"><%= message.html_safe %></p>
-          <% end %>
-        <% end %>
-      </div>
+    <div class="error-message">
+      <% @user.errors.values.each do |messages| %>
+      <% messages.each do |message|  %>
+      <p class="text-14"><%= message.html_safe %></p>
+      <% end %>
+      <% end %>
+    </div>
     <% end %>
   </div>
 
@@ -258,9 +258,9 @@
     $('input#user_email').keyup(function () {
       tmpval = $(this).val();
 
-        // Change color of underline on keyup when there is an error
-        $('.field_with_errors > input#user_email').parent().parent().next().removeClass("sign-up-flow-underline-error");
-        $('.field_with_errors > input#user_email').parent().parent().next().addClass("sign-up-flow-underline");
+      // Change color of underline on keyup when there is an error
+      $('.field_with_errors > input#user_email').parent().parent().next().removeClass("sign-up-flow-underline-error");
+      $('.field_with_errors > input#user_email').parent().parent().next().addClass("sign-up-flow-underline");
 
       if (isEmail(tmpval)) {
         $('input#user_email').next().addClass("icon-14-check");
@@ -278,7 +278,7 @@
         $('input#user_email').next().addClass("icon-14-check-attention");
         $('input#user_email').next().text('error')
         $('input#user_email').next().removeClass("icon-14-check");
-        
+
         // Change colors on keyup when there is an error
         $('.field_with_errors > input#user_email').parent().next().addClass("icon-14-check-attention");
         $('.field_with_errors > input#user_email').parent().next().text('error')
@@ -286,7 +286,7 @@
       }
     });
 
-        $(document).ready(function () {
+    $(document).ready(function () {
       tmpval = $('input#user_password').val();
       if (tmpval.length < 8) {
         $('input#user_password').next().addClass("icon-14-check-attention");
@@ -304,9 +304,9 @@
     $('input#user_password').keyup(function () {
       tmpval = $(this).val();
 
-        // Change color of underline on keyup when there is an error
-        $('.field_with_errors > input#user_password').parent().parent().next().removeClass("sign-up-flow-underline-error");
-        $('.field_with_errors > input#user_password').parent().parent().next().addClass("sign-up-flow-underline");
+      // Change color of underline on keyup when there is an error
+      $('.field_with_errors > input#user_password').parent().parent().next().removeClass("sign-up-flow-underline-error");
+      $('.field_with_errors > input#user_password').parent().parent().next().addClass("sign-up-flow-underline");
 
       if (tmpval.length < 8) {
 
@@ -331,7 +331,7 @@
       }
     });
 
-            $(document).ready(function () {
+    $(document).ready(function () {
       tmpval = $('input#user_password_confirmation').val();
       if (tmpval.length < 8) {
         $('input#user_password_confirmation').next().addClass("icon-14-check-attention");
@@ -348,9 +348,9 @@
 
     $('input#user_password_confirmation').keyup(function () {
 
-        // Change color of underline on keyup when there is an error
-        $('.field_with_errors > input#user_password_confirmation').parent().parent().next().removeClass("sign-up-flow-underline-error");
-        $('.field_with_errors > input#user_password_confirmation').parent().parent().next().addClass("sign-up-flow-underline");
+      // Change color of underline on keyup when there is an error
+      $('.field_with_errors > input#user_password_confirmation').parent().parent().next().removeClass("sign-up-flow-underline-error");
+      $('.field_with_errors > input#user_password_confirmation').parent().parent().next().addClass("sign-up-flow-underline");
 
       tmpval = $(this).val();
       if (tmpval.length < 8) {

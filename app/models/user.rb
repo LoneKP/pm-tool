@@ -3,6 +3,9 @@ class User < ApplicationRecord
   has_many :responsibilities, dependent: :destroy
   has_many :projects, through: :responsibilities
   has_many :invitations
+  belongs_to :organisation, inverse_of: :users, optional: true
+  validates_presence_of :organisation
+
   before_save { self.email = email.downcase }
   validates :first_name, presence: true
   validates :first_name, length: { minimum: 2 }
@@ -42,7 +45,4 @@ class User < ApplicationRecord
               unless: Proc.new { |a| a.password.blank? },
               if: Proc.new { |a| a.password.nil? ? false : a.password.length > 7 },
             }
-
-  belongs_to :organisation, inverse_of: :users, optional: true
-  validates_presence_of :organisation
 end

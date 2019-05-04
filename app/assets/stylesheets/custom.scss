@@ -1945,7 +1945,12 @@ input.add-risk-action {
 	margin-bottom: 48px;
 }
 
-input#organisation_organisation_name, input#user_first_name, input#user_last_name, input#user_email, input#user_password, input#user_password_confirmation, .fixed-inputs  {
+input#organisation_organisation_name, 
+input#user_first_name, input#user_last_name, 
+input#user_email, input#user_password, 
+input#user_password_confirmation,
+input#invitation_email, 
+.fixed-inputs  {
 	color: rgb(var(--primary-color));
 	font-family: "Work Sans";
 	border: none;
