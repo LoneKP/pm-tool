@@ -1,15 +1,19 @@
-
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-    <h1>Hi there! </h1> 
-    <p> <%= @invitation.user.first_name + ' ' + @invitation.user.last_name %> just made an account for your organisation, <%= @invitation.organisation.organisation_name %>, on this new cool project management tool called Prjectio </p>
-    <p>
-      You can use this link to jump right in and check it out: <%= @url %><br>
-    </p>
-    <p>Thanks for joining and have a great day!</p>
-  </body>
-</html>
+
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+
+<body>
+  <h1>Hi there! </h1>
+  <p> <%= @invitation.user.first_name + ' ' + @invitation.user.last_name %> just made an account for your organisation,
+    <%= @invitation.organisation.organisation_name %>, on this new cool project management tool called Prjectio </p>
+  <p>
+    <a href="<%= @url %>">Jump right in and check it out!</a>
+    <br>
+  </p>
+  <p>Thanks for joining and have a great day!</p>
+</body>
+
+</html> 

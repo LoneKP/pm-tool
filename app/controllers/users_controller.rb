@@ -19,6 +19,9 @@ class UsersController < ApplicationController
     @token = params[:invitation_token]
     @invitation = Invitation.where(token: @token).last
     @organisation = Organisation.find(params[:organisation_id])
+    if User.exists?(email: @invitation.email)
+      redirect_to root_path, turbolinks: false, alert: "It seems that you already have a user!"
+    end
   end
 
   def create_from_invitation
