@@ -14,6 +14,27 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def new_from_invitation
+    @user = User.new
+    @token = params[:invitation_token]
+    @invitation = Invitation.where(token: @token).last
+    @organisation = Organisation.find(params[:organisation_id])
+  end
+
+  def create_from_invitation
+    @user = User.new(user_params)
+    @organisation = Organisation.find(params[:organisation_id])
+    @user.organisation = @organisation
+    @token = params[:invitation_token]
+    @invitation = Invitation.where(token: @token)
+    pry
+    if @user.save
+      redirect_to root_path
+    else
+      render "new_from_invitation"
+    end
+  end
+
   def done; end
 
   private

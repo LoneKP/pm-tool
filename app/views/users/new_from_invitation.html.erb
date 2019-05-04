@@ -1,0 +1,115 @@
+<% content_for :navigation, render('layouts/custom_setup_top_bar', obj: 'Create user from invitation', obj2: '') %>
+
+<div class="row">
+  <div class="col-3"></div>
+  <div class="create-user-from-invitation-box col-6">
+
+    <p class="setup-headline-box mt-300 mb-300">Welcome to Prjectio!</p>
+    <p class="explainer mb-300">Let's get you started! <%= @invitation.user.first_name %> already told us this about
+      you...</p>
+    <p class="setup-subtitle">Email</p>
+    <p class="fixed-inputs"> <%= @invitation.email %></p>
+    <div class="sign-up-flow-underline"></div>
+    <p class="setup-subtitle">Organisation</p>
+    <p class="fixed-inputs"> <%= @organisation.organisation_name %></p>
+    <div class="sign-up-flow-underline"></div>
+    <p class="explainer mb-300">So all you need to do is fill out the fields below!</p>
+
+    <div>
+      <%= form_for @user, :url => {controller: 'users', action: 'create_from_invitation' }, :html => {:class => 'edit-view-styling'} do |f| %>
+      <%= f.hidden_field :email, :value => @invitation.email %>
+
+      <p class="setup-subtitle">
+        First name
+      </p>
+      <div class="row">
+        <%=	f.text_field :first_name %>
+        <% if @user.errors[:first_name].any? %>
+        <i class="material-icons flex-column-errors">error</i>
+        <% else %>
+        <i class="material-icons flex-column-errors">check_circle</i>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="sign-up-flow-underline<%= @user.errors[:first_name].any? ? '-error' : '' %>"></div>
+    <p class="setup-subtitle">
+      Last name
+    </p>
+    <div class="row">
+      <%=	f.text_field :last_name %>
+      <% if @user.errors[:last_name].any? %>
+      <i class="material-icons flex-column-errors">error</i>
+      <% else %>
+      <i class="material-icons flex-column-errors">check_circle</i>
+      <% end %>
+    </div>
+
+    <div class="sign-up-flow-underline<%= @user.errors[:last_name].any? ? '-error' : '' %>"></div>
+
+    <p class="setup-subtitle">
+      Password
+    </p>
+    <div class="row">
+      <%=	f.password_field :password %>
+      <% if @user.errors[:password].any? %>
+      <i class="material-icons flex-column-errors">error</i>
+      <% else %>
+      <i class="material-icons flex-column-errors">check_circle</i>
+      <% end %>
+
+    </div>
+
+    <div class="sign-up-flow-underline<%= @user.errors[:password].any? ? '-error' : '' %>"></div>
+
+    <p class="setup-subtitle">
+      Confirm password
+    </p>
+    <div class="row">
+      <%=	f.password_field :password_confirmation %>
+      <% if @user.errors[:password_confirmation].any? %>
+      <i class="material-icons flex-column-errors">error</i>
+      <% else %>
+      <i class="material-icons flex-column-errors">check_circle</i>
+      <% end %>
+
+    </div>
+
+    <div class="sign-up-flow-underline<%= @user.errors[:password_confirmation].any? ? '-error' : '' %>"></div>
+  </div>
+
+</div>
+<div class="col-3"></div>
+</div>
+
+<div class="row setup-navigation">
+  <div class="col-1"></div>
+  <div class="back-button col-1">
+    <%= link_to 'create-user' do %>
+    <p>Back</p>
+    <% end %>
+
+  </div>
+  <div class="col-2"></div>
+  <div class="col-4 numbers-in-setup inside-number">
+    <div>
+      <p>1</p>
+    </div>
+    <div>
+      <p>2</p>
+    </div>
+    <div>
+      <p>3</p>
+    </div>
+    <div>
+      <p>4</p>
+    </div>
+    <div class="selected">
+      <p class="selected">5</p>
+    </div>
+  </div>
+  <div class="col-2"></div>
+  <%= f.submit 'Next', :class => 'next-and-create-user col-1' %>
+  <% end %>
+  <div class="col-1"></div>
+</div>

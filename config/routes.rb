@@ -13,9 +13,11 @@ Rails.application.routes.draw do
   resources :risk_actions, only: %i[edit update destroy]
 
   resources :organisations do
+    resources :users, only: %i[create new]
     get :connect_to_tools
     get :sign_in
-    resources :users, only: %i[create new]
+    get :new_from_invitation, to: "users#new_from_invitation"
+    post :create_from_invitation, to: "users#create_from_invitation"
   end
 
   resources :users do

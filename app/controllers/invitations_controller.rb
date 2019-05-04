@@ -6,10 +6,16 @@ class InvitationsController < ApplicationController
     @invitation.save
     if @invitation.save
       redirect_to user_done_path(@user)
-      UserMailer.invitation_email(@invitation, new_organisation_user_url(:invitation_token => @invitation.token)).deliver_later
+      UserMailer.invitation_email(@invitation, organisation_new_from_invitation_url(:invitation_token => @invitation.token, :organisation_id => @invitation.organisation.id)).deliver_later
     else
-      render "new"
+      redirect_to root_path
     end
+  end
+
+  def invitation_token_key
+    User.find(params[:user_id])
+    @invitation = Invitation.find(params[:invitation_token])
+    @organisation = @invitation.organisation
   end
 
   def new
