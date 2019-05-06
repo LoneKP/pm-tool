@@ -1,28 +1,49 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Prjectio</title>
-		<%= csrf_meta_tags %>
-		<%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
-		<%= stylesheet_link_tag    'application', 'jquery.modal', media: 'all', 'data-turbolinks-track': 'reload' %>
-		<%= javascript_include_tag 'application', 'custom', 'jquery.modal', 'data-turbolinks-track': 'reload' %>
 
-		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-	</head>
+<head>
+	<title>Prjectio</title>
+	<%= csrf_meta_tags %>
+	<%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
+	<%= stylesheet_link_tag    'application', 'jquery.modal', media: 'all', 'data-turbolinks-track': 'reload' %>
+	<%= javascript_include_tag 'application', 'custom', 'jquery.modal', 'data-turbolinks-track': 'reload' %>
 
-	<body class="body">
-		<div class="container-fluid">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700,800,900" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+</head>
 
-		
-		</div>
+<body class="body">
+	<div class="container-fluid" id="overlay-hero">
 
-		<div class="container">
-			<%= yield %>
-		</div>
+		<% if content_for? :navigation %>
+		<%= content_for :navigation %>
+		<% elsif content_for? :blank %>
+		<%= render 'layouts/blank' %>
+		<% else %>
+		<%= render 'layouts/navigation' %>
+		<% end %>
 
-		<!--   <%= debug(params) if Rails.env.development? %>-->
-	</body>
+
+		<% if flash[:notice] %>
+		<%= render 'layouts/messages' %>
+		<% end %>
+		<% if flash[:alert] %>
+		<%= render 'layouts/alerts' %>
+		<% end %>
+
+
+		<%= yield :hero %>
+
+	</div>
+
+	<%= yield :section_2 %>
+	<%= yield :section_3 %>
+	<%= yield :section_4 %>
+	<%= yield :section_5 %>
+	<%= yield :footer %>
+
+
+</body>
 
 </html>

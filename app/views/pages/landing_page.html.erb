@@ -1,20 +1,26 @@
-<h1>Project.io</h1>
+<% content_for :navigation, render('layouts/navigation_landing_page') %>
 
-
-<p>This is a landing page</p>
-
-<%= link_to new_organisation_path, data: { turbolinks: false } do %>
-<div class="mt-350 new-project">
-	<p class="text-24 blue">Get started</p>
-</div>
+<% content_for :hero do %>
+<%= render 'hero' %>
 <% end %>
 
-<%= link_to 'https://id.getharvest.com/oauth2/authorize?client_id=0QOx5ejoU4UkejJN6aCNXNDG&response_type=code&redirect_uri=http://localhost:3000/harvest_oauth2/callback' do %>
-<div class="mt-350 new-project">
-	<i class="material-icons icon-add mr-133">input</i>
-	<p class="text-24 blue">Log in with Harvest</p>
-</div>
+
+<% content_for :section_2 do %>
+<%= render 'section_2' %>
 <% end %>
 
-<script>
-	
+<% content_for :section_3 do %>
+<%= render 'section_3' %>
+<% end %>
+
+<% content_for :section_4 do %>
+<%= render 'section_4' %>
+<% end %>
+
+<% content_for :section_5 do %>
+<%= render 'section_5' %>
+<% end %>
+
+<% content_for :footer do %>
+<%= render 'footer' %>
+<% end %>
