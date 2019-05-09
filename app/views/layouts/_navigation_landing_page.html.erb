@@ -4,7 +4,9 @@
         <div class="inner-nav col-8">
             <p class="landing-page-nav-logo">P</p>
             <div class="d-flex flex-row ">
+                    <%= link_to login_path, data: { turbolinks: false } do %>
                 <p class="login-button">Log in</p>
+                <% end %>
                 <%= link_to new_organisation_path, data: { turbolinks: false } do %>
                         <p class="signup-button ml-2">Sign up</p>
                 <% end %>

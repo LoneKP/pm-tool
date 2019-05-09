@@ -15,7 +15,6 @@ Rails.application.routes.draw do
   resources :organisations do
     resources :users, only: %i[create new]
     get :connect_to_tools
-    get :sign_in
     get :new_from_invitation, to: "users#new_from_invitation"
     post :create_from_invitation, to: "users#create_from_invitation"
   end
@@ -25,12 +24,14 @@ Rails.application.routes.draw do
     resources :invitations, only: %i[create new]
   end
 
-  get "/harvest_oauth2/callback", to: "sessions#create"
-  get "/projects_on_dashboard", to: "projects#index"
-  get "/active_projects", to: "projects#index"
   get "login", to: "sessions#new"
   post "login", to: "sessions#create"
   delete "logout", to: "sessions#destroy", as: "logout"
+
+  get "/harvest_oauth2/callback", to: "sessions#create"
+  get "/projects_on_dashboard", to: "projects#index"
+  get "/active_projects", to: "projects#index"
+
   get "closed_projects", to: "projects#closed_projects"
   get "revenue", to: "projects#revenue"
   get "team", to: "projects#team"

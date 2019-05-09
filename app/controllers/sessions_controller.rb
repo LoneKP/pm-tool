@@ -1,14 +1,16 @@
 class SessionsController < ApplicationController
-  def new; end
+  def new
+  end
 
   def create
-    @code = params[:code]
-    @user = HarvestAccess.new(@code).call
-    session[:user_id] = @user.id
-    redirect_to dashboard_url
-
-    # put this in worker when it works
-    FetchProjects.new(@user).update_projects
+    @user = User.find_by_email(params[:session][:email])
+    if @user && @user.authenticate(params[:session][:password])
+      session[:user_id] = @user.id
+      redirect_to root_url, notice: "Logged in!"
+    else
+      flash.now[:alert] = "Email or password is invalid"
+      render "new"
+    end
   end
 
   def destroy
