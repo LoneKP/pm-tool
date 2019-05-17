@@ -12,12 +12,12 @@ class FetchProjects
     projects_not_added.where(organisation_id: @user.organisation_id).delete_all
 
     active_and_billable_projects.map do |project|
-      client_name = project.values_at('client').map { |client| client.values_at('name') }.join('')
-      project_name = project.values_at('name').join('')
-      harvest_project_id = project.values_at('id').join('')
-      hours_sold_for = project.values_at('budget').join('')
-      project_start_date = project.values_at('created_at').join('')
-      project_end_date = project.values_at('ends_on').join('')
+      client_name = project.values_at("client").map { |client| client.values_at("name") }.join("")
+      project_name = project.values_at("name").join("")
+      harvest_project_id = project.values_at("id").join("")
+      hours_sold_for = project.values_at("budget").join("")
+      project_start_date = project.values_at("created_at").join("")
+      project_end_date = project.values_at("ends_on").join("")
 
       if Project.exists?(harvest_project_id: harvest_project_id) == false
         Project.create(
@@ -28,9 +28,8 @@ class FetchProjects
           project_start_date: project_start_date,
           project_end_date: project_end_date,
           organisation_id: @user.organisation_id,
-          closed: false
+          closed: false,
         )
-
       else
         puts "Project, #{project_name} already exists (harvest_project_id: #{harvest_project_id})"
       end
@@ -42,11 +41,11 @@ class FetchProjects
   end
 
   def active_and_billable_projects
-    @_active_projects ||= all_projects.select { |project| project.dig('is_active') && project.dig('is_billable') }
+    @_active_projects ||= all_projects.select { |project| project.dig("is_active") && project.dig("is_billable") }
   end
 
   def projects_grouped_by_client
-    active_and_billable_projects.group_by { |project| project.dig('client', 'name') }
+    active_and_billable_projects.group_by { |project| project.dig("client", "name") }
   end
 
   def sort_projects
@@ -58,11 +57,11 @@ class FetchProjects
   end
 
   def projects_page_one
-    all_projects_page_one_response.dig('projects')
+    all_projects_page_one_response.dig("projects")
   end
 
   def number_of_pages
-    all_projects_page_one_response['total_pages']
+    all_projects_page_one_response["total_pages"]
   end
 
   def projects_with_more_pages
@@ -71,7 +70,7 @@ class FetchProjects
     (1..number_of_pages).each do |i|
       all_projects_collected = wrapper(@user).all_projects(i)
 
-      next_array = all_projects_collected['projects']
+      next_array = all_projects_collected["projects"]
 
       # add projects array to complete array
       all_projects_when_more_pages += next_array

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190422111239) do
+ActiveRecord::Schema.define(version: 20190512204718) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 20190422111239) do
     t.integer "harvest_account_id"
     t.string "access_token"
     t.bigint "organisation_id"
+    t.string "refresh_token"
+    t.datetime "access_token_expiration_time"
     t.index ["organisation_id"], name: "index_harvest_integrations_on_organisation_id"
   end
 
