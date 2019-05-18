@@ -15,16 +15,33 @@
     </div>
     <div>
       <%= form_for :organisation, :url => { controller: "organisations", action: "create"}, :html => {:class => 'edit-view-styling'} do |f| %>
-      <%=	f.text_field :organisation_name %>
-      <i class="material-icons">check_circle</i>
+      <div class="row">
+        <%=	f.text_field :organisation_name %>
+        <% if @organisation.errors[:organisation_name].any? %>
+        <i class="material-icons flex-column-errors">error</i>
+        <% else %>
+        <i class="material-icons flex-column-errors">check_circle</i>
+        <% end %>
+      </div>
     </div>
-    <div class="sign-up-flow-underline"></div>
+    <div class="sign-up-flow-underline<%= @organisation.errors[:organisation_name].any? ? '-error' : '' %>"></div>
     <div class="explainer mb-420">
       <p>To get started you need to enter your organisation details.<br>
         This way we can keep track of what projects you are working on together with your colleagues. Don't
         worry about
         price, Prject.io is completely free until you upgrade.</p>
     </div>
+
+    <% if @organisation.errors.any? %>
+    <div class="error-message">
+      <% @organisation.errors.values.each do |messages| %>
+      <% messages.each do |message|  %>
+      <p class="text-14"><%= message.html_safe %></p>
+      <% end %>
+      <% end %>
+    </div>
+    <% end %>
+
   </div>
   <div class="col-3"></div>
 </div>
@@ -75,7 +92,7 @@
     //function to validate whether all criterias are fulfilled when typing in information in the form
     function validate() {
       if (
-        $('input#organisation_organisation_name').val().length > 0 
+        $('input#organisation_organisation_name').val().length > 0
       ) {
         $('.next-and-add-organisation-inactive').addClass("next-and-add-organisation")
         $('.next-and-add-organisation-inactive').removeClass("next-and-add-organisation-inactive")
