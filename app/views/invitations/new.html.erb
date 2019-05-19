@@ -1,5 +1,5 @@
 <% content_for :navigation, render('layouts/custom_setup_top_bar', obj: 'Invite users', obj2: '') %>
-
+<div class="setup-flow-wrapper">
 <div class="row">
   <div class="col-3"></div>
   <div class="invite-colleagues-box col-6">
@@ -47,38 +47,32 @@
   <div class="col-3"></div>
 </div>
 
-
-
-<div class="row setup-navigation">
-  <div class="col-1"></div>
-  <div class="back-button col-1">
-    <%= link_to 'create-user' do %>
-    <p>Back</p>
-    <% end %>
-
-  </div>
-  <div class="col-2"></div>
-  <div class="col-4 numbers-in-setup inside-number">
-    <div class="selected">
-      <p class="selected">1</p>
-    </div>
-    <div class="selected">
-      <p class="selected">2</p>
-    </div>
-    <div class="selected">
-      <p class="selected">3</p>
-    </div>
-    <div class="selected">
-      <p class="selected">4</p>
-    </div>
-    <div>
-      <p>5</p>
+<div class="col-6 setup-navigation">
+    <div class="inside-number">
+        <div class="back-button">
+            <%= link_to 'create-user' do %>
+            <p>Back</p>
+            <% end %>
+        </div>
+        <div class="numbers-in-setup selected">
+          <p class="number selected">1</p>
+        </div>
+        <div class="numbers-in-setup selected">
+          <p class="number selected">2</p>
+        </div>
+        <div class="numbers-in-setup selected">
+          <p class="number selected">3</p>
+        </div>
+        <div class="numbers-in-setup selected">
+          <p class= "number selected">4</p>
+        </div>
+        <div class="numbers-in-setup">
+          <p class="number">5</p>
+        </div>
+        <%= f.submit 'Next', :class => 'next-and-create-user next-button' %>
+        <% end %>
     </div>
   </div>
-  <div class="col-2"></div>
-  <%= f.submit 'Next', :class => 'next-and-create-user col-1' %>
-  <% end %>
-  <div class="col-1"></div>
 </div>
 
 <script>

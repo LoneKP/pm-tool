@@ -1831,9 +1831,12 @@ input.add-risk-action {
 }
 
 .setup-navigation {
-	margin-top: 50px;
-	margin-bottom: 66px;
-}
+	margin-top: auto;
+	margin-bottom: 10vh;
+	position: fixed;
+	bottom: 0;
+	align-self: center;
+}    
 
 .setup-navigation > div {
 	display: flex;
@@ -2001,14 +2004,14 @@ input#invitation_email,
 	margin-right: 64px;
 }
 
-.numbers-in-setup > div {
+.numbers-in-setup {
 	background-color: #9B9B9B;
 	border-radius: 50%;
 	height: 16px;
 	width: 16px;
 }
 
-.inside-number p {
+.inside-number p.number {
 	color: #FFFFFF;
 	font-family: "Work Sans";
 	font-size: 10px;
@@ -2018,7 +2021,7 @@ input#invitation_email,
 	justify-content: center;
 }
 
-.numbers-in-setup > div.selected {
+.numbers-in-setup.selected {
 	background-color: rgb(var(--primary-color)) !important;
 	height: 24px !important;
 	width: 24px !important;
@@ -2030,6 +2033,14 @@ input#invitation_email,
 .inside-number p.selected {
 	color: #FFFFFF;
 	font-size: 12px;
+}
+
+.back-button {
+	margin-right: 2vw;
+}
+
+.next-button {
+	margin-left: 2vw;
 }
 
 .tool-boxes div {
@@ -2331,4 +2342,10 @@ div.field_with_errors + i {
 .hero-bottom {
 
 	justify-content: center;
+}
+
+.setup-flow-wrapper {
+	display: flex; 
+	flex-direction: column; 
+	min-height: 100vh;
 }

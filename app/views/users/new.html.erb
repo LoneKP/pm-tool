@@ -1,134 +1,134 @@
 <% content_for :navigation, render('layouts/custom_setup_top_bar', obj: 'Setup user', obj2: '', organisation: @organisaion) %>
+<div class="setup-flow-wrapper">
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="create-user-box col-6">
+      <div class="mt-5">
+        <i class="material-icons icon-46">person</i>
+      </div>
+      <p class="setup-headline-box mt-300 mb-300">Create user</p>
+      <div>
+        <p class="setup-subtitle">
+          First name
+        </p>
+      </div>
 
-<div class="row">
-  <div class="col-3"></div>
-  <div class="create-user-box col-6">
-    <div class="mt-5">
-      <i class="material-icons icon-46">person</i>
-    </div>
-    <p class="setup-headline-box mt-300 mb-300">Create user</p>
-    <div>
+      <div>
+        <%= form_for @user, :url => { controller: "users", action: "create"} do |f| %>
+
+        <div class="row">
+          <%=	f.text_field :first_name %>
+          <% if @user.errors[:first_name].any? %>
+          <i class="material-icons flex-column-errors">error</i>
+          <% else %>
+          <i class="material-icons flex-column-errors">check_circle</i>
+          <% end %>
+        </div>
+      </div>
+      <div class="sign-up-flow-underline<%= @user.errors[:first_name].any? ? '-error' : '' %>"></div>
       <p class="setup-subtitle">
-        First name
+        Last name
       </p>
-    </div>
-
-    <div>
-      <%= form_for @user, :url => { controller: "users", action: "create"} do |f| %>
-
       <div class="row">
-        <%=	f.text_field :first_name %>
-        <% if @user.errors[:first_name].any? %>
+        <%=	f.text_field :last_name %>
+        <% if @user.errors[:last_name].any? %>
         <i class="material-icons flex-column-errors">error</i>
         <% else %>
         <i class="material-icons flex-column-errors">check_circle</i>
         <% end %>
       </div>
-    </div>
-    <div class="sign-up-flow-underline<%= @user.errors[:first_name].any? ? '-error' : '' %>"></div>
-    <p class="setup-subtitle">
-      Last name
-    </p>
-    <div class="row">
-      <%=	f.text_field :last_name %>
-      <% if @user.errors[:last_name].any? %>
-      <i class="material-icons flex-column-errors">error</i>
-      <% else %>
-      <i class="material-icons flex-column-errors">check_circle</i>
+
+      <div class="sign-up-flow-underline<%= @user.errors[:last_name].any? ? '-error' : '' %>"></div>
+
+      <p class="setup-subtitle">
+        E-mail
+      </p>
+      <div class="row">
+        <%=	f.text_field :email %>
+        <% if @user.errors[:email].any? %>
+        <i class="material-icons flex-column-errors">error</i>
+        <% else %>
+        <i class="material-icons flex-column-errors">check_circle</i>
+        <% end %>
+
+      </div>
+
+      <div class="sign-up-flow-underline<%= @user.errors[:email].any? ? '-error' : '' %>"></div>
+
+      <p class="setup-subtitle">
+        Password
+      </p>
+      <div class="row">
+        <%=	f.password_field :password %>
+        <% if @user.errors[:password].any? %>
+        <i class="material-icons flex-column-errors">error</i>
+        <% else %>
+        <i class="material-icons flex-column-errors">check_circle</i>
+        <% end %>
+
+      </div>
+
+      <div class="sign-up-flow-underline<%= @user.errors[:password].any? ? '-error' : '' %>"></div>
+
+      <p class="setup-subtitle">
+        Confirm password
+      </p>
+      <div class="row">
+        <%=	f.password_field :password_confirmation %>
+        <% if @user.errors[:password_confirmation].any? %>
+        <i class="material-icons flex-column-errors">error</i>
+        <% else %>
+        <i class="material-icons flex-column-errors">check_circle</i>
+        <% end %>
+
+      </div>
+
+      <div class="sign-up-flow-underline<%= @user.errors[:password_confirmation].any? ? '-error' : '' %>"></div>
+
+      <% if @user.errors.any? %>
+      <div class="error-message">
+        <% @user.errors.values.each do |messages| %>
+        <% messages.each do |message|  %>
+        <p class="text-14"><%= message.html_safe %></p>
+        <% end %>
+        <% end %>
+      </div>
       <% end %>
     </div>
 
-    <div class="sign-up-flow-underline<%= @user.errors[:last_name].any? ? '-error' : '' %>"></div>
+  </div>
 
-    <p class="setup-subtitle">
-      E-mail
-    </p>
-    <div class="row">
-      <%=	f.text_field :email %>
-      <% if @user.errors[:email].any? %>
-      <i class="material-icons flex-column-errors">error</i>
-      <% else %>
-      <i class="material-icons flex-column-errors">check_circle</i>
-      <% end %>
 
+
+  <div class="col-6 setup-navigation">
+    <div class="inside-number">
+        <div class="back-button">
+            <%= link_to 'sign-in' do %>
+            <p>Back</p>
+            <% end %>
+        </div>
+        <div class="numbers-in-setup selected">
+          <p class="number selected">1</p>
+        </div>
+        <div class="numbers-in-setup selected">
+          <p class="number selected">2</p>
+        </div>
+        <div class="numbers-in-setup selected">
+          <p class="number selected">3</p>
+        </div>
+        <div class="numbers-in-setup">
+          <p class= "number">4</p>
+        </div>
+        <div class="numbers-in-setup">
+          <p class="number">5</p>
+        </div>
+        <%= f.submit 'Next', :class => 'next-and-create-user next-button' %>
+        <% end %>
     </div>
-
-    <div class="sign-up-flow-underline<%= @user.errors[:email].any? ? '-error' : '' %>"></div>
-
-    <p class="setup-subtitle">
-      Password
-    </p>
-    <div class="row">
-      <%=	f.password_field :password %>
-      <% if @user.errors[:password].any? %>
-      <i class="material-icons flex-column-errors">error</i>
-      <% else %>
-      <i class="material-icons flex-column-errors">check_circle</i>
-      <% end %>
-
-    </div>
-
-    <div class="sign-up-flow-underline<%= @user.errors[:password].any? ? '-error' : '' %>"></div>
-
-    <p class="setup-subtitle">
-      Confirm password
-    </p>
-    <div class="row">
-      <%=	f.password_field :password_confirmation %>
-      <% if @user.errors[:password_confirmation].any? %>
-      <i class="material-icons flex-column-errors">error</i>
-      <% else %>
-      <i class="material-icons flex-column-errors">check_circle</i>
-      <% end %>
-
-    </div>
-
-    <div class="sign-up-flow-underline<%= @user.errors[:password_confirmation].any? ? '-error' : '' %>"></div>
-
-    <% if @user.errors.any? %>
-    <div class="error-message">
-      <% @user.errors.values.each do |messages| %>
-      <% messages.each do |message|  %>
-      <p class="text-14"><%= message.html_safe %></p>
-      <% end %>
-      <% end %>
-    </div>
-    <% end %>
   </div>
 
 </div>
-<div class="col-3"></div>
-</div>
 
-<div class="row setup-navigation">
-  <div class="col-1"></div>
-  <div class="back-button col-1">
-    <%= link_to 'sign-in' do %>
-    <p>Back</p>
-    <% end %>
-  </div>
-  <div class="col-2"></div>
-  <div class="col-4 numbers-in-setup inside-number">
-    <div class="selected">
-      <p class="selected">1</p>
-    </div>
-    <div class="selected">
-      <p class="selected">2</p>
-    </div>
-    <div class="selected">
-      <p class="selected">3</p>
-    </div>
-    <div>
-      <p>4</p>
-    </div>
-    <div>
-      <p>5</p>
-    </div>
-  </div>
-  <div class="col-2"></div>
-  <%= f.submit 'Next', :class => 'next-and-create-user col-1' %>
-  <% end %>
-  <div class="col-1"></div>
 </div>
 
 <script>
