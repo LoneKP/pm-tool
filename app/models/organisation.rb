@@ -13,4 +13,12 @@ class Organisation < ApplicationRecord
               case_sensitive: false,
               message: "Hey! It looks like this organisation already exists in our system. You either need to call it something else or have an admin from your organisation invite you.",
             }
+
+  def has_harvest_integration?
+    !self.harvest_integration.nil?
+  end
+
+  def harvest_access_token_expired?
+    self.harvest_integration.access_token_expiration_time < Time.now
+  end
 end

@@ -11,9 +11,13 @@ class ApplicationController < ActionController::Base
     !!current_user
   end
 
+  def log_in(user)
+    session[:user_id] = user.id
+  end
+
   def require_user
     unless logged_in?
-      redirect_to root_path, alert: 'You must be logged in to perform this action'
+      redirect_to root_path, alert: "You must be logged in to perform this action"
     end
   end
 end

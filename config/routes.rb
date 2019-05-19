@@ -24,16 +24,16 @@ Rails.application.routes.draw do
     resources :invitations, only: %i[create new]
   end
 
+  post :create_set_up, to: "sessions#create_set_up"
+
   get "login", to: "sessions#new"
-  post "login", to: "sessions#create"
+  post "login", to: "sessions#create_log_in"
   delete "logout", to: "sessions#destroy", as: "logout"
 
-  get "/harvest_oauth2/callback", to: "sessions#create"
   get "/projects_on_dashboard", to: "projects#index"
   get "/active_projects", to: "projects#index"
 
   get "closed_projects", to: "projects#closed_projects"
-  get "revenue", to: "projects#revenue"
   get "team", to: "projects#team"
   get "dashboard", to: "projects#dashboard"
   get "projects", to: "projects#projects"
