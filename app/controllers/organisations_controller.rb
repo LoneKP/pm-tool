@@ -24,6 +24,7 @@ class OrganisationsController < ApplicationController
       harvest_account_id = @scope.gsub(/[^0-9]/, "").to_i
       if !HarvestIntegration.exists?(harvest_account_id: harvest_account_id)
         GetAccessToken.new(@code, @scope, @organisation).create_harvest_integration
+        flash.now[:notice] = "Congratulations! Harvest account has been connected"
       else
         flash.now[:alert] = "This harvest account does already have a connection set up. You need to ask an admin from to invite you"
       end
