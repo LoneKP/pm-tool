@@ -51,6 +51,9 @@
 					<a>
 						<%= link_to 'Closed projects', '/closed_projects', :class => current_class?('/closed_projects') %>
 					</a>
+					<a>
+						<%= link_to 'Add projects', new_project_path, :class => current_class?('/projects/new') %>
+					</a>
 					<a> 
 						<%= link_to 'All projects', '/projects', :class => current_class?('/projects') %>
 					</a>

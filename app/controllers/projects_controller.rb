@@ -3,7 +3,25 @@ class ProjectsController < ApplicationController
   before_action :require_user
 
   def new
+    @user = current_user
     @project = Project.new
+  end
+
+  def create
+    @user = current_user
+    @project = Project.new(project_params)
+    @project.organisation = current_user.organisation
+    if @project.save
+      flash.now[:notice] = "Project created"
+      redirect_to project_choose_data_sources_path(@project)
+    else
+      render "new"
+    end
+  end
+
+  def choose_data_sources
+    @user = current_user
+    @project = Project.find(params[:project_id])
   end
 
   def show
@@ -18,18 +36,18 @@ class ProjectsController < ApplicationController
     @project.update(project_params)
     if @project.responsibilities.where(user_id: current_user.id).exists?
       ProjectDataFetcher.new(@project, @user).call
-      puts 'the current user already had a relation to this project'
+      puts "the current user already had a relation to this project"
     else
       @project.responsibilities.create(user: current_user)
       ProjectDataFetcher.new(@project, @user).call
       ProjectTimeFetcher.new(@project, @user).call
-      puts 'the current user did not have a relation to this project, so the relation was created'
+      puts "the current user did not have a relation to this project, so the relation was created"
     end
 
     if @project.update(project_params)
-      redirect_to dashboard_url, notice: 'Congratulations! You have successfully added/edited a project.'
+      redirect_to dashboard_url, notice: "Congratulations! You have successfully added/edited a project."
     else
-      render 'edit', alert: 'Something went wrong'
+      render "edit", alert: "Something went wrong"
     end
   end
 
@@ -59,9 +77,9 @@ class ProjectsController < ApplicationController
     @project = Project.new
     @filtering = params[:filtering]
 
-    if @filtering == 'dashboard'
+    if @filtering == "dashboard"
       @projects = @user.projects.where(closed: false, organisation_id: @user.organisation_id)
-    elsif @filtering == 'closed'
+    elsif @filtering == "closed"
       @projects = Project.all.where(closed: true, organisation_id: @user.organisation_id)
     else
       @projects = Project.all.where(closed: false, organisation_id: @user.organisation_id)
@@ -83,6 +101,6 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:harvest_project_id, :added_to_dashboard, :work_hours, :hours_sold_for, :project_start_date, :project_end_date, :closed, :evaluation)
+    params.require(:project).permit(:project_name, :harvest_project_id, :added_to_dashboard, :work_hours, :hours_sold_for, :project_start_date, :project_end_date, :closed, :evaluation)
   end
 end

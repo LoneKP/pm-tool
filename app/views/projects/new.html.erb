@@ -1,0 +1,15 @@
+<h1>Add projects</h1>
+<%= form_for :project, :url => { controller: "projects", action: "create"} do |f| %>
+<%= f.text_field :project_name %>
+<%= f.submit 'Create project', :class => 'add-risk-action' %>
+<% end %>
+
+<% if @project.errors.any? %>
+<div class="error-message">
+  <% @project.errors.full_messages.each do |messages| %>
+
+  <p class="text-14"><%= messages.html_safe %></p>
+
+  <% end %>
+</div>
+<% end %>
