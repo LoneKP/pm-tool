@@ -866,13 +866,10 @@ a:hover, a:visited, a:link, a:active
 }
 
 .project-boxes div.already-on-dashboard {
-
-
 	i {
 		font-size: 30px;
 		color: #9B9B9B;
 	}
-
 	p {
 		color: #9B9B9B;
 	}
@@ -1836,6 +1833,11 @@ input.add-risk-action {
 	position: fixed;
 	bottom: 0;
 	align-self: center;
+	border: 2px solid rgba(13,57,255,0.3);
+	border-radius: 36px;
+	padding: 0.5em 2em 0.5em 2em;
+	background-color: #FFF;
+	box-shadow: 0 4px 8px 0 rgba(13,57,255,0.24);
 }    
 
 .setup-navigation > div {
@@ -2047,7 +2049,6 @@ input#invitation_email,
 	height: 114px;
 	width: 160px;
 	border-radius: 12px;
-	background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 100%);
 	box-shadow: 0 8px 16px 0 rgba(13,57,255,0.25);
 	margin-left: 15px;
 	margin-right: 15px;
@@ -2055,6 +2056,15 @@ input#invitation_email,
 	align-items: center;
 	justify-content: center;
 	display: flex;
+}
+
+.tool-boxes div:hover {
+	border: 1px solid rgb(var(--primary-color));
+	box-shadow: 0 8px 16px 0 rgba(13,57,255,0.25);
+	cursor: pointer;
+	p {
+		color: rgb(var(--primary-color));
+	}	
 }
 
 .tool-boxes {
@@ -2066,6 +2076,17 @@ input#invitation_email,
 	justify-content: center;
 	margin-top: 48px;
 	margin-bottom: 115px;
+}
+
+.tool-boxes div.inactive {
+	p{
+		color: #9B9B9B;
+	}
+}
+
+.tool-boxes div.inactive:hover {
+	border:none;
+	cursor: default;
 }
 
 .tools-logo-height {
@@ -2340,7 +2361,6 @@ div.field_with_errors + i {
 }
 
 .hero-bottom {
-
 	justify-content: center;
 }
 

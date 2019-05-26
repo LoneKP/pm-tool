@@ -1,0 +1,31 @@
+<div class="setup-flow-wrapper">
+<h1>Connect Asana Projects</h1>
+
+<div class="col-6 setup-navigation">
+    <div class="inside-number">
+      <div class="back-button">
+        <%= link_to new_organisation_path, data: { turbolinks: false } do %>
+        <p>Back</p>
+        <% end %>
+      </div>
+      <div class="numbers-in-setup selected">
+        <p class="number selected">1</p>
+      </div>
+      <div class="numbers-in-setup selected">
+        <p class="number selected">2</p>
+      </div>
+      <div class="numbers-in-setup selected">
+        <p class="number selected">3</p>
+      </div>
+      <div class="numbers-in-setup">
+        <p class="number">4</p>
+      </div>
+      <div class="numbers-in-setup">
+        <p class="number">5</p>
+      </div>
+      <%= link_to root_path, data: { turbolinks: false } do %>
+      <div class="next-and-add-organisation next-button">Next</div>
+      <% end %>
+    </div>
+  </div>
+</div>

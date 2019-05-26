@@ -12,4 +12,14 @@ class Project < ApplicationRecord
   validates_presence_of :organisation
 
   scope :closed, -> { where(closed: true) }
+
+  def integrations
+    harvest_integration = self.organisation.harvest_integration
+    asana_integration = self.organisation.asana_integration
+    integrations = harvest_integration, asana_integration
+    integrations.compact!
+    integrations = integrations.map {|integration| integration.type } 
+  end
+
+
 end

@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   resources :projects do
     resources :risk_actions, only: %i[index create new]
     get :choose_data_sources, to: 'projects#choose_data_sources'
+    get :connect_harvest_projects, to: 'projects#connect_harvest_projects'
+    get :connect_asana_projects, to: 'projects#connect_asana_projects'
+    get :adjust_harvest_projects, to: 'projects#adjust_harvest_projects'
+    get :adjust_asana_projects, to: 'projects#adjust_asana_projects'
   end
 
   resources :risk_actions, only: %i[edit update destroy]

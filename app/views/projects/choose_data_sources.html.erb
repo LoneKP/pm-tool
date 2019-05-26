@@ -1,4 +1,48 @@
+<div class="setup-flow-wrapper">
 <h1>Choose data sources</h1>
+<p>Your organisation has integrations to <%= pluralize(@integrations.count, 'service')%>. Select which ones you want to
+  set up to retrieve project data.</p>
+<div class="tool-boxes">
+  <% @integrations.each do |integration| %>
+    <div>
+      <p><%= integration%></p>
+    </div>
+    <% end %>
+</div>
+    <p>If you're using one of the following services for your project, you can set up integrations here</p>
+<div class="tool-boxes">
+      <% (@possible_integrations-@integrations).each do |non_integration| %>
+    <div class ="inactive">
+      <p><%= non_integration%></p>
+    </div>
+    <% end %>
+</div>
 
-<p>Your organisation has integrations to:</p>
-
+<div class="col-6 setup-navigation">
+        <div class="inside-number">
+            <div class="back-button">
+                <%= link_to '/#' do %>
+                <p>Back</p>
+                <% end %>
+            </div>
+            <div class="numbers-in-setup selected">
+                <p class="number selected">1</p>
+            </div>
+            <div class="numbers-in-setup selected">
+                <p class="number selected">2</p>
+            </div>
+            <div class="numbers-in-setup">
+                <p class="number">3</p>
+            </div>
+            <div class="numbers-in-setup">
+                <p class="number">4</p>
+            </div>
+            <div class="numbers-in-setup">
+                <p class="number">5</p>
+            </div>
+            <%= link_to root_path, data: { turbolinks: false } do %>
+            <div class="next-and-add-organisation next-button">Next</div>
+            <% end %>
+        </div>
+    </div>
+</div>

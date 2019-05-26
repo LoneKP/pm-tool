@@ -1,52 +1,12 @@
-<!--
+<div class="setup-flow-wrapper">
+
 <div class="d-flex justify-content-center">
 <div class="mt-200 inner-addon left-addon">
 <i class="material-icons icon-18 search">search</i>
 <input class="search-bar" type="text" name="search" placeholder="Project, risk, ID, or something completely different">
 </div>
 </div>	
--->
 
-<div class="project-filter-container">
-	<%= link_to '/projects', :class => current_class_with_params?('/projects') do %>
-	<div class="project-filters">
-		<div>
-			<i class="material-icons">explore</i>
-		</div>
-		<div>
-			<p>Active projects</p>
-		</div>
-	</div>
-	<% end %>
-	<%= link_to '/projects?filtering=dashboard', :class => current_class_with_params?('/projects?filtering=dashboard') do %>
-	<div class="project-filters">
-		<div>
-			<i class="material-icons">dns</i>
-		</div>
-		<div>
-			<p>Projects on dashboard</p>
-		</div>
-	</div>
-	<% end %>
-	<%= link_to '/projects?filtering=closed', :class => current_class_with_params?('/projects?filtering=closed') do %>
-	<div class="project-filters">
-		<div>
-			<i class="material-icons">done_all</i>
-		</div>
-		<div>
-			<p>Closed projects</p>
-		</div>
-	</div>
-	<% end %>
-	<div class="search-bar-filters">
-		<div>
-			<i class="material-icons">search</i>
-		</div>
-	</div>
-</div>
-
-
-<div class="project-filters-underline"></div>
 <% if logged_in? %>
 <!--
 <div>
@@ -98,3 +58,33 @@
 <% end %>
 
 <% end %>
+
+<div class="col-6 setup-navigation">
+    <div class="inside-number">
+      <div class="back-button">
+        <%= link_to new_organisation_path, data: { turbolinks: false } do %>
+        <p>Back</p>
+        <% end %>
+      </div>
+      <div class="numbers-in-setup selected">
+        <p class="number selected">1</p>
+      </div>
+      <div class="numbers-in-setup selected">
+        <p class="number selected">2</p>
+      </div>
+      <div class="numbers-in-setup selected">
+        <p class="number selected">3</p>
+      </div>
+      <div class="numbers-in-setup">
+        <p class="number">4</p>
+      </div>
+      <div class="numbers-in-setup">
+        <p class="number">5</p>
+      </div>
+      <%= link_to root_path, data: { turbolinks: false } do %>
+      <div class="next-and-add-organisation next-button">Next</div>
+      <% end %>
+    </div>
+  </div>
+
+</div>

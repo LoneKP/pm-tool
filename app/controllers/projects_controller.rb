@@ -22,6 +22,8 @@ class ProjectsController < ApplicationController
   def choose_data_sources
     @user = current_user
     @project = Project.find(params[:project_id])
+    @integrations = @project.integrations
+    @possible_integrations = ["Harvest", "Asana", "Jira", "Trello"]
   end
 
   def show
@@ -72,20 +74,24 @@ class ProjectsController < ApplicationController
     @projects = @user.projects.where(closed: true, organisation_id: @user.organisation.id)
   end
 
-  def index
+  def connect_harvest_projects
     @user = current_user
-    @project = Project.new
-    @filtering = params[:filtering]
-
-    if @filtering == "dashboard"
-      @projects = @user.projects.where(closed: false, organisation_id: @user.organisation_id)
-    elsif @filtering == "closed"
-      @projects = Project.all.where(closed: true, organisation_id: @user.organisation_id)
-    else
-      @projects = Project.all.where(closed: false, organisation_id: @user.organisation_id)
-    end
-
+    @organisation = @user.organisation
+    fetch_harvest_projects
+    @projects = Project.all.where(closed: false, organisation_id: @user.organisation_id)
     @projects_grouped_by_client = @projects.group_by(&:client_name)
+  end
+
+  def adjust_harvest_projects
+    @user = current_user
+  end
+
+  def adjust_asana_projects
+    @user = current_user
+  end
+
+  def connect_asana_projects
+    @user = current_user
   end
 
   def edit
@@ -96,6 +102,19 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @project.destroy
     redirect_to dashboard_url, notice: "You succesfully deleted #{@project.client_name} - #{@project.project_name}"
+  end
+
+  def fetch_harvest_projects
+    if @organisation.has_harvest_integration?
+      update_access_token_if_it_has_expired
+      FetchProjects.new(@user).update_projects
+    end
+  end
+
+  def update_access_token_if_it_has_expired
+    if @organisation.harvest_access_token_expired?
+      UpdateAccessToken.new(@organisation).update_access_token
+    end
   end
 
   private

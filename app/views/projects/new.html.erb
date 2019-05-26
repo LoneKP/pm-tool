@@ -1,15 +1,44 @@
-<h1>Add projects</h1>
-<%= form_for :project, :url => { controller: "projects", action: "create"} do |f| %>
-<%= f.text_field :project_name %>
-<%= f.submit 'Create project', :class => 'add-risk-action' %>
-<% end %>
+<div class="setup-flow-wrapper">
+    <h1>Give your project a name</h1>
+    <div>
+        <%= form_for :project, :url => { controller: "projects", action: "create"} do |f| %>
+        <%= f.text_field :project_name %>
+    </div>
+    <% if @project.errors.any? %>
+    <div class="error-message">
+        <% @project.errors.full_messages.each do |messages| %>
 
-<% if @project.errors.any? %>
-<div class="error-message">
-  <% @project.errors.full_messages.each do |messages| %>
+        <p class="text-14"><%= messages.html_safe %></p>
 
-  <p class="text-14"><%= messages.html_safe %></p>
+        <% end %>
+    </div>
+    <% end %>
 
-  <% end %>
+    <div class="col-6 setup-navigation">
+        <div class="inside-number">
+            <div class="back-button">
+                <%= link_to '/#' do %>
+                <p>Back</p>
+                <% end %>
+            </div>
+            <div class="numbers-in-setup selected">
+                <p class="number selected">1</p>
+            </div>
+            <div class="numbers-in-setup">
+                <p class="number">2</p>
+            </div>
+            <div class="numbers-in-setup">
+                <p class="number">3</p>
+            </div>
+            <div class="numbers-in-setup">
+                <p class="number">4</p>
+            </div>
+            <div class="numbers-in-setup">
+                <p class="number">5</p>
+            </div>
+            <%= f.submit 'Create Project', :class => 'next-and-add-organisation next-button' %>
+            <% end %>
+        </div>
+    </div>
+
 </div>
-<% end %>

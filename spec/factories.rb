@@ -1,4 +1,7 @@
 FactoryBot.define do
+  factory :asana_integration do
+    
+  end
   factory :invitation do
     token { "MyString" }
     email { "MyString" }

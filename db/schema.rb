@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190512204718) do
+ActiveRecord::Schema.define(version: 20190526152609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "asana_integrations", force: :cascade do |t|
+    t.string "access_token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "organisation_id"
+    t.index ["organisation_id"], name: "index_asana_integrations_on_organisation_id"
+  end
 
   create_table "harvest_integrations", force: :cascade do |t|
     t.integer "harvest_account_id"
@@ -123,6 +131,7 @@ ActiveRecord::Schema.define(version: 20190512204718) do
     t.index ["organisation_id"], name: "index_users_on_organisation_id"
   end
 
+  add_foreign_key "asana_integrations", "organisations"
   add_foreign_key "harvest_integrations", "organisations"
   add_foreign_key "invitations", "organisations"
   add_foreign_key "invitations", "users"
