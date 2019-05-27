@@ -17,7 +17,7 @@
 				</div>
 				<div>
 					<i class="material-icons">settings_applications</i>
-					<a href="#"><%= @user.organisation.organisation_name %></a>
+					<%= link_to @user.organisation.organisation_name, organisation_path(@user.organisation) %>
 				</div>
 				<div>
 					<i class="material-icons">exit_to_app</i>

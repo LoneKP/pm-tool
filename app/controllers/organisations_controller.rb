@@ -35,9 +35,11 @@ class OrganisationsController < ApplicationController
     @organisation = Organisation.find(params[:organisation_id])
   end
 
-  def invite_colleagues; end
-
-  def done; end
+  def show
+    @organisations = Organisation.all
+    @user = current_user
+    @organisation = Organisation.find(params[:id])
+  end
 
   def update
     redirect_to setup_connect_to_tools_path
