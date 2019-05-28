@@ -2369,3 +2369,10 @@ div.field_with_errors + i {
 	flex-direction: column; 
 	min-height: 100vh;
 }
+
+.center-button-row {
+display: flex;
+justify-content: center;
+margin-top: 1rem;
+margin-bottom: 1rem;
+}
