@@ -22,4 +22,11 @@ class Organisation < ApplicationRecord
   def harvest_access_token_expired?
     self.harvest_integration.access_token_expiration_time < Time.now
   end
+
+  def integrations
+    harvest_integration = self.harvest_integration
+    asana_integration = self.asana_integration
+    integrations = harvest_integration, asana_integration
+  end
+
 end

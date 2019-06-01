@@ -22,7 +22,7 @@ class ProjectsController < ApplicationController
   def choose_data_sources
     @user = current_user
     @project = Project.find(params[:project_id])
-    @integrations = @project.integrations
+    @integrations = @project.organisation.integrations
     @possible_integrations = ["Harvest", "Asana", "Jira", "Trello"]
   end
 
@@ -58,10 +58,6 @@ class ProjectsController < ApplicationController
     @projects = @user.projects.where(closed: false, organisation_id: @user.organisation.id)
     @risk_actions = RiskAction.all
     @revenue_month = RevenueMonth.new
-  end
-
-  def revenue
-    @user = current_user
   end
 
   def team

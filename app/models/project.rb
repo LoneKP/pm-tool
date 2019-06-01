@@ -13,13 +13,12 @@ class Project < ApplicationRecord
 
   scope :closed, -> { where(closed: true) }
 
-  def integrations
-    harvest_integration = self.organisation.harvest_integration
-    asana_integration = self.organisation.asana_integration
-    integrations = harvest_integration, asana_integration
-    integrations.compact!
-    integrations = integrations.map {|integration| integration.type } 
+
+  def harvest_integration
+    self.organisation.harvest_integration
   end
 
-
+  def asana_integration
+    self.organisation.asana_integration
+  end
 end

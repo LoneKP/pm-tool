@@ -1,24 +1,21 @@
 <div class="setup-flow-wrapper">
-<h1>Choose data sources</h1>
-<p>Your organisation has integrations to <%= pluralize(@integrations.count, 'service')%>. Select which ones you want to
-  set up to retrieve project data.</p>
-<div class="tool-boxes">
-  <% @integrations.each do |integration| %>
-    <div>
-      <p><%= integration%></p>
+    <h1>Choose data sources</h1>
+    <p>Your organisation has integrations to <%= pluralize(@integrations.count, 'service')%>. Select which ones you want
+        to
+        set up to retrieve project data.</p>
+    <div class="tool-boxes">
+        <% @integrations.each do |integration| %>
+    
+            <%= link_to integration.connect_project_path(@project) do %>
+            <div>
+                <p><%= integration.type %></p>
+            </div>
+            <% end %>
+        <% end %>
     </div>
-    <% end %>
-</div>
-    <p>If you're using one of the following services for your project, you can set up integrations here</p>
-<div class="tool-boxes">
-      <% (@possible_integrations-@integrations).each do |non_integration| %>
-    <div class ="inactive">
-      <p><%= non_integration%></p>
-    </div>
-    <% end %>
-</div>
+   
 
-<div class="col-6 setup-navigation">
+    <div class="col-6 setup-navigation">
         <div class="inside-number">
             <div class="back-button">
                 <%= link_to '/#' do %>
@@ -34,7 +31,7 @@
             <div class="numbers-in-setup">
                 <p class="number">3</p>
             </div>
-            <div class="numbers-in-setup">
+            <div class="numbers-in-setup"> 
                 <p class="number">4</p>
             </div>
             <div class="numbers-in-setup">
