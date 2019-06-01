@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     get :choose_data_sources, to: 'projects#choose_data_sources'
     get :connect_harvest_projects, to: 'projects#connect_harvest_projects'
     get :connect_asana_projects, to: 'projects#connect_asana_projects'
+    patch :adjust_harvest_projects, to: 'projects#adjust_harvest_projects'
     get :adjust_harvest_projects, to: 'projects#adjust_harvest_projects'
     get :adjust_asana_projects, to: 'projects#adjust_asana_projects'
   end

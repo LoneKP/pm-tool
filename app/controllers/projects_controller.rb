@@ -1,5 +1,4 @@
 class ProjectsController < ApplicationController
-  has_scope :closed, type: :boolean
   before_action :require_user
 
   def new
@@ -55,7 +54,7 @@ class ProjectsController < ApplicationController
 
   def dashboard
     @user = current_user
-    @projects = @user.projects.where(closed: false, organisation_id: @user.organisation.id)
+    @projects = @user.projects.where(organisation_id: @user.organisation.id)
     @risk_actions = RiskAction.all
     @revenue_month = RevenueMonth.new
   end
@@ -71,17 +70,31 @@ class ProjectsController < ApplicationController
   end
 
   def connect_harvest_projects
+    @project = Project.find(params[:project_id])
     @user = current_user
     @organisation = @user.organisation
-    fetch_harvest_projects
-    @projects = Project.all.where(closed: false, organisation_id: @user.organisation_id)
-    @projects_grouped_by_client = @projects.group_by(&:client_name)
+    @harvest_projects = fetch_harvest_projects
+    @projects_grouped_by_client = @harvest_projects.group_by { |project| project['client_name'] }
   end
 
   def adjust_harvest_projects
     @user = current_user
+    @project = Project.find(params[:project_id])
+    @harvest_project = harvest_project_params
+    @project.update(
+      hours_sold_for: @harvest_project['hours_sold_for'], 
+      project_start_date: @harvest_project['project_start_date'],
+      project_end_date: @harvest_project['project_end_date'],
+      client_name: @harvest_project['client_name'],
+      harvest_project_id: @harvest_project['harvest_project_id'],
+      )
+    redirect_to edit_project_path(@project)
   end
 
+  def edit
+    @project = Project.find(params[:id])
+  end
+  
   def adjust_asana_projects
     @user = current_user
   end
@@ -90,9 +103,7 @@ class ProjectsController < ApplicationController
     @user = current_user
   end
 
-  def edit
-    @project = Project.find(params[:id])
-  end
+
 
   def destroy
     @project = Project.find(params[:id])
@@ -103,7 +114,7 @@ class ProjectsController < ApplicationController
   def fetch_harvest_projects
     if @organisation.has_harvest_integration?
       update_access_token_if_it_has_expired
-      FetchProjects.new(@user).update_projects
+      FetchProjects.new(@user).harvest_projects
     end
   end
 
@@ -117,5 +128,16 @@ class ProjectsController < ApplicationController
 
   def project_params
     params.require(:project).permit(:project_name, :harvest_project_id, :added_to_dashboard, :work_hours, :hours_sold_for, :project_start_date, :project_end_date, :closed, :evaluation)
+  end
+
+  def harvest_project_params
+    params.require(:harvest_project).permit(
+      :project_name, 
+      :harvest_project_id, 
+      :hours_sold_for, 
+      :project_start_date, 
+      :project_end_date, 
+      :client_name
+      )
   end
 end

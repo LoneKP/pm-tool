@@ -3,36 +3,25 @@ class FetchProjects
     @user = user
   end
 
-  # find_or_create_by
-  # find_or_initialize_by
 
-  # if project exists - update, if not - create.
-  def update_projects
-    projects_not_added = Project.left_joins(:users).where(users: { id: nil })
-    projects_not_added.where(organisation_id: @user.organisation_id).delete_all
-
+  def harvest_projects
     active_and_billable_projects.map do |project|
       client_name = project.values_at("client").map { |client| client.values_at("name") }.join("")
       project_name = project.values_at("name").join("")
-      harvest_project_id = project.values_at("id").join("")
-      hours_sold_for = project.values_at("budget").join("")
-      project_start_date = project.values_at("created_at").join("")
-      project_end_date = project.values_at("ends_on").join("")
+      harvest_project_id = project.values_at("id").join("").to_i
+      hours_sold_for = project.values_at("budget").join("").to_f
+      project_start_date = project.values_at("created_at").join("").to_datetime
+      project_end_date = project.values_at("ends_on").join("").to_datetime
 
-      if Project.exists?(harvest_project_id: harvest_project_id) == false
-        Project.create(
-          client_name: client_name,
-          project_name: project_name,
-          harvest_project_id: harvest_project_id,
-          hours_sold_for: hours_sold_for,
-          project_start_date: project_start_date,
-          project_end_date: project_end_date,
-          organisation_id: @user.organisation_id,
-          closed: false,
-        )
-      else
-        puts "Project, #{project_name} already exists (harvest_project_id: #{harvest_project_id})"
-      end
+      harvest_projects = Hash.new 
+      harvest_projects['harvest_project_id'] = harvest_project_id 
+      harvest_projects['client_name'] = client_name
+      harvest_projects['project_name'] = project_name
+      harvest_projects['hours_sold_for'] = hours_sold_for
+      harvest_projects['project_start_date'] = project_start_date
+      harvest_projects['project_end_date'] = project_end_date
+      
+      harvest_projects
     end
   end
 
@@ -42,14 +31,6 @@ class FetchProjects
 
   def active_and_billable_projects
     @_active_projects ||= all_projects.select { |project| project.dig("is_active") && project.dig("is_billable") }
-  end
-
-  def projects_grouped_by_client
-    active_and_billable_projects.group_by { |project| project.dig("client", "name") }
-  end
-
-  def sort_projects
-    projects_grouped_by_client.sort_by { |key, _value| key.downcase }
   end
 
   def all_projects_page_one_response
