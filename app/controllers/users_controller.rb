@@ -31,13 +31,12 @@ class UsersController < ApplicationController
     @token = params[:invitation_token]
     @invitation = Invitation.where(token: @token)
     if @user.save
-      redirect_to root_path
+      log_in(@user)
+      redirect_to dashboard_path
     else
       render "new_from_invitation"
     end
   end
-
-  def done; end
 
   private
 

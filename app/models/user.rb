@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_secure_password validations: false
+  has_secure_password 
   has_many :responsibilities, dependent: :destroy
   has_many :projects, through: :responsibilities
   has_many :invitations

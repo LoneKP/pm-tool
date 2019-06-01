@@ -1958,8 +1958,16 @@ input.add-risk-action {
 	border: none;
 	justify-content: center;
 	display: flex;
+	cursor: pointer;
 }
 
+
+.sign-up-flow-underline-login {
+	height: 1px;
+	background-color: #9B9B9B;
+	margin-bottom: 48px;
+	width:inherit;
+}
 
 .sign-up-flow-underline {
 	height: 1px;
@@ -1979,7 +1987,9 @@ input#organisation_organisation_name,
 input#user_first_name, input#user_last_name, 
 input#user_email, input#user_password, 
 input#user_password_confirmation,
-input#invitation_email, 
+input#invitation_email,
+input#session_email,
+input#session_password, 
 .fixed-inputs  {
 	color: rgb(var(--primary-color));
 	font-family: "Work Sans";
@@ -1993,6 +2003,11 @@ input#invitation_email,
 	text-align: center;
 	margin-bottom: 12px;
 	margin-top: 12px;
+}
+
+input#session_password,
+input#session_email {
+	width: inherit;
 }
 
 .explainer {
