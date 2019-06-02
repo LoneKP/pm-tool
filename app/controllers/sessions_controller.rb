@@ -6,11 +6,11 @@ class SessionsController < ApplicationController
   def create_log_in
     @user = User.find_by_email(params[:session][:email])
     @organisation = @user&.organisation
-    if @user && @user.authenticate(params[:session][:password]) && !@organisation == nil
+    if @user && @user.authenticate(params[:session][:password])
       log_in(@user)
       redirect_to dashboard_url, notice: "Logged in!"
     else
-      flash.now[:alert] = "Email or password is invalid"
+      flash.now[:alert] = "Something went wrong"
       render "new"
     end
   end
