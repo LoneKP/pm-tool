@@ -21,6 +21,9 @@ Rails.application.routes.draw do
     post :create_from_invitation, to: "users#create_from_invitation"
   end
 
+  get '/asana_callback', to: "oauth2_integrations#asana"
+  get '/harvest_callback', to: "oauth2_integrations#harvest"
+
   resources :users do
     get :done
     resources :invitations, only: %i[create new]

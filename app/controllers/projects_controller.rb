@@ -112,15 +112,19 @@ class ProjectsController < ApplicationController
   end
 
   def fetch_harvest_projects
-    if @organisation.has_harvest_integration?
-      update_access_token_if_it_has_expired
+      update_access_tokens_if_they_have_expired(@organisation)
       FetchProjects.new(@user).harvest_projects
-    end
   end
 
-  def update_access_token_if_it_has_expired
-    if @organisation.harvest_access_token_expired?
-      UpdateAccessToken.new(@organisation).update_access_token
+  def update_access_tokens_if_they_have_expired(organisation)
+    organisation.integrations.each do |integration|
+      if Time.current > integration.access_token_expiration_time
+        if integration.type == "Asana"
+          UpdateAsanaAccessToken.new(organisation).update_token
+        elsif integration.type == "Harvest"
+          UpdateHarvestAccessToken.new(organisation).update_token
+        end
+      end
     end
   end
 

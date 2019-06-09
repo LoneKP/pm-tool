@@ -18,22 +18,24 @@ class OrganisationsController < ApplicationController
 
   def connect_to_tools
     @organisation = Organisation.find(params[:organisation_id])
-    if params[:code].present?
+    if params[:integration_type] == 'asana'
       @code = params[:code]
-      @scope = params[:scope]
-      harvest_account_id = @scope.gsub(/[^0-9]/, "").to_i
-      if !HarvestIntegration.exists?(harvest_account_id: harvest_account_id)
-        GetAccessToken.new(@code, @scope, @organisation).create_harvest_integration
+      GetAsanaAccessToken.new(@code, @organisation).create_asana_integration
+      flash.now[:notice] = "Congratulations! Asana account has been connected"
+    elsif params[:integration_type] == 'harvest'
+      @code = params[:code]
+      @harvest_account_id = params[:scope].gsub(/[^0-9]/, "").to_i
+      if !HarvestIntegration.exists?(harvest_account_id: @harvest_account_id)
+        GetHarvestAccessToken.new(@code, @harvest_account_id, @organisation).create_harvest_integration
         flash.now[:notice] = "Congratulations! Harvest account has been connected"
       else
-        flash.now[:alert] = "This harvest account does already have a connection set up. You need to ask an admin from to invite you"
+        flash.now[:alert] = "This harvest account does already have a connection set up. You need to ask an admin to invite you"
       end
     end
   end
 
-  def sign_in
-    @organisation = Organisation.find(params[:organisation_id])
-  end
+
+
 
   def show
     @organisations = Organisation.all

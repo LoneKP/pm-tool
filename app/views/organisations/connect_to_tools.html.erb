@@ -5,12 +5,16 @@
   <div class="row">
     <div class="col-1"></div>
     <div class="tool-boxes col-10">
-      <%= link_to 'https://id.getharvest.com/oauth2/authorize?client_id=0QOx5ejoU4UkejJN6aCNXNDG&response_type=code&redirect_uri=http://localhost:3000/organisations/' + @organisation.id.to_s + '/connect_to_tools/' do %>
+      <%= link_to "https://id.getharvest.com/oauth2/authorize?client_id=0QOx5ejoU4UkejJN6aCNXNDG&response_type=code&redirect_uri=http://localhost:3000/harvest_callback&state=" + @organisation.id.to_s do %>
       <div>
         <%= image_tag "harvest-logo-icon.png", class: "tools-logo-height"%>
       </div>
       <% end %>
-      <div></div>
+      <%= link_to "https://app.asana.com/-/oauth_authorize?response_type=code&client_id=1125442721851532&redirect_uri=http://localhost:3000/asana_callback&state=" + @organisation.id.to_s do %>
+      <div>
+        <%= image_tag "asana-logo-icon.png", class: "tools-logo-height"%>
+      </div>
+      <% end %>
       <div></div>
       <div></div>
       <div></div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190526152609) do
+ActiveRecord::Schema.define(version: 20190608221422) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 20190526152609) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "organisation_id"
+    t.string "refresh_token"
+    t.datetime "access_token_expiration_time"
     t.index ["organisation_id"], name: "index_asana_integrations_on_organisation_id"
   end
 
