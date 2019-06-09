@@ -21,4 +21,13 @@ class Organisation < ApplicationRecord
     integrations = harvest_integration, asana_integration
   end
 
+  def has_harvest_integration?
+    !self.harvest_integration.nil?
+  end
+
+  def has_asana_integration?
+    !self.asana_integration.nil?
+  end
+
+
 end

@@ -9,6 +9,7 @@
 
 	--secondary-color: #920DFF;
 	--danger-color: #E11750;
+	--success-color: #01FF9A;
 	--client1: 13,57,255;
 	--client2: 146,13,255;
 	--client3: 130,2,99;
@@ -2093,6 +2094,14 @@ input#session_email {
 	margin-bottom: 115px;
 }
 
+.tool-boxes div.connected {
+	border: 2px solid var(--success-color);
+}
+
+.tool-boxes div.connected:hover {
+	border: 2px solid var(--success-color);
+}
+
 .tool-boxes div.inactive {
 	p{
 		color: #9B9B9B;
@@ -2391,3 +2400,4 @@ justify-content: center;
 margin-top: 1rem;
 margin-bottom: 1rem;
 }
+
