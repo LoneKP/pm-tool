@@ -29,5 +29,4 @@ class Organisation < ApplicationRecord
     !self.asana_integration.nil?
   end
 
-
 end

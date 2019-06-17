@@ -1,11 +1,46 @@
 <div class="setup-flow-wrapper">
-<h1>Connect Asana Projects</h1>
-
-<div class="col-6 setup-navigation">
+  <div class="d-flex justify-content-center">
+    <div class="mt-200 inner-addon left-addon">
+      <i class="material-icons icon-18 search">search</i>
+      <input class="search-bar" type="text" name="search" placeholder="Project, risk, ID, or something completely different">
+    </div>
+  </div>
+  <% if logged_in? %>
+    <div>
+      <p class="helper-headline mt-200">Select an asana project to add to your portfolio
+      </p>
+    </div>
+    <% @asana_projects.each do |(client_name, projects)| %>
+      <div class="client-name"><%= client_name %></div>
+      <% projects.in_groups_of(4, false) do |projects_in_four| %>
+        <div class="project-boxes">
+          <% projects_in_four[0].each do |asana_project| %>
+            <%= link_to project_adjust_asana_projects_path(@project, 'asana_project' => asana_project), :action => 'adjust_asana_projects', data: { turbolinks: false } do %>
+              <div>
+                <p><%= asana_project['project_name'] %></p>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  <% else %>
+    <div>
+      <p class="helper-headline mt-200">Log in to add to your portfolio
+      </p>
+    </div>
+    <%= link_to login_path do %>
+      <div class="mt-350 new-project">
+        <i class="material-icons icon-add mr-133">input</i>
+        <p class="text-24 blue">Log in</p>
+      </div>
+    <% end %>
+  <% end %>
+  <div class="col-6 setup-navigation">
     <div class="inside-number">
       <div class="back-button">
         <%= link_to new_organisation_path, data: { turbolinks: false } do %>
-        <p>Back</p>
+          <p>Back</p>
         <% end %>
       </div>
       <div class="numbers-in-setup selected">
@@ -24,7 +59,7 @@
         <p class="number">5</p>
       </div>
       <%= link_to root_path, data: { turbolinks: false } do %>
-      <div class="next-and-add-organisation next-button">Next</div>
+        <div class="next-and-add-organisation next-button">Next</div>
       <% end %>
     </div>
   </div>

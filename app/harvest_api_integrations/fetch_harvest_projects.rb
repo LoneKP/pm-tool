@@ -1,4 +1,4 @@
-class FetchProjects
+class FetchHarvestProjects
   def initialize(user)
     @user = user
   end

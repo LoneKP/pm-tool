@@ -91,19 +91,27 @@ class ProjectsController < ApplicationController
     redirect_to edit_project_path(@project)
   end
 
+  def connect_asana_projects
+    @project = Project.find(params[:project_id])
+    @user = current_user
+    @organisation = @user.organisation
+    @asana_projects = fetch_asana_projects
+  end
+
+  def adjust_asana_projects
+    @user = current_user
+    @project = Project.find(params[:project_id])
+    @asana_project = asana_project_params
+    pry
+    @project.update(
+      asana_project_id: @asana_project['project_id']
+    )
+
+  end
+
   def edit
     @project = Project.find(params[:id])
   end
-  
-  def adjust_asana_projects
-    @user = current_user
-  end
-
-  def connect_asana_projects
-    @user = current_user
-  end
-
-
 
   def destroy
     @project = Project.find(params[:id])
@@ -113,7 +121,12 @@ class ProjectsController < ApplicationController
 
   def fetch_harvest_projects
       update_access_tokens_if_they_have_expired(@organisation)
-      FetchProjects.new(@user).harvest_projects
+      FetchHarvestProjects.new(@user).harvest_projects
+  end
+
+  def fetch_asana_projects
+    update_access_tokens_if_they_have_expired(@organisation)
+    FetchAsanaProjects.new(@user).asana_projects_grouped_by_team
   end
 
   def update_access_tokens_if_they_have_expired(organisation)
@@ -142,6 +155,15 @@ class ProjectsController < ApplicationController
       :project_start_date, 
       :project_end_date, 
       :client_name
+      )
+  end
+
+  def asana_project_params
+    params.require(:asana_project).permit(
+      :team_name, 
+      :team_id, 
+      :project_name, 
+      :project_id
       )
   end
 end

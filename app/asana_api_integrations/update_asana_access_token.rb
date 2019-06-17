@@ -6,12 +6,16 @@ class UpdateAsanaAccessToken
     end
   
     def update_token
-      @organisation.asana_integration.update(access_token: updated_access_token)
+      @organisation.asana_integration.update(access_token: updated_access_token, access_token_expiration_time: access_token_expiration_time)
     end
   
     def updated_access_token
       updated_access_token = post_request_to_update_token.parsed_response["access_token"]
       "Bearer " + updated_access_token
+    end
+
+    def access_token_expiration_time
+      access_token_expiration_time = Time.current + post_request_to_update_token.parsed_response["expires_in"].seconds
     end
   
     def post_request_to_update_token
