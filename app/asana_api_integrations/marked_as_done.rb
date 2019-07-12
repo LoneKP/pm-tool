@@ -1,4 +1,4 @@
-class MarkAsDone
+class MarkedAsDone
   def initialize(user, project)
     @user = user
     @project = project
