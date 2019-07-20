@@ -12,7 +12,7 @@ class AsanaApiWrapper
         "https://app.asana.com/api/1.0/workspaces/"
       ),
     )
-  rescue NoMethodError => e
+  rescue NoMethodError
     AsanaApiHandler.new(http_response: http_response).data
   end
 
@@ -79,4 +79,40 @@ class AsanaApiWrapper
   end
 end
 
+class AsanaApiHandler
+  attr_reader :http_response
 
+  def initialize(http_response:)
+    @http_response = http_response
+  end
+
+  class AsanaInvalidTokenError < StandardError
+    def message
+      "The token is invalid"
+    end
+  end
+
+  class AsanaTokenDoesNotExistError < StandardError
+    def message
+      "There is no integration to Asana"
+    end
+  end
+
+  def data
+    if http_response == nil
+      raise AsanaTokenDoesNotExistError, "There is no integration to Asana"
+    end
+    if token_expired?
+      raise AsanaInvalidTokenError, "It seems that the token has expired"
+    end
+    http_response.parsed_response.dig("data")
+  end
+
+  def token_expired?
+    if http_response.parsed_response.dig("errors") == [{ "message" => "The bearer token has expired. If you have a refresh token, please use it to request a new bearer token, otherwise allow the user to re-authenticate.", "help" => "For more information on API status codes and how to handle them, read the docs on errors: https://asana.com/developers/documentation/getting-started/errors" }]
+      true
+    else
+      false
+    end
+  end
+end
