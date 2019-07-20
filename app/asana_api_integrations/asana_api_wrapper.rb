@@ -6,12 +6,14 @@ class AsanaApiWrapper
   end
 
   def workspaces
-    HTTParty.get(
+    http_response = HTTParty.get(
       "https://app.asana.com/api/1.0/workspaces/",
       headers: headers(
         "https://app.asana.com/api/1.0/workspaces/"
       ),
     )
+  rescue NoMethodError => e
+    AsanaApiHandler.new(http_response: http_response).data
   end
 
   # def projects
@@ -67,8 +69,8 @@ class AsanaApiWrapper
       ),
     )
   end
- 
-     private
+
+  private
 
   def headers(agent)
     {
@@ -76,3 +78,5 @@ class AsanaApiWrapper
     }
   end
 end
+
+
