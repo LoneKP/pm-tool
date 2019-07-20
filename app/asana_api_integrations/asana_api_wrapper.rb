@@ -88,7 +88,7 @@ class AsanaApiHandler
 
   class AsanaInvalidTokenError < StandardError
     def message
-      "The token is invalid"
+      "The token has expired"
     end
   end
 
