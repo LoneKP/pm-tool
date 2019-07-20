@@ -12,8 +12,10 @@ class AsanaApiWrapper
         "https://app.asana.com/api/1.0/workspaces/"
       ),
     )
-  rescue NoMethodError
+  #  figure out how to handle when there is no integration. if I rescue I don't get the right return value from this method
+  # rescue NoMethodError
     AsanaApiHandler.new(http_response: http_response).data
+
   end
 
   # def projects
