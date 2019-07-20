@@ -19,6 +19,7 @@ class Organisation < ApplicationRecord
     harvest_integration = self.harvest_integration
     asana_integration = self.asana_integration
     integrations = harvest_integration, asana_integration
+    integrations.compact
   end
 
   def has_harvest_integration?
