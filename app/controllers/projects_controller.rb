@@ -105,7 +105,6 @@ class ProjectsController < ApplicationController
     @project.update(
       asana_project_id: @asana_project['project_id']
     )
-
   end
 
   def edit
