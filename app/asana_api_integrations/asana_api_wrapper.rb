@@ -12,64 +12,50 @@ class AsanaApiWrapper
         "https://app.asana.com/api/1.0/workspaces/"
       ),
     )
-  #  figure out how to handle when there is no integration. if I rescue I don't get the right return value from this method
-  # rescue NoMethodError
+    #  figure out how to handle when there is no integration. if I rescue I don't get the right return value from this method
+    # rescue NoMethodError
     AsanaApiHandler.new(http_response: http_response).data
-
   end
 
-  # def projects
-  #   HTTParty.get(
-  #     "https://app.asana.com/api/1.0/projects/",
-  #     headers: headers(
-  #       "https://app.asana.com/api/1.0/projects/"
-  #     ),
-  #   )
-  # end
-
   def teams
-    HTTParty.get(
+    http_response = HTTParty.get(
       "https://app.asana.com/api/1.0/organizations/164791055906616/teams",
       headers: headers(
         "https://app.asana.com/api/1.0/organizations/164791055906616/teams"
       ),
     )
+    AsanaApiHandler.new(http_response: http_response).data
   end
 
   def projects_in_team(team_id)
-    HTTParty.get(
+    http_response = HTTParty.get(
       "https://app.asana.com/api/1.0/teams/#{team_id}/projects",
       headers: headers(
         "https://app.asana.com/api/1.0/teams/#{team_id}/projects"
       ),
     )
+    AsanaApiHandler.new(http_response: http_response).data
   end
 
-  def project(project_id)
-    HTTParty.get(
-      "https://app.asana.com/api/1.0/projects/#{project_id}",
-      headers: headers(
-        "https://app.asana.com/api/1.0/projects/#{project_id}"
-      ),
-    )
-  end
 
   def tasks(project_id)
-    HTTParty.get(
+    http_response = HTTParty.get(
       "https://app.asana.com/api/1.0/projects/#{project_id}/tasks",
       headers: headers(
         "https://app.asana.com/api/1.0/projects/#{project_id}/tasks"
       ),
     )
+    AsanaApiHandler.new(http_response: http_response).data
   end
 
   def task(task_id)
-    HTTParty.get(
+    http_response = HTTParty.get(
       "https://app.asana.com/api/1.0/tasks/#{task_id}",
       headers: headers(
         "https://app.asana.com/api/1.0/tasks/#{task_id}"
       ),
     )
+    AsanaApiHandler.new(http_response: http_response).data
   end
 
   private

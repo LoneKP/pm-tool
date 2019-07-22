@@ -12,11 +12,11 @@ class FetchAsanaProjects
   end
 
   def asana_projects
-    teams.parsed_response["data"].map do |team|
+    teams.map do |team|
       team_name = team["name"]
       team_id = team["gid"]
 
-      all_projects(team_id).parsed_response["data"].map do |project|
+      all_projects(team_id).map do |project|
         project_name = project["name"]
         project_id = project["gid"]
 
@@ -38,19 +38,7 @@ class FetchAsanaProjects
   def teams
     wrapper(@user).teams
   end
-
-  def project(project_id)
-    wrapper(@user).project(project_id)
-  end
-
-  def tasks(project_id)
-    wrapper(@user).tasks(project_id)
-  end
-
-  def get_task(task_id)
-    wrapper(@user).task(task_id)
-  end
-
+  
   def wrapper(_user)
     @_wrapper ||= AsanaApiWrapper.new(@user)
   end

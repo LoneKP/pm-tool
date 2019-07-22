@@ -10,7 +10,7 @@ module AsanaApiIntegrations
     end
 
     def all_tasks_in_project
-      @_all_tasks_in_project ||= FetchAsanaProjects.new(@user).tasks(@project.asana_project_id).parsed_response["data"]
+      @_all_tasks_in_project ||= wrapper(@user).tasks(@project.asana_project_id)
     end
 
     def number_of_tasks_in_project
@@ -19,9 +19,13 @@ module AsanaApiIntegrations
 
     def done_tasks_in_project
       all_tasks = all_tasks_in_project.map do |task|
-        FetchAsanaProjects.new(@user).get_task(task["gid"])
+        wrapper(@user).task(task["gid"])
       end
-      @_done_tasks_in_project ||= all_tasks.select { |t| t["data"]["completed"] == true }.count
+      @_done_tasks_in_project ||= all_tasks.select { |t| t["completed"] == true }.count
+    end
+
+    def wrapper(_user)
+      @_wrapper ||= AsanaApiWrapper.new(@user)
     end
   end
 end
