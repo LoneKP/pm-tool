@@ -102,7 +102,6 @@ class ProjectsController < ApplicationController
     @user = current_user
     @project = Project.find(params[:project_id])
     @asana_project = asana_project_params
-    pry
     @project.update(
       asana_project_id: @asana_project['project_id']
     )
