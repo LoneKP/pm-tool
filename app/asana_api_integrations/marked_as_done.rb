@@ -1,31 +1,38 @@
-module AsanaApiIntegrations
   class MarkedAsDone
     def initialize(user, project)
       @user = user
       @project = project
     end
 
-    def project_status_percentage
-      @_project_status_percentage ||= (done_tasks_in_project.to_f / number_of_tasks_in_project.to_f) * 100
+    def save_progress_data
+      @project.update(
+      progress_percentage: progress_percentage,
+      done_tasks_count: done_tasks_count,
+      all_tasks_count: all_tasks_count,
+      )
     end
 
-    def all_tasks_in_project
-      @_all_tasks_in_project ||= wrapper(@user).tasks(@project.asana_project_id)
+    def progress_percentage
+      @_progress_percentage ||= (done_tasks_count.to_f / all_tasks_count.to_f) * 100
     end
 
-    def number_of_tasks_in_project
-      @_number_of_tasks_in_project ||= all_tasks_in_project.count
+    def all_tasks
+      @_all_tasks||= wrapper(@user).tasks(@project.asana_project_id)
     end
 
-    def done_tasks_in_project
-      all_tasks = all_tasks_in_project.map do |task|
+    def all_tasks_count
+      @_all_tasks_count ||= all_tasks.count
+    end
+
+    def done_tasks_count
+      all_tasks.map do |task|
         wrapper(@user).task(task["gid"])
-      end
-      @_done_tasks_in_project ||= all_tasks.select { |t| t["completed"] == true }.count
+      end.select { |t| t["completed"] == true }.count
+      # @_done_tasks_count ||= all_taskx.select { |t| t["completed"] == true }.count
     end
 
     def wrapper(_user)
       @_wrapper ||= AsanaApiWrapper.new(@user)
     end
   end
-end
+

@@ -56,7 +56,6 @@ class ProjectsController < ApplicationController
     @user = current_user
     @projects = @user.projects.where(organisation_id: @user.organisation.id)
     @risk_actions = RiskAction.all
-    @revenue_month = RevenueMonth.new
   end
 
   def team
@@ -74,7 +73,7 @@ class ProjectsController < ApplicationController
     @user = current_user
     @organisation = @user.organisation
     @harvest_projects = fetch_harvest_projects
-    @projects_grouped_by_client = @harvest_projects.group_by { |project| project['client_name'] }
+    @projects_grouped_by_client = @harvest_projects.group_by { |project| project["client_name"] }
   end
 
   def adjust_harvest_projects
@@ -82,12 +81,12 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:project_id])
     @harvest_project = harvest_project_params
     @project.update(
-      hours_sold_for: @harvest_project['hours_sold_for'], 
-      project_start_date: @harvest_project['project_start_date'],
-      project_end_date: @harvest_project['project_end_date'],
-      client_name: @harvest_project['client_name'],
-      harvest_project_id: @harvest_project['harvest_project_id'],
-      )
+      hours_sold_for: @harvest_project["hours_sold_for"],
+      project_start_date: @harvest_project["project_start_date"],
+      project_end_date: @harvest_project["project_end_date"],
+      client_name: @harvest_project["client_name"],
+      harvest_project_id: @harvest_project["harvest_project_id"],
+    )
     redirect_to edit_project_path(@project)
   end
 
@@ -100,11 +99,35 @@ class ProjectsController < ApplicationController
 
   def adjust_asana_projects
     @user = current_user
+    @organisation = @user.organisation
     @project = Project.find(params[:project_id])
     @asana_project = asana_project_params
+    update_asana_access_tokens_if_it_has_expired(@organisation)
     @project.update(
-      asana_project_id: @asana_project['project_id']
+      asana_project_id: @asana_project["project_id"],
     )
+  end
+
+  def update_asana_projects
+    @user = current_user
+    @organisation = @user.organisation
+    @project = Project.find(params[:project_id])
+    @asana_project = asana_project_params
+    update_asana_access_tokens_if_it_has_expired(@organisation)
+    
+
+    if @project.responsibilities.where(user_id: current_user.id).exists?
+      puts "the current user already had a relation to this project"
+    else
+      @project.responsibilities.create(user: current_user)
+      puts "the current user did not have a relation to this project, so the relation was created"
+    end
+
+    if MarkedAsDone.new(@user, @project).save_progress_data
+      redirect_to dashboard_path, notice: "Congratulations! You have successfully added/edited a project with Asana data."
+    else
+      render "update_asana_projects", alert: "Something went wrong"
+    end
   end
 
   def edit
@@ -118,8 +141,8 @@ class ProjectsController < ApplicationController
   end
 
   def fetch_harvest_projects
-      update_access_tokens_if_they_have_expired(@organisation)
-      FetchHarvestProjects.new(@user).harvest_projects
+    update_access_tokens_if_they_have_expired(@organisation)
+    FetchHarvestProjects.new(@user).harvest_projects
   end
 
   def fetch_asana_projects
@@ -139,29 +162,50 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def update_asana_access_tokens_if_it_has_expired(organisation)
+    if Time.current > organisation.asana_integration.access_token_expiration_time
+      UpdateAsanaAccessToken.new(organisation).update_token
+    end
+  end
+
+  def update_harvest_access_tokens_if_it_has_expired(organisation)
+    if Time.current > organisation.harvest_integration.access_token_expiration_time
+      UpdateHarvestAccessToken.new(organisation).update_token
+    end
+  end
+
   private
 
   def project_params
-    params.require(:project).permit(:project_name, :harvest_project_id, :added_to_dashboard, :work_hours, :hours_sold_for, :project_start_date, :project_end_date, :closed, :evaluation)
+    params.require(:project).permit(
+      :project_name, 
+      :harvest_project_id, 
+      :added_to_dashboard, 
+      :work_hours, 
+      :hours_sold_for, 
+      :project_start_date, 
+      :project_end_date, 
+      :closed
+    )
   end
 
   def harvest_project_params
     params.require(:harvest_project).permit(
-      :project_name, 
-      :harvest_project_id, 
-      :hours_sold_for, 
-      :project_start_date, 
-      :project_end_date, 
+      :project_name,
+      :harvest_project_id,
+      :hours_sold_for,
+      :project_start_date,
+      :project_end_date,
       :client_name
-      )
+    )
   end
 
   def asana_project_params
     params.require(:asana_project).permit(
-      :team_name, 
-      :team_id, 
-      :project_name, 
+      :team_name,
+      :team_id,
+      :project_name,
       :project_id
-      )
+    )
   end
 end

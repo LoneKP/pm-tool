@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     patch :adjust_harvest_projects, to: 'projects#adjust_harvest_projects'
     get :adjust_harvest_projects, to: 'projects#adjust_harvest_projects'
     get :adjust_asana_projects, to: 'projects#adjust_asana_projects'
+    patch :update_asana_projects, to: 'projects#update_asana_projects'
   end
 
   resources :risk_actions, only: %i[edit update destroy]

@@ -8,24 +8,15 @@
 				</h6>
 			</div>
 
-			<% today = Time.now.to_date %>
-			<% last_risk_update = (RiskAction.where(project_id:project.id).last&.created_at)&.to_date %>
-			<% if last_risk_update.present? %>
-			<% days_since_last_risk_update = (today - last_risk_update).to_i %>
-			<% if days_since_last_risk_update < 6 %>
-			<% else %>
+			<% unless project.has_progress_data? && project.has_time_data? %>
 			<div class="box d-flex flex-row">
-				<i class="icon-14-risk-update material-icons">access_time</i>
-				<p class="risk-update-text"> <%= pluralize(days_since_last_risk_update, 'day') %> since last
-					<%= link_to 'risk update', new_project_risk_action_path(project), :action => 'new', data: { turbolinks: false } %>
-				</p>
-			</div>
-			<% end %>
-			<% else %>
-			<div class="box d-flex flex-row">
-				<i class="icon-14-risk-update material-icons">access_time</i>
-				<p class="risk-update-text">Make your first
-					<%= link_to 'risk update', new_project_risk_action_path(project), :action => 'new', data: { turbolinks: false } %>
+				<i class="icon-14-risk-update material-icons">data</i>
+				<p class="risk-update-text">
+					<% if project.has_time_data? %>
+					<%= link_to "Add progress data", project_connect_asana_projects_path(project), data: { turbolinks: false } %>
+					<% elsif project.has_progress_data? %>
+					<%= link_to 'Add time data', project_connect_harvest_projects_path(project), data: { turbolinks: false } %>
+					<% end %>
 				</p>
 			</div>
 			<% end %>
@@ -88,8 +79,9 @@
 				<i class="open-gear-menu material-icons icon_20 client<%= project.color_number %>">settings</i>
 			</div>
 		</div>
+		<% if project.has_time_data? %>
 		<%= completion_indicator(project) %>
-
+		
 		<div class="mb-1">
 			<p>TIME SPENT</p>
 		</div>
@@ -100,17 +92,19 @@
 				<%= project.total_time_hours.round %> of <%= project.work_hours.round %> hours
 			</div>
 		</div>
+		<% end %>
+		<% if project.has_progress_data? %>
 		<div class="mt-3 mb-1">
 			<p>PROGRESS</p>
 		</div>
 
 		<div class="progress">
-			<div class="progress-bar" style="width: 25%" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+			<div class="progress-bar" style="width: <%= project.progress_percentage.round %>%" role="progressbar" aria-valuenow="0" aria-valuemin="0"
 				aria-valuemax="100">
-				X out of X tasks completed
+				<%= project.done_tasks_count.round %> of <%= project.all_tasks_count.round %> tasks completed
 			</div>
 		</div>
-
+		<% end %>
 	</div>
 
 

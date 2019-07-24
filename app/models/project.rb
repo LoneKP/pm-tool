@@ -18,4 +18,26 @@ class Project < ApplicationRecord
   def asana_integration
     self.organisation.asana_integration
   end
+
+  def added_to_dashboard?(user)
+    projects = user.projects.where(organisation_id: user.organisation.id) 
+    current_project = projects.find(self.id)
+
+    if current_project.blank?
+      false
+    else
+      true
+    end
+  end
+
+  #asana
+def has_progress_data?
+  !self.progress_percentage.nil?
+end
+
+#harvest
+def has_time_data?
+  !self.completion_percentage.nil?
+end
+
 end

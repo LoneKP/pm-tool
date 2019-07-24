@@ -15,7 +15,7 @@
       <% projects.in_groups_of(4, false) do |projects_in_four| %>
         <div class="project-boxes">
           <% projects_in_four[0].each do |asana_project| %>
-            <%= link_to project_adjust_asana_projects_path(@project, 'asana_project' => asana_project), :action => 'adjust_asana_projects', data: { turbolinks: false } do %>
+            <%= link_to project_adjust_asana_projects_path(@project, 'asana_project' => asana_project), data: { turbolinks: false } do %>
               <div>
                 <p><%= asana_project['project_name'] %></p>
               </div>

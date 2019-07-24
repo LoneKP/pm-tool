@@ -37,7 +37,6 @@ class AsanaApiWrapper
     AsanaApiHandler.new(http_response: http_response).data
   end
 
-
   def tasks(project_id)
     http_response = HTTParty.get(
       "https://app.asana.com/api/1.0/projects/#{project_id}/tasks",
