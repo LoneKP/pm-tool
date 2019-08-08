@@ -26,6 +26,8 @@ gem 'sidekiq'
 gem 'simple_form'
 gem 'bcrypt' 
 gem 'rufo' 
+gem 'webpacker', '~> 4.x'
+gem 'typhoeus'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 # Use sqlite3 as the database for Active Record
